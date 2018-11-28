@@ -572,7 +572,7 @@ function hdStart(machCODE){
 			trd.appendChild(tdd4);
 			trd.appendChild(tdd5);
 			table.appendChild(trd);
-			if(table2.children[1].children[0].children[0].innerHTML != "Null..."){
+			if(table2.children[1].children[0].children[0].innerHTML != "没有数据..."){
 				for(var i = 0; i < table2.children[1].children.length; i++){
 					var trds = creat('tr');
 					var tdds1 = creat('td');

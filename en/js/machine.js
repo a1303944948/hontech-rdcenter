@@ -2671,6 +2671,13 @@ function renderingAlarm(machCODE,mobleId){
 								}
 							}
 						};
+					}else{
+						var machineTempTop = d('machine_temp_top');
+						var machineTempBom = d('machine_temp_bom');
+						var machineTempTime = d('machine_temp_time');
+						machineTempTop.value = "";
+						machineTempBom.value = "";
+						machineTempTime.value = "";
 					}
 				}
 			})

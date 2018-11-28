@@ -160,7 +160,7 @@ function start(){
 						modelMouth.value = data[q].takeNum;
 						modelRefrigeration.value = data[q].coolType;
 						modelHeating.value = data[q].hotType;
-						if(data[q].picture != ""){
+						if(data[q].picture != ""&&data[q].picture != undefined){
 							modelImageView.innerHTML = data[q].picture;
 							modelImages.innerHTML = '<img src="'+ data[q].picture +'" />';
 						}

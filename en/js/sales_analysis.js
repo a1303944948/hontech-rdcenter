@@ -1298,6 +1298,58 @@ function tableRendering(type,allDate){
 	var table = c('sales_body_table_tbody')[0];
 	table.innerHTML = '';
 	if(type == 'By Value'){
+		var tr = creat('tr');
+		var td1 = creat('td');
+		var td2 = creat('td');
+		var td3 = creat('td');
+		var td4 = creat('td');
+		var td5 = creat('td');
+		var td6 = creat('td');
+		var td7 = creat('td');
+		var td8 = creat('td');
+		var td9 = creat('td');
+		var td10 = creat('td');
+		var td2sum = 0;
+		var td3sum = 0;
+		var td4sum = 0;
+		var td5sum = 0;
+		var td6sum = 0;
+		var td7sum = 0;
+		var td8sum = 0;
+		var td9sum = 0;
+		var td10sum = 0;
+		for(var i = 0; i < allDate.x_Time.length; i++){
+			td2sum += parseFloat(allDate.salesAmount.SilverMerSalesAmount[i]);
+			td3sum += parseFloat(allDate.salesAmount.alipaySalesAmount[i]);
+			td4sum += parseFloat(allDate.salesAmount.icbcSalesAmount[i]);
+			td5sum += parseFloat(allDate.salesAmount.wechatSalesAmount[i]);
+			td6sum += parseFloat(allDate.salesAmount.freeSalesAmount[i]);
+			td7sum += parseFloat(allDate.salesAmount.cardSalesAmount[i]);
+			td8sum += parseFloat(allDate.salesAmount.cashSalesAmount[i]);
+			td9sum += parseFloat(allDate.salesAmount.totalSalesAmount[i]);
+			td10sum += parseFloat(allDate.salesVolume.totalSalesVolume[i]);
+		}
+		td1.innerHTML = 'total';
+		td2.innerHTML = Number(td2sum.toFixed(2));
+		td3.innerHTML = Number(td3sum.toFixed(2));
+		td4.innerHTML = Number(td4sum.toFixed(2));
+		td5.innerHTML = Number(td5sum.toFixed(2));
+		td6.innerHTML = Number(td6sum.toFixed(2));
+		td7.innerHTML = Number(td7sum.toFixed(2));
+		td8.innerHTML = Number(td8sum.toFixed(2));
+		td9.innerHTML = Number(td9sum.toFixed(2));
+		td10.innerHTML = Number(td10sum.toFixed(2));
+		tr.appendChild(td1);
+		tr.appendChild(td2);
+		tr.appendChild(td3);
+		tr.appendChild(td4);
+		tr.appendChild(td5);
+		tr.appendChild(td6);
+		tr.appendChild(td7);
+		tr.appendChild(td8);
+		tr.appendChild(td9);
+		tr.appendChild(td10);
+		table.appendChild(tr);
 		for(var i = 0; i < allDate.x_Time.length; i++){
 			var tr = creat('tr');
 			var td1 = creat('td');
@@ -1333,6 +1385,58 @@ function tableRendering(type,allDate){
 			table.appendChild(tr);
 		}
 	}else if(type == 'By Sales'){
+		var tr = creat('tr');
+		var td1 = creat('td');
+		var td2 = creat('td');
+		var td3 = creat('td');
+		var td4 = creat('td');
+		var td5 = creat('td');
+		var td6 = creat('td');
+		var td7 = creat('td');
+		var td8 = creat('td');
+		var td9 = creat('td');
+		var td10 = creat('td');
+		var td2sum = 0;
+		var td3sum = 0;
+		var td4sum = 0;
+		var td5sum = 0;
+		var td6sum = 0;
+		var td7sum = 0;
+		var td8sum = 0;
+		var td9sum = 0;
+		var td10sum = 0;
+		for(var i = 0; i < allDate.x_Time.length; i++){
+			td2sum += parseFloat(allDate.salesVolume.SilverMerSalesVolume[i]);
+			td3sum += parseFloat(allDate.salesVolume.alipaySalesVolume[i]);
+			td4sum += parseFloat(allDate.salesVolume.icbcSalesVolume[i]);
+			td5sum += parseFloat(allDate.salesVolume.wechatSalesVolume[i]);
+			td6sum += parseFloat(allDate.salesVolume.freeSalesVolume[i]);
+			td7sum += parseFloat(allDate.salesVolume.cardSalesVolume[i]);
+			td8sum += parseFloat(allDate.salesVolume.cashSalesVolume[i]);
+			td9sum += parseFloat(allDate.salesAmount.totalSalesAmount[i]);
+			td10sum += parseFloat(allDate.salesVolume.totalSalesVolume[i]);
+		}
+		td1.innerHTML = 'total';
+		td2.innerHTML = Number(td2sum.toFixed(2));
+		td3.innerHTML = Number(td3sum.toFixed(2));
+		td4.innerHTML = Number(td4sum.toFixed(2));
+		td5.innerHTML = Number(td5sum.toFixed(2));
+		td6.innerHTML = Number(td6sum.toFixed(2));
+		td7.innerHTML = Number(td7sum.toFixed(2));
+		td8.innerHTML = Number(td8sum.toFixed(2));
+		td9.innerHTML = Number(td9sum.toFixed(2));
+		td10.innerHTML = Number(td10sum.toFixed(2));
+		tr.appendChild(td1);
+		tr.appendChild(td2);
+		tr.appendChild(td3);
+		tr.appendChild(td4);
+		tr.appendChild(td5);
+		tr.appendChild(td6);
+		tr.appendChild(td7);
+		tr.appendChild(td8);
+		tr.appendChild(td9);
+		tr.appendChild(td10);
+		table.appendChild(tr);
 		for(var i = 0; i < allDate.x_Time.length; i++){
 			var tr = creat('tr');
 			var td1 = creat('td');

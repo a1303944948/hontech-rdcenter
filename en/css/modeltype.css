@@ -525,6 +525,9 @@ html,body{
 	padding-left: 10px;
 	padding-right: 10px;
 	box-sizing: border-box;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	cursor: pointer;
 }
 .model_push_fixed_home_tablea_ula>li:hover{
@@ -548,6 +551,9 @@ html,body{
 	padding-left: 10px;
 	padding-right: 10px;
 	box-sizing: border-box;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	cursor: pointer;
 }
 .model_push_fixed_home_tablea_ulb>li:hover{
