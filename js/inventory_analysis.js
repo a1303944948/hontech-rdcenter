@@ -256,7 +256,7 @@ function tableObj(){
 						tha.innerHTML = '商品名称';
 						thb.innerHTML = '商品编号';
 						thc.innerHTML = '数量';
-						thd.innerHTML = '单价';
+						thd.innerHTML = '总价';
 						tr.appendChild(tha);
 						tr.appendChild(thb);
 						tr.appendChild(thc);
@@ -324,7 +324,7 @@ function tableObj(){
 						tha.innerHTML = '设备名称';
 						thb.innerHTML = '设备编号';
 						thc.innerHTML = '数量';
-						thd.innerHTML = '单价';
+						thd.innerHTML = '总价';
 						tr.appendChild(tha);
 						tr.appendChild(thb);
 						tr.appendChild(thc);

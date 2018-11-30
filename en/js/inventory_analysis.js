@@ -256,7 +256,7 @@ function tableObj(){
 						tha.innerHTML = 'Name';
 						thb.innerHTML = 'ID';
 						thc.innerHTML = 'Number';
-						thd.innerHTML = 'Selling Price';
+						thd.innerHTML = 'value';
 						tr.appendChild(tha);
 						tr.appendChild(thb);
 						tr.appendChild(thc);
@@ -324,7 +324,7 @@ function tableObj(){
 						tha.innerHTML = 'Name';
 						thb.innerHTML = 'ID';
 						thc.innerHTML = 'Number';
-						thd.innerHTML = 'Selling Price';
+						thd.innerHTML = 'value';
 						tr.appendChild(tha);
 						tr.appendChild(thb);
 						tr.appendChild(thc);
