@@ -837,7 +837,7 @@ function hdStart(machCODE){
 	})
 	//补货管理点击生成按钮后渲染
 	itemBtncba.onclick = function(){
-		if(confirm('Creat?')){
+		if(confirm('是否生成?')){
 			$.ajax({
 				type: 'post',
 				url: URLX + 'bg-uc/replenishment/web_sys/form/list.json',
