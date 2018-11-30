@@ -148,24 +148,72 @@ function alern(text,name,btn,btns){
 		}
 	}
 }
+
+var loadingTimore;
 function loading(text){
-	window.onload = function(){
-		if(text == undefined){
-			text = "加载中";
-		}
-		var body = document.getElementsByTagName('body')[0];
-		var load = creat('div');
-		load.className = "body_load";
-		load.style.width = "100%";
-		load.style.height = "100%";
-		load.style.position = 'fixed';
-		load.style.left = '0px';
-		load.style.top = '0px';
-		load.style.backgroundColor = "rgba(0,0,0,0.7)";
-		load.zIndex = '9999999';
-		console.log(body);
-		console.log(load);
-		body.appendChild(loading);
+	if(text == undefined){
+		text = "loading";
 	}
+	var body = n('body')[0];
+	var load = creat('div');
+	load.className = "body_load";
+	load.style.width = "100%";
+	load.style.height = "100%";
+	load.style.position = 'fixed';
+	load.style.left = '0px';
+	load.style.top = '0px';
+	load.style.backgroundColor = "rgba(0,0,0,0.7)";
+	load.style.zIndex = '9999999';
+	var loadDiv = creat('div');
+	loadDiv.style.width = '160px';
+	loadDiv.style.height = '160px';
+	loadDiv.style.position = 'absolute';
+	loadDiv.style.top = '50%';
+	loadDiv.style.left = '50%';
+	loadDiv.style.marginTop = '-80px';
+	loadDiv.style.marginLeft = '-80px';
+	var loadDivItem = creat('div');
+	loadDivItem.style.width = '160px';
+	loadDivItem.style.height = '160px';
+	loadDivItem.style.position = 'absolute';
+	loadDivItem.style.top = '0px';
+	loadDivItem.style.left = '0px';
+	loadDivItem.style.textAlign = 'center';
+	loadDivItem.style.fontSize = '12px';
+	loadDivItem.style.lineHeight = '160px';
+	loadDivItem.style.color = '#ffffff';
+	loadDiv.appendChild(loadDivItem);
+	loadDivItem.innerHTML = text;
+	var loadCount = 0;
+	loadDivItem.innerHTML = text + '○○○';
+	loadingTimore = setInterval(function(){
+		loadCount++;
+		if(loadCount == 1){
+			loadDivItem.innerHTML = text + '●○○';
+		}
+		if(loadCount == 2){
+			loadDivItem.innerHTML = text + '●●○';
+		}
+		if(loadCount == 3){
+			loadDivItem.innerHTML = text + '●●●';
+			loadCount = 0;
+		}
+	},300);
+	var loadDivImg = new Image();
+	loadDivImg.src = 'image/loading.png';
+	loadDivImg.className = 'body_load_div_image';
+	loadDivImg.style.width = '100%';
+	loadDivImg.style.height = '100%';
+	loadDivImg.style.position = 'absolute';
+	loadDivImg.style.top = '0px';
+	loadDivImg.style.left = '0px';
+	loadDiv.appendChild(loadDivImg);
+	load.appendChild(loadDiv);
+	body.appendChild(load);
 }
-//loading('123');
+function loadingClear(){
+	clearInterval(loadingTimore);
+	var body = n('body')[0];
+	var load = c('body_load')[0];
+	body.removeChild(load);
+}

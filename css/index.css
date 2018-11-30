@@ -33,6 +33,17 @@
 [v-cloak] {
    display: none;
 }
+.body_load_div_image{
+	animation: loadDiv 0.8s linear 0s infinite;
+}
+@keyframes loadDiv{
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}
 html,body{
 	width: 100%;
 	height: auto;

@@ -1001,6 +1001,7 @@ function selesForm(){
     console.log(unitz);
     console.log(Start);
     console.log(End);
+    loading();
     $.ajax({
       type: 'post',
       url: URLX + 'bg-uc/jf/com/report/web/deal.json',
@@ -1014,6 +1015,7 @@ function selesForm(){
       },
       dataType: 'json',
       success: function(data){
+        loadingClear();
         console.log(data);
         tableRendering(data.dealMonitor);
       }
@@ -1028,6 +1030,18 @@ selesForm();
 //底部table渲染
 function tableRendering(allDate){
   console.log(allDate);
+  var totalAmountArr = [];
+  for(var i = 0; i < allDate.length; i++){
+    totalAmountArr.push(allDate[i].total_amount);
+  }
+  var totalAmount = 0;
+  for(var i = 0; i < totalAmountArr.length; i++){
+    totalAmount += parseFloat(totalAmountArr[i]);
+  }
+  var salesBodyFirstSpan = c('sales_body_firstSpan')[0];
+  var salesBodyLastSpan = c('sales_body_lastSpan')[0];
+  salesBodyFirstSpan.innerHTML = 'total：' + allDate.length;
+  salesBodyLastSpan.innerHTML = 'value：' + Number(totalAmount.toFixed(2));
   var table = c('sales_body_table_tbody')[0];
   table.innerHTML = '';
   for(var i = 0; i < allDate.length; i++){

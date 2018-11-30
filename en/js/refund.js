@@ -960,6 +960,7 @@ function selesForm(){
       return false;
     }
     salesBody.style.display = 'block';
+    loading();
     $.ajax({
       type: 'post',
       url: URLX + 'bg-uc/jf/com/report/web/refund.json',
@@ -971,6 +972,7 @@ function selesForm(){
       },
       dataType: 'json',
       success: function(data){
+        loadingClear();
         tableRendering(data.payRefund);
       }
     })
@@ -983,6 +985,18 @@ selesForm();
 
 //底部table渲染
 function tableRendering(allDate){
+  var totalAmountArr = [];
+  for(var i = 0; i < allDate.length; i++){
+    totalAmountArr.push(allDate[i].total_amount);
+  }
+  var totalAmount = 0;
+  for(var i = 0; i < totalAmountArr.length; i++){
+    totalAmount += parseFloat(totalAmountArr[i]);
+  }
+  var salesBodyFirstSpan = c('sales_body_firstSpan')[0];
+  var salesBodyLastSpan = c('sales_body_lastSpan')[0];
+  salesBodyFirstSpan.innerHTML = '总数量：' + allDate.length;
+  salesBodyLastSpan.innerHTML = '总金额：' + Number(totalAmount.toFixed(2));
   var table = c('sales_body_table_tbody')[0];
   table.innerHTML = '';
   for(var i = 0; i < allDate.length; i++){
