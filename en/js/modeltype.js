@@ -488,6 +488,9 @@ function subUP(){
 				//客户端与下位机下拉框
 				var fixedHomeTableaInta = c('model_push_fixed_home_tablea_inta')[0];
 				var fixedHomeTableaIntb = c('model_push_fixed_home_tablea_intb')[0];
+				if(c('model_push_fixed_home_tablea_ula')[0] != undefined){
+					c('model_push_fixed_home_tablea_ula')[0].parentNode.removeChild(c('model_push_fixed_home_tablea_ula')[0]);
+				}
 				var ul = creat('ul');
 				ul.className = 'model_push_fixed_home_tablea_ula';
 				for(var i = 0; i < data.filemaster.length; i++){
@@ -499,6 +502,9 @@ function subUP(){
 					}
 				}
 				fixedHomeTableaInta.parentNode.appendChild(ul);
+				if(c('model_push_fixed_home_tablea_ulb')[0] != undefined){
+					c('model_push_fixed_home_tablea_ulb')[0].parentNode.removeChild(c('model_push_fixed_home_tablea_ulb')[0]);
+				}
 				var uls = creat('ul');
 				uls.className = 'model_push_fixed_home_tablea_ulb';
 				for(var i = 0; i < data.filemaster.length; i++){

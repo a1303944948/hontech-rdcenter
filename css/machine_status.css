@@ -197,7 +197,12 @@
 	border-top: none;
 	box-sizing: border-box;
 	align-items: center;
-	justify-content:  center;
+	justify-content: center;
+	word-break: break-word;
+	-webkit-word-break: break-word;
+	-moz-word-break: break-word;
+	-ms-word-break: break-word;
+	-o-word-break: break-word;
 	float: left;
 	font-size: 13px;
 }
