@@ -1058,6 +1058,7 @@ function submit(){
 		boardBuys.style.display = 'none';
 		boardRentstarts.style.display = 'none';
 		boardRentends.style.display = 'none';
+		AllMach = "";
 		type = 0;
 		boardpPurview.value = "";
 		boardpPurview.name = "";
@@ -1150,13 +1151,15 @@ function submit(){
 		}
 		userObject.remark = boardMark.value;
 		userObject.dltflag = boardStops;
-		userObject.status = AllMach.obj.status;
-		userObject.description = AllMach.obj.description;
-		userObject.flowcard = AllMach.obj.flowcard;
-		userObject.useAddr = AllMach.obj.useAddr;
-		userObject.matter = AllMach.obj.matter;
-		userObject.problem = AllMach.obj.problem;
-		userObject.trouble = AllMach.obj.trouble;
+		if(AllMach != undefined&&AllMach != ""&&AllMach != null){
+			userObject.status = AllMach.obj.status;
+			userObject.description = AllMach.obj.description;
+			userObject.flowcard = AllMach.obj.flowcard;
+			userObject.useAddr = AllMach.obj.useAddr;
+			userObject.matter = AllMach.obj.matter;
+			userObject.problem = AllMach.obj.problem;
+			userObject.trouble = AllMach.obj.trouble;
+		}
 
 		console.log(type);
 		console.log(JSON.stringify(userObject));

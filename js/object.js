@@ -145,10 +145,10 @@ var KITASSIGN;		//BOM结构获取指定类型方法	对应方法为groupitemleve
 // var URLX = 'http://10.1.8.36:8080/';
 // var URLZ = 'http://10.1.8.45:8080/';
 // var URLY = 'http://10.1.8.45:8080/';
-// var URLS = 'http://10.1.8.36:8080/';
-// var URLX = 'http://10.1.8.36:8080/';
-// var URLZ = 'http://10.1.8.36:8080/';
-// var URLY = 'http://10.1.8.36:8080/';
+/*var URLS = 'http://10.1.8.36:8080/';
+var URLX = 'http://10.1.8.36:8080/';
+var URLZ = 'http://10.1.8.36:8080/';
+var URLY = 'http://10.1.8.36:8080/';*/
 // var URLY = 'http://test.hontech-rdcenter.com:8080/';
 var URLS = 'http://hfrd.hontech-rdcenter.com:8080/';
 var URLX = 'http://hfrd.hontech-rdcenter.com:8080/';

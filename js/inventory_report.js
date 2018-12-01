@@ -253,6 +253,7 @@ function selesForm(){
     })
   }
 
+  //根据货道排序
   c('sales_body_table_cargo')[0].onclick = function(){
     var count = 1;
     if(c('sales_body_table_cargo')[0].children[0].innerHTML == '↓' && count == 1){
