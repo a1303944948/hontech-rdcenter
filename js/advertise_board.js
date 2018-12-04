@@ -777,37 +777,52 @@ function submit(){
 		var endTime = c('endTime');										//结束时间
 		var advertiseBoardPosition = c('advertise_board_position');		//广告位
 		var advertiseBoardLabel = c('advertise_board_label');			//广告标签
-		var advertiseArray = [];
+		var advertiseArr = [];		//获取设备编号集合
 		for(var i = 0; i < adviertisementFixedInt.length; i++){
-			var advertiseArr = [];
 			if(adviertisementFixedInt[i].checked){
-				for(var j = 0; j < advertiseBoardType.length; j++){
-					var advertiseObject = new Object();
-					advertiseObject.machCode = adviertisementFixedInt[i].name;
+				advertiseArr.push(adviertisementFixedInt[i].name);
+				//for(var j = 0; j < advertiseBoardType.length; j++){
+					//var advertiseObject = new Object();
+					/*advertiseObject.machCode = adviertisementFixedInt[i].name;
 					advertiseObject.picOrvidUrl = advertiseBoardAddr[j].value;
 					advertiseObject.type = advertiseBoardType[j].name;
 					advertiseObject.duration = advertiseBoardTime[j].value;
 					advertiseObject.startTime = startTime[j].value;
 					advertiseObject.endTime = endTime[j].value;
 					advertiseObject.advertPosition = advertiseBoardPosition[j].value;
-					advertiseObject.content = advertiseBoardLabel[j].value;
-					advertiseArr.push(advertiseObject)
-				}
-				advertiseArray.push(advertiseArr);
+					advertiseObject.content = advertiseBoardLabel[j].value;*/
+				//}
+				//advertiseArray.push(advertiseArr);
 			}
 		}
-		console.log(JSON.stringify(advertiseArray));
+		var advertiseArray = [];	//获取广告信息
+		for(var j = 0; j < advertiseBoardType.length; j++){
+			var advertiseObject = new Object();
+			advertiseObject.picOrvidUrl = advertiseBoardAddr[j].value;
+			advertiseObject.type = advertiseBoardType[j].name;
+			advertiseObject.duration = advertiseBoardTime[j].value;
+			advertiseObject.startTime = startTime[j].value;
+			advertiseObject.endTime = endTime[j].value;
+			advertiseObject.advertPosition = advertiseBoardPosition[j].value;
+			advertiseObject.content = advertiseBoardLabel[j].value;
+			advertiseArray.push(advertiseObject);
+		}
+		loading();
 		$.ajax({
 			type: 'post',
 			url: URLS + 'bg-uc/adviertisement/copy.json',
 			data: {
 				adverData: JSON.stringify(advertiseArray),
+				machCodeData: JSON.stringify(advertiseArr),
 			},
 			success: function(data){
+				console.log(data);
 				if(data.a){
+					loadingClear();
 					alern('应用成功!');
 					advertiseBoardFixed.style.display = 'none';
 				}else{
+					loadingClear();
 					alern('应用失败!');
 				};
 			}
