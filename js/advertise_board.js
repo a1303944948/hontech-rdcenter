@@ -758,7 +758,7 @@ function submit(){
 				adDate: JSON.stringify(advertiseArray)
 			},
 			success: function(data){
-				console.log(data.a);
+				console.log(data);
 				if(data.a||data.a == undefined){
 					alern('保存成功');
 				}else{
