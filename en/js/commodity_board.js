@@ -494,6 +494,13 @@ function submit(){
 			this.value = 0;
 			alern('0 <= Infrared Heating Time <= 600');
 		}
+		if(this.value == ""){
+			this.value = 0;
+			alern('Infrared Heating Time Is Null!');
+		}
+	}
+	d('commodity_Infrared').oninput = function(){
+		this.value=this.value.replace(/[^0-9]/);
 	}
 
 	d('commodity_microwave').onchange = function(){
@@ -505,6 +512,13 @@ function submit(){
 			this.value = 0;
 			alern('0 <= Microwave Heating Time <= 600');
 		}
+		if(this.value == ""){
+			this.value = 0;
+			alern('Microwave Heating Time Is Null!');
+		}
+	}
+	d('commodity_microwave').oninput = function(){
+		this.value=this.value.replace(/[^0-9]/);
 	}
 
 	d('commodity_cooking').onchange = function(){
@@ -516,6 +530,13 @@ function submit(){
 			this.value = 0;
 			alern('0 <= Max Temperature <= 300');
 		}
+		if(this.value == ""){
+			this.value = 0;
+			alern('Max Temperature Is Null!');
+		}
+	}
+	d('commodity_cooking').oninput = function(){
+		this.value=this.value.replace(/[^0-9]/);
 	}
 
 	//标准价格
@@ -659,9 +680,9 @@ function submit(){
 		operatorStars = 0;
 		d('commodity_shelf').value = "";									//保质期
 		d('commodity_code').value = "";										//条形编码
-		d('commodity_Infrared').value = "";									//红外加热
-		d('commodity_microwave').value = "";								//微博加热
-		d('commodity_cooking').value = "";									//烹饪温度
+		d('commodity_Infrared').value = "0";									//红外加热
+		d('commodity_microwave').value = "0";								//微博加热
+		d('commodity_cooking').value = "0";									//烹饪温度
 		d('commodity_supplier').value = "";									//供应商
 		c('detailed_operator_pickimg')[0].innerHTML = "";					//选餐图片
 		d('detailed_operator_pickimg').value = "";					

@@ -158,10 +158,10 @@ var URLY = 'http://hfrd.hontech-rdcenter.com:8080/';
 var URLX = 'http://test.hontech-rdcenter.com:8080/';
 var URLZ = 'http://test.hontech-rdcenter.com:8080/';
 var URLY = 'http://test.hontech-rdcenter.com:8080/';*/
-/*var URLS = 'http://10.1.8.36:808/';
-var URLX = 'http://10.1.8.36:808/';
-var URLZ = 'http://10.1.8.36:808/';
-var URLY = 'http://10.1.8.36:808/';*/
+/*var URLS = 'http://10.1.8.36:8080/';
+var URLX = 'http://10.1.8.36:8080/';
+var URLZ = 'http://10.1.8.36:8080/';
+var URLY = 'http://10.1.8.36:8080/';*/
 //禁用页面log,要恢复调试请注释
 //console.log = ()=>{};
 
