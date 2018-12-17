@@ -18,7 +18,7 @@ document.writeln("					Hello , "+loginUserName.name+"<b></b>");
 document.writeln("					<div class=\'header_user_slip\'>");
 document.writeln("						<span id='edit_pass'><img src=\'image/zhgl.png\'>Password</span>");
 //document.writeln("						<span><img src=\'image/qh.png\'>切换账号</span>");
-document.writeln("						<span id='exit_login'><img src=\'image/tc.png\'>Exit</span>");
+document.writeln("						<span id='exit_login'><img src=\'image/tc.png\'>Safety Exit</span>");
 document.writeln("					</div>");
 document.writeln("				</div>");
 document.writeln("			</div>");

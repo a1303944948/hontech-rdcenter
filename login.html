@@ -113,6 +113,11 @@
 			window.open("http://www.hontech-rdcenter.com");
 		}
 
+		window.onkeydown = function(e){
+			if(e.keyCode == 13){
+				c('login_btn')[0].click();
+			}
+		}
 		c('login_btn')[0].onclick = function(){
 			var username = d('username').value;
 			var password = d('password').value;
