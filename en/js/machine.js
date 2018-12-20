@@ -2707,9 +2707,44 @@ function renderingAlarm(machCODE,mobleId){
 				alarmLeftUlObject.push(alarmLeftUl.children[i].children[0].value);
 			};
 		};
+		//温度界限提交
 		var machineTempTop = d('machine_temp_top');
 		var machineTempBom = d('machine_temp_bom');
 		var machineTempTime = d('machine_temp_time');
+		if(machineTempTop.value < machineTempBom.value){
+			alern('Temperature Upper Limit < Lower Limit Is Null');
+			return false;
+		}
+		if(machineTempTop.value != ''){
+			if(machineTempBom.value == ''){
+				alern('Temperature Upper Limit Is Null');
+				return false;
+			}
+			if(machineTempTime.value == ''){
+				alern('Duration(Minute) Is Null');
+				return false;
+			}
+		}
+		if(machineTempBom.value != ''){
+			if(machineTempTop.value == ''){
+				alern('Temperature Upper Limit Is Null');
+				return false;
+			}
+			if(machineTempTime.value == ''){
+				alern('Duration(Minute) Is Null');
+				return false;
+			}
+		}
+		if(machineTempTime.value != ''){
+			if(machineTempBom.value == ''){
+				alern('Lower Limit Is Null');
+				return false;
+			}
+			if(machineTempTop.value == ''){
+				alern('Temperature Upper Limit Is Null');
+				return false;
+			}
+		}
 		alarmTopObject.temTop = machineTempTop.value;
 		alarmTopObject.temBottom = machineTempBom.value;
 		alarmTopObject.duration = machineTempTime.value;
