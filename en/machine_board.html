@@ -64,7 +64,7 @@
 								</tr>
 								<tr>
 									<td>Machine ID : <span>*</span></td>
-									<td><input id="board_machcode" type="text"/></td>
+									<td><input id="board_machcode" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" type="text"/></td>
 								</tr>
 								<tr>
 									<td>Machine Name : <span>*</span></td>

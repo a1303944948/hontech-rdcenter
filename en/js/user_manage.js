@@ -1135,7 +1135,7 @@ c('user_rest_pass')[0].onclick = function(){
 			type: 'post',
 			url: URLZ + 'bg-uc/jf/bg/basic/pc/initPasswd.json',
 			data: {
-				empcode: loginUserName.empcode,
+				empcode: userAccount.value,
 			},
 			success: function(data){
 				if(data.obj == 1){

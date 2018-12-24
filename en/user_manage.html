@@ -71,8 +71,8 @@
 									<td><input id="user_job" type="text"/></td>
 								</tr>
 								<tr>
-									<td>Logon Name : <span>*</span></td>
-									<td><input id="user_account" type="text"/></td>
+									<td>Login Name : <span>*</span></td>
+									<td><input id="user_account" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" type="text"/></td>
 								</tr>
 								<tr>
 									<td>Mobile Phone : </td>

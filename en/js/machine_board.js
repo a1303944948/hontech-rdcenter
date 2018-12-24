@@ -22,11 +22,28 @@ $.ajax({
 	async: false,
 	success: function(data){
 		var BOARDSELECTB = [];
-		for(var i = 0; i <　data.dataOper.length; i++){
-			var BOARDSELECTBOBJ = new Object();
-			BOARDSELECTBOBJ.type = data.dataOper[i].operatorID;
-			BOARDSELECTBOBJ.text = data.dataOper[i].operator;
-			BOARDSELECTB.push(BOARDSELECTBOBJ);
+		if(loginUserName.operatorID == 1){
+			for(var i = 0; i <　data.dataOper.length; i++){
+				var BOARDSELECTBOBJ = new Object();
+				BOARDSELECTBOBJ.type = data.dataOper[i].operatorID;
+				BOARDSELECTBOBJ.text = data.dataOper[i].operator;
+				BOARDSELECTB.push(BOARDSELECTBOBJ);
+			}
+		}else{
+			$.ajax({
+				type: 'post',
+				url: URLS + 'bg-uc/operate/getOperate.json',
+				data: {
+					operatorID: loginUserName.operatorID,
+				},
+				async: false,
+				success: function(data){
+					var BOARDSELECTBOBJ = new Object();
+					BOARDSELECTBOBJ.type = data.operatorID;
+					BOARDSELECTBOBJ.text = data.operator;
+					BOARDSELECTB.push(BOARDSELECTBOBJ);
+				}
+			})
 		}
 		BOARDSELECT.push(BOARDSELECTB);
 	}

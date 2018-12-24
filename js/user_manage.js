@@ -1133,13 +1133,12 @@ function submit(){
 c('user_rest_pass')[0].onclick = function(){
 	var userName = d('user_name');
 	var userAccount = d('user_account');
-
 	if(confirm('重置用户'+userName.value+'的账号'+userAccount.value+'的密码吗？')){
 		$.ajax({
 			type: 'post',
 			url: URLZ + 'bg-uc/jf/bg/basic/pc/initPasswd.json',
 			data: {
-				empcode: loginUserName.empcode,
+				empcode: userAccount.value,
 			},
 			success: function(data){
 				if(data.obj == 1){

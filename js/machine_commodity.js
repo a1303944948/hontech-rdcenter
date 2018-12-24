@@ -44,6 +44,7 @@ function byStart(machCODE){
 			}*/
 			var commodityaTbodyIntaClose = c('user_body_right_foot_item_commoditya_tbody_inta_close');
 			var commodityaTbodyInta = c('user_body_right_foot_item_commoditya_tbody_inta');
+			var commodityaTbodyIntb = c('user_body_right_foot_item_commoditya_tbody_intb');
 			for(var i = 0; i < commodityaTbodyInta.length; i++){
 				(function(q){
 					commodityaTbodyIntaClose[q].onclick = function(){
@@ -52,9 +53,6 @@ function byStart(machCODE){
 					}
 					commodityaTbodyInta[q].onfocus = function(){
 						var that = this;
-
-						console.log(MACHOBJECT.operatorID);
-						console.log(that.name);
 						$.ajax({
 							type: 'post',
 							url: URLS + 'bg-uc/rocars/getGoodsByType.json',
@@ -69,6 +67,9 @@ function byStart(machCODE){
 								ul.className = 'user_body_right_foot_item_commoditya_tbody_ula';
 								ul.setAttribute('data-list',q);
 								ul.style.width = that.clientWidth + 'px';
+								if(window.innerHeight < 650){
+									ul.style.maxHeight = "120px";
+								}
 								var li = creat('li');
 								li.innerHTML = '<input class="commodityaTbodyIntZ" placeholder="请输入..."/>';
 								li.setAttribute('data-value','');
@@ -143,11 +144,14 @@ function byStart(machCODE){
 														that.value = this.innerHTML;
 														that.setAttribute('data-value',this.dataset.value);
 													}
-													commodityaTbodyUla[0].parentNode.removeChild(commodityaTbodyUla[0].parentNode.children[2]);
+													//commodityaTbodyUla[0].parentNode.removeChild(commodityaTbodyUla[0].parentNode.children[2]);
 												}
 											}
 										}
 										commodityaTbodyIntZ[0].onblur = function(){
+											if(that.name != "Aries"&&that.name != "Spring"&&that.value != ""){
+												commodityaTbodyIntb[q].value = 1;
+											}
 											commodityaTbodyUla[0].parentNode.removeChild(commodityaTbodyUla[0].parentNode.children[2]);
 										}
 									},1);
@@ -169,6 +173,9 @@ function byStart(machCODE){
 						})
 					}
 					commodityaTbodyInta[q].onblur = function(){
+						if(commodityaTbodyInta[q].name != "Aries"&&commodityaTbodyInta[q].name != "Spring"&&commodityaTbodyInta[q].value != ""){
+							commodityaTbodyIntb[q].value = 1;
+						}
 						this.parentNode.removeChild(this.parentNode.children[2]);
 					}
 				})(i)
@@ -1178,7 +1185,6 @@ function zsStart(machCODE){
 
 //远程控制
 function ycStart(machCODE,mobleId){
-	console.log(mobleId);
 	var initRestart = c('init_restart')[0];	//初始化&重新启动打包
 	var init = c('init')[0];		//初始化
 	var restart = c('restart')[0];	//重新启动
@@ -1584,7 +1590,6 @@ function ycStart(machCODE,mobleId){
 					clearInterval(timoer);
 				}
 			},1000);
-			console.log(remoteShipmentIsData);
 			$.ajax({
 				type: 'post',
 				url: URLX + 'bg-uc/jf/bg/basic/long-control/web/shipment.json',
@@ -1630,7 +1635,6 @@ function ycStart(machCODE,mobleId){
 		},
 		success: function(data){
 			var itemRemoteTbodysc = c('user_body_right_foot_item_remote_tbodysc');
-			console.log(itemRemoteTbodysc.length);
 			if(itemRemoteTbodysc.length != undefined){
 				for(var i = itemRemoteTbodysc.length; i > 0;i--){
 					itemRemoteTbodysc[i-1].parentNode.removeChild(itemRemoteTbodysc[i-1]);
