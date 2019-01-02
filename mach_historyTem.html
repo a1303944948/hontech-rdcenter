@@ -253,7 +253,7 @@
 	    //请求机器名称
 	    $.ajax({
 	    	type: 'post',
-	    	url: URLS + 'bg-uc/status/getHostNameByMachCode.json',
+	    	url: URLS + '/status/getHostNameByMachCode.json',
 	    	data: {
 				machCode: machCode,
 	    	},
@@ -285,7 +285,7 @@
 			console.log(endTime);
 			$.ajax({
 				type: 'post',
-				url: URLS + 'bg-uc/status/getHistoryTem.json',
+				url: URLS + '/status/getHistoryTem.json',
 				data: {
 					machCode: machCode,
 					startTime: startTime,

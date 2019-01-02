@@ -4,7 +4,7 @@ function start(){
 	//获取BOM树
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/cfc/searchClassifi.json',
+		url: URLZ + '/jf/bg/basic/cfc/searchClassifi.json',
 		async: false,
 		data: {
 			id: loginUserName.scopeofauthority,
@@ -322,7 +322,7 @@ function rendering(msgObject,that){
 	//渲染详细信息
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/dvm/searchParamObj.json',
+		url: URLZ + '/jf/bg/basic/dvm/searchParamObj.json',
 		data: {
 			devicecode: msgObject.devicecode,
 		},
@@ -368,7 +368,7 @@ function rendering(msgObject,that){
 				console.log(JSON.stringify(data.obj));
 				$.ajax({
 					type: 'post',
-					url: URLZ + 'bg-uc/jf/bg/basic/dvm/update.json',
+					url: URLZ + '/jf/bg/basic/dvm/update.json',
 					data: {
 						uObj: JSON.stringify(data.obj),
 					},
@@ -408,7 +408,7 @@ userHeadSubmit.onclick = function(){
 	}
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/cfc/searchClassifi.json',
+		url: URLZ + '/jf/bg/basic/cfc/searchClassifi.json',
 		data: {
 			id: userHeadGroup,
 			by: "",
@@ -581,7 +581,7 @@ function startbody(){
 		if(roadaName != null){
 			$.ajax({
 				type: 'post',
-				url: URLS + 'bg-uc/template/saveTemplate.json',
+				url: URLS + '/template/saveTemplate.json',
 				data: {
 					templateName: roadaName,
 					operatorID: 'JF2',
@@ -607,7 +607,7 @@ function startbody(){
 		}
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/template/getTemplate.json',
+			url: URLS + '/template/getTemplate.json',
 			data: {
 				operatorID: 'JF2',
 				machModelID: 'VMC0401002',
@@ -741,7 +741,7 @@ function startbody(){
 								var that = this;
 								$.ajax({
 									type: 'post',
-									url: URLS + 'bg-uc/rocars/getGoodsByType.json',
+									url: URLS + '/rocars/getGoodsByType.json',
 									data: {
 										operPartyID: 'JF2',
 										recarsType: this.name,
@@ -1062,7 +1062,7 @@ function startbody(){
 		}
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/template/getTemplate.json',
+			url: URLS + '/template/getTemplate.json',
 			data: {
 				operatorID: 'JF2',
 				machModelID: 'VMC0401002',
@@ -1111,7 +1111,7 @@ function startbody(){
 							if(confirm('delete?')){
 								$.ajax({
 									type: 'post',
-									url: URLS + 'bg-uc/template/deleteTemplate.json',
+									url: URLS + '/template/deleteTemplate.json',
 									data: {
 										templateID: this.name,
 									},
@@ -1134,7 +1134,7 @@ function startbody(){
 function renderingRoad(machCODE){
 	$.ajax({
 		type: 'post',
-		url: URLS + 'bg-uc/rocars/getRecars.json',
+		url: URLS + '/rocars/getRecars.json',
 		data: {
 			machCode: machCODE,
 		},
@@ -1143,7 +1143,7 @@ function renderingRoad(machCODE){
 			MACHROAD = data;
 			$.ajax({
 				type: 'post',
-				url: URLS + 'bg-uc/rocars/getRecarsByMachCode.json',
+				url: URLS + '/rocars/getRecarsByMachCode.json',
 				data: {
 					machCode: machCODE,
 				},
@@ -1522,7 +1522,7 @@ function renderingRoad(machCODE){
 		}
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/rocars/saveRecars.json',
+			url: URLS + '/rocars/saveRecars.json',
 			data: {
 				machCode: machCODE,
 				jsData: JSON.stringify(roadaObj),
@@ -1679,7 +1679,7 @@ function renderingAlarm(machCODE,mobleId){
 	var footItemBtnf = c('user_body_right_foot_item_btnf')[0];
 	$.ajax({
 		type: 'post',
-		url: URLS + 'bg-uc/worn/getTroubleMsg.json',
+		url: URLS + '/worn/getTroubleMsg.json',
 		data: {
 			machModelID: mobleId,
 		},
@@ -1736,7 +1736,7 @@ function renderingAlarm(machCODE,mobleId){
 			//获取故障信息与警报接收人选中初始化
 			$.ajax({
 				type: 'post',
-				url: URLS + 'bg-uc/worn/getWornByMachCode.json',
+				url: URLS + '/worn/getWornByMachCode.json',
 				data: {
 					machCode: machCODE,
 				},
@@ -1824,7 +1824,7 @@ function renderingAlarm(machCODE,mobleId){
 		console.log(JSON.stringify(alarmTopObject));
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/worn/saveWorn.json',
+			url: URLS + '/worn/saveWorn.json',
 			data: {
 				dataTrouble: JSON.stringify(alarmLeftUlObject),
 				dataEmpcode: JSON.stringify(alarmRightUlObject),

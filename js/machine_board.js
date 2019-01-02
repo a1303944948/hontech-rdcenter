@@ -18,7 +18,7 @@ var BOARDSELECT = [];
 //右下角表单下拉框内容
 $.ajax({
 	type: 'post',
-	url: URLZ + 'bg-uc/jf/bg/basic/dvm/searchParamtb_business_operate.json',
+	url: URLZ + '/jf/bg/basic/dvm/searchParamtb_business_operate.json',
 	async: false,
 	success: function(data){
 		var BOARDSELECTB = [];
@@ -32,7 +32,7 @@ $.ajax({
 		}else{
 			$.ajax({
 				type: 'post',
-				url: URLS + 'bg-uc/operate/getOperate.json',
+				url: URLS + '/operate/getOperate.json',
 				data: {
 					operatorID: loginUserName.operatorID,
 				},
@@ -51,7 +51,7 @@ $.ajax({
 $.ajax({
 	type: 'post',
 	async: false,
-	url: URLZ + 'bg-uc/jf/bg/basic/dvm/searchParamModel.json',
+	url: URLZ + '/jf/bg/basic/dvm/searchParamModel.json',
 	success: function(data){
 		var BOARDSELECTA = [];
 		for(var i = 0; i <　data.dataModel.length; i++){
@@ -401,7 +401,7 @@ userHeadSubmit.onclick = function(){
 	console.log(userHeadStatus);
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/cfc/searchClassifi.json',
+		url: URLZ + '/jf/bg/basic/cfc/searchClassifi.json',
 		data: {
 			id: userHeadGroup,
 			by: "",
@@ -965,7 +965,7 @@ function rendering(devicecode,that){
 	}
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/dvm/searchParamObj.json',
+		url: URLZ + '/jf/bg/basic/dvm/searchParamObj.json',
 		data: {
 			devicecode: devicecode,
 		},
@@ -1055,7 +1055,7 @@ function submit(){
 		var that = this;
 		$.ajax({
 			type: 'post',
-			url: URLZ + 'bg-uc/jf/bg/basic/dvm/check.json',
+			url: URLZ + '/jf/bg/basic/dvm/check.json',
 			data: {
 				macAddr: that.value,
 			},
@@ -1186,7 +1186,7 @@ function submit(){
 			//创建事件
 			$.ajax({
 				type: 'post',
-				url: URLZ + 'bg-uc/jf/bg/basic/dvm/addObj.json',
+				url: URLZ + '/jf/bg/basic/dvm/addObj.json',
 				data: {
 					aObj: JSON.stringify(userObject),
 				},
@@ -1208,7 +1208,7 @@ function submit(){
 			//更新事件
 			$.ajax({
 				type: 'post',
-				url: URLZ + 'bg-uc/jf/bg/basic/dvm/update.json',
+				url: URLZ + '/jf/bg/basic/dvm/update.json',
 				data: {
 					uObj: JSON.stringify(userObject),
 				},

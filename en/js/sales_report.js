@@ -927,7 +927,7 @@ function selesForm(){
 		console.log(End);
 		$.ajax({
 			type: 'post',
-			url: URLX + 'bg-uc/jf/com/report/forms/report.json',
+			url: URLX + '/jf/com/report/forms/report.json',
 			data: {
 				array: JSON.stringify(LISTGROUP),
 				sign: methods,

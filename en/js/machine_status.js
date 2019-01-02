@@ -61,7 +61,7 @@ function start(){
 	//第二种类渲染
 	//给下拉框元素创建下拉内容
 	$.ajax({
-		url: URLX + 'bg-uc/jf/com/report/dealtype.json',
+		url: URLX + '/jf/com/report/dealtype.json',
 		type: 'post',
 		data: {},
 		async: false,
@@ -153,7 +153,7 @@ function start(){
 	//请求头部下拉框机器型号内容
 	$.ajax({
 		type: 'post',
-		url: URLS + 'bg-uc/status/getJXZD.json',
+		url: URLS + '/status/getJXZD.json',
 		async: false,
 		data: {},
 		dataType: 'json',
@@ -228,7 +228,7 @@ function submit(){
 		//请求售货机列表
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/status/getTotalStatus.json',
+			url: URLS + '/status/getTotalStatus.json',
 			data: {
 				strArray: JSON.stringify(LISTGROUP),
 				machType: model, 
@@ -389,7 +389,7 @@ function tableObj(){
 				console.log(OBJECT[q][2][2]);
 				$.ajax({
 					type: 'post',
-					url: URLS + 'bg-uc/status/getAlone.json',
+					url: URLS + '/status/getAlone.json',
 					data: {
 						machCode: OBJECT[q][1][0],
 						machType: OBJECT[q][2][2],

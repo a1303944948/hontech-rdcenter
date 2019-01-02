@@ -6,7 +6,7 @@ function byStart(machCODE){
 	//商品配置
 	$.ajax({
 		type: 'post',
-		url: URLS + 'bg-uc/rocars/getRecarsByMachCode.json',
+		url: URLS + '/rocars/getRecarsByMachCode.json',
 		data: {
 			machCode: machCODE,
 		},
@@ -55,7 +55,7 @@ function byStart(machCODE){
 						var that = this;
 						$.ajax({
 							type: 'post',
-							url: URLS + 'bg-uc/rocars/getGoodsByType.json',
+							url: URLS + '/rocars/getGoodsByType.json',
 							data: {
 								operPartyID: MACHOBJECT.operatorID,
 								recarsType: that.name,
@@ -278,7 +278,7 @@ function byStart(machCODE){
 		console.log(JSON.stringify(objTbody));
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/rocars/updateRecars.json',
+			url: URLS + '/rocars/updateRecars.json',
 			data: {
 				machCode: machCODE,
 				jsData: JSON.stringify(objTbody),
@@ -314,7 +314,7 @@ function byStart(machCODE){
 		}
 		$.ajax({
 			type: 'post',
-			url: URLX + 'bg-uc/jf/com/inventorywarning/show.json',
+			url: URLX + '/jf/com/inventorywarning/show.json',
 			data: {
 				machCode: machCODE,
 			},
@@ -354,7 +354,7 @@ function byStart(machCODE){
 		console.log(JSON.stringify(warningObj));
 		$.ajax({
 			type: 'post',
-			url: URLX + 'bg-uc/jf/com/inventorywarning/add.json',
+			url: URLX + '/jf/com/inventorywarning/add.json',
 			data: {
 				obj: JSON.stringify(warningObj),
 			},
@@ -705,7 +705,7 @@ function hdStart(machCODE){
 	//补货管理初始渲染
 	$.ajax({
 		type: 'post',
-		url: URLX + 'bg-uc/replenishment/created/view.json',
+		url: URLX + '/replenishment/created/view.json',
 		data: {
 			machCode: machCODE,
 		},
@@ -847,7 +847,7 @@ function hdStart(machCODE){
 		if(confirm('是否生成?')){
 			$.ajax({
 				type: 'post',
-				url: URLX + 'bg-uc/replenishment/web_sys/form/list.json',
+				url: URLX + '/replenishment/web_sys/form/list.json',
 				data: {
 					machCode: machCODE,
 				},
@@ -978,7 +978,7 @@ function hdStart(machCODE){
 	itemBtncbb.onclick = function(){
 		$.ajax({
 			type: 'post',
-			url: URLX + "bg-uc/replenishment/auto-vendmach/web-btn/finish.json",
+			url: URLX + "/replenishment/auto-vendmach/web-btn/finish.json",
 			data: {
 				machCode: machCODE,
 			},
@@ -1044,7 +1044,7 @@ function zsStart(machCODE){
 
 	$.ajax({
 		type: 'post',
-		url: URLX + 'bg-uc/jf/com/besale/web/list.json',
+		url: URLX + '/jf/com/besale/web/list.json',
 		data: {
 			machCode: machCODE,
 		},
@@ -1121,7 +1121,7 @@ function zsStart(machCODE){
 		if(confirm('一键清空吗?')){
 			$.ajax({
 				type: 'post',
-				url: URLX + 'bg-uc/jf/com/besale/web/clear.json',
+				url: URLX + '/jf/com/besale/web/clear.json',
 				data: {
 					machCode: machCODE,
 				},
@@ -1167,7 +1167,7 @@ function zsStart(machCODE){
 		console.log(JSON.stringify(stockObj));
 		$.ajax({
 			type: 'post',
-			url: URLX + 'bg-uc/jf/com/besale/priceandstock/update.json',
+			url: URLX + '/jf/com/besale/priceandstock/update.json',
 			data: {
 				machCode: machCODE,
 				objprice: JSON.stringify(priceObj),
@@ -1238,7 +1238,7 @@ function ycStart(machCODE,mobleId){
 	var remoteScrollStatus;
 	$.ajax({
 		type: 'post',
-		url: URLX + 'bg-uc/jf/bg/basic/long-control/web/checkzt.json',
+		url: URLX + '/jf/bg/basic/long-control/web/checkzt.json',
 		data: {
 			machCode: machCODE,
 		},
@@ -1275,7 +1275,7 @@ function ycStart(machCODE,mobleId){
 				}
 				$.ajax({
 					type: 'post',
-					url: URLX + 'bg-uc/jf/bg/basic/long-control/web/status.json',
+					url: URLX + '/jf/bg/basic/long-control/web/status.json',
 					data: {
 						machCode: MACHOBJECT.machCode,
 						machModelID: MACHOBJECT.machModelID,
@@ -1348,7 +1348,7 @@ function ycStart(machCODE,mobleId){
 			},1000)
 			$.ajax({
 				type: 'post',
-				url: URLX + 'bg-uc/jf/bg/basic/long-control/web/init.json',
+				url: URLX + '/jf/bg/basic/long-control/web/init.json',
 				data: {
 					machCode: MACHOBJECT.machCode,
 					machModelID: MACHOBJECT.machModelID,
@@ -1396,7 +1396,7 @@ function ycStart(machCODE,mobleId){
 			},1000)
 			$.ajax({
 				type: 'post',
-				url: URLX + 'bg-uc/jf/bg/basic/long-control/web/magnet.json',
+				url: URLX + '/jf/bg/basic/long-control/web/magnet.json',
 				data: {
 					machCode: MACHOBJECT.machCode,
 					machModelID: MACHOBJECT.machModelID,
@@ -1444,7 +1444,7 @@ function ycStart(machCODE,mobleId){
 			},1000)
 			$.ajax({
 				type: 'post',
-				url: URLX + 'bg-uc/jf/bg/basic/long-control/web/electro.json',
+				url: URLX + '/jf/bg/basic/long-control/web/electro.json',
 				data: {
 					machCode: MACHOBJECT.machCode,
 					machModelID: MACHOBJECT.machModelID,
@@ -1494,7 +1494,7 @@ function ycStart(machCODE,mobleId){
 			},1000)
 			$.ajax({
 				type: 'post',
-				url: URLX + 'bg-uc/jf/bg/basic/long-control/web/getobjdoor.json',
+				url: URLX + '/jf/bg/basic/long-control/web/getobjdoor.json',
 				data: {
 					machCode: MACHOBJECT.machCode,
 					machModelID: MACHOBJECT.machModelID,
@@ -1544,7 +1544,7 @@ function ycStart(machCODE,mobleId){
 			},1000)
 			$.ajax({
 				type: 'post',
-				url: URLX + 'bg-uc/jf/bg/basic/long-control/web/restart.json',
+				url: URLX + '/jf/bg/basic/long-control/web/restart.json',
 				data: {
 					machCode: MACHOBJECT.machCode,
 					machModelID: MACHOBJECT.machModelID,
@@ -1592,7 +1592,7 @@ function ycStart(machCODE,mobleId){
 			},1000);
 			$.ajax({
 				type: 'post',
-				url: URLX + 'bg-uc/jf/bg/basic/long-control/web/shipment.json',
+				url: URLX + '/jf/bg/basic/long-control/web/shipment.json',
 				data: {
 					machCode: MACHOBJECT.machCode,
 					machModelID: MACHOBJECT.machModelID,
@@ -1629,7 +1629,7 @@ function ycStart(machCODE,mobleId){
 	//Get温度列表
 	$.ajax({
 		type: 'post',
-		url: URLS + 'bg-uc/worn/giveTempture.json',
+		url: URLS + '/worn/giveTempture.json',
 		data: {
 			machCode: machCODE,
 		},
@@ -1974,7 +1974,7 @@ function ycStart(machCODE,mobleId){
 		}
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/worn/set.json',
+			url: URLS + '/worn/set.json',
 			data: {
 				string: JSON.stringify(remoteArr),
 				machCode: machCODE,

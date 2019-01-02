@@ -161,7 +161,7 @@ exitLogin.onclick = function(){
 
 //请求头部面包屑导航及权限控制数据
 $.ajax({
-	url: URLZ + 'bg-uc/jf/bg/basic/cfc/searchClassifiMenu.json',
+	url: URLZ + '/jf/bg/basic/cfc/searchClassifiMenu.json',
 	type: 'post',
 	data: {
 		empcode: loginUserName.empcode,
@@ -170,7 +170,7 @@ $.ajax({
 	success: function(data){
 		var obj = data.obj;
 		$.ajax({
-			url: URLY + 'bg-uc/jf/bg/basic/menunew.json',
+			url: URLY + '/jf/bg/basic/menunew.json',
 			type: 'post',
 			data: {},
 			dataType: 'json',
@@ -285,7 +285,7 @@ function strSplit(obje){
 function group(){
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/cfc/searchClassifi.json',
+		url: URLZ + '/jf/bg/basic/cfc/searchClassifi.json',
 		async: false,
 		data: {
 			id: loginUserName.scopeofauthority,
@@ -299,7 +299,7 @@ function group(){
 	})
 	/*$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/cfc/getClassifi.json',
+		url: URLZ + '/jf/bg/basic/cfc/getClassifi.json',
 		data: {},
 		async: false,
 		dataType: 'json',
@@ -362,7 +362,7 @@ function groupitem(num){
 	var groupobject = [];
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/cfc/searchClassifi.json',
+		url: URLZ + '/jf/bg/basic/cfc/searchClassifi.json',
 		async: false,
 		data: {
 			id: loginUserName.scopeofauthority,
@@ -375,7 +375,7 @@ function groupitem(num){
 	})
 	/*$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/cfc/getClassifi.json',
+		url: URLZ + '/jf/bg/basic/cfc/getClassifi.json',
 		data: {},
 		async: false,
 		dataType: 'json',
@@ -407,7 +407,7 @@ function groupitemlevel(num,bom){
 function machineAll(machCode){
 	$.ajax({
 		type: 'post',
-		url: URLX + 'bg-uc/jf/com/util/web/mach.json',
+		url: URLX + '/jf/com/util/web/mach.json',
 		data: {
 			machCode: machCode,
 		},
@@ -462,7 +462,7 @@ function BOMAll(bom,qid){
 function Authority(user){
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/sac/searchSubAthor.json',
+		url: URLZ + '/jf/bg/basic/sac/searchSubAthor.json',
 		async: false,
 		data: {
 			emplCode: user,
@@ -548,7 +548,7 @@ function passFixed(){
 		console.log(comifPass.value);
 		$.ajax({
 			type: 'post',
-			url: URLZ + 'bg-uc/jf/bg/basic/new/updatePWD.json',
+			url: URLZ + '/jf/bg/basic/new/updatePWD.json',
 			data: {
 				empcode: loginUserName.empcode,
 				password: comifPass.value,

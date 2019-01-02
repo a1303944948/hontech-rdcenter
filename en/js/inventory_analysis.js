@@ -109,7 +109,7 @@ function submit(){
 		//请求售货机列表
 		$.ajax({
 			type: 'post',
-			url: URLX + 'bg-uc/jf/com/inventory/analyse.json',
+			url: URLX + '/jf/com/inventory/analyse.json',
 			data: {
 				machArr: JSON.stringify(LISTGROUP),
 				machCode: "",
@@ -225,7 +225,7 @@ function tableObj(){
 					//请求机器内容
 					$.ajax({
 						type: 'post',
-						url: URLX + 'bg-uc/jf/com/inventory/analyse.json',
+						url: URLX + '/jf/com/inventory/analyse.json',
 						data: {
 							machArr: "[]",
 							machCode: OBJECT.machOrientGroup[q].machCode,
@@ -293,7 +293,7 @@ function tableObj(){
 					//请求机器内容
 					$.ajax({
 						type: 'post',
-						url: URLX + 'bg-uc/jf/com/inventory/analyse.json',
+						url: URLX + '/jf/com/inventory/analyse.json',
 						data: {
 							machArr: JSON.stringify(LISTGROUP),
 							machCode: "",

@@ -55,7 +55,7 @@ function start(){
 	var modelMultiple = d('model_multiple');
 	$.ajax({
 		type: 'post',
-		url: URLS + 'bg-uc/jxzd/goods.json',
+		url: URLS + '/jxzd/goods.json',
 		data: {},
 		async: false,
 		success: function(data){
@@ -194,7 +194,7 @@ function start(){
 	}else{
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/operate/getOperate.json',
+			url: URLS + '/operate/getOperate.json',
 			data: {
 				operatorID: loginUserName.operatorID,
 			},
@@ -237,7 +237,7 @@ function startbody(){
 	//获取商品数据
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/gdsm/getParam.json',
+		url: URLZ + '/jf/bg/basic/gdsm/getParam.json',
 		data: {
 			operatorID: loginUserName.operatorID,
 		},
@@ -321,7 +321,7 @@ function startbodyleft(commmodityLeft){
 				}else{
 					$.ajax({
 						type: 'post',
-						url: URLS + 'bg-uc/operate/getOperate.json',
+						url: URLS + '/operate/getOperate.json',
 						data: {
 							operatorID: loginUserName.operatorID,
 						},
@@ -425,7 +425,7 @@ c('operator_home_head_submit')[0].onclick = function(){
 	console.log(commodityStatus.name);
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/gdsm/searchObjParam.json',
+		url: URLZ + '/jf/bg/basic/gdsm/searchObjParam.json',
 		data: {
 			operatorID: commodityOperators.name,
 			status: commodityStatus.name,
@@ -456,7 +456,7 @@ function submit(){
 		console.log(that.value);
 		$.ajax({
 			type: 'post',
-			url: URLZ + 'bg-uc/jf/bg/basic/gdsm/check.json',
+			url: URLZ + '/jf/bg/basic/gdsm/check.json',
 			data: {
 				opreatorId: loginUserName.operatorID,
 				barCodeNo: that.value,
@@ -734,7 +734,7 @@ function submit(){
 		}else{
 			$.ajax({
 				type: 'post',
-				url: URLS + 'bg-uc/operate/getOperate.json',
+				url: URLS + '/operate/getOperate.json',
 				data: {
 					operatorID: loginUserName.operatorID,
 				},
@@ -831,7 +831,7 @@ function submit(){
 		//检测条码编号是否重复
 		$.ajax({
 			type: 'post',
-			url: URLZ + 'bg-uc/jf/bg/basic/gdsm/check.json',
+			url: URLZ + '/jf/bg/basic/gdsm/check.json',
 			data: {
 				opreatorId: d('commodity_operator').name,
 				barCodeNo: d('commodity_code').value,
@@ -867,7 +867,7 @@ function submit(){
 				if(type == 1){
 					$.ajax({
 						type: 'post',
-						url: URLZ + 'bg-uc/jf/bg/basic/gdsm/add.json',
+						url: URLZ + '/jf/bg/basic/gdsm/add.json',
 						data: {
 							obj: JSON.stringify(commodityobj),
 							picture1: OperatorPickimgBase,
@@ -890,7 +890,7 @@ function submit(){
 					console.log(OperatorOrderimgBases);
 					$.ajax({
 						type: 'post',
-						url: URLZ + 'bg-uc/jf/bg/basic/gdsm/update.json',
+						url: URLZ + '/jf/bg/basic/gdsm/update.json',
 						data: {
 							obj: JSON.stringify(commodityobj),
 							picture1: OperatorPickimgBases,

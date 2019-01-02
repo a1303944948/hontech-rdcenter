@@ -9,7 +9,7 @@ function start(){
 
 	$.ajax({
 		type: 'post',
-		url: URLX + 'bg-uc/cargoClass/web/list.json',
+		url: URLX + '/cargoClass/web/list.json',
 		data: {},
 		success: function(data){
 			console.log(data);
@@ -152,7 +152,7 @@ function submit(){
 		console.log(mark);
 		$.ajax({
 			type: 'post',
-			url: URLX + 'bg-uc/cargoClass/web/change.json',
+			url: URLX + '/cargoClass/web/change.json',
 			data: {
 				cargoId: operatorId.value,
 				cargoName: operatorName.value,

@@ -103,7 +103,7 @@ function start(){
 	//初始数据渲染
 	$.ajax({
 		type: 'post',
-		url: URLS + 'bg-uc/jxzd/getMachineType.json',
+		url: URLS + '/jxzd/getMachineType.json',
 		data: {},
 		success: function(data){
 			console.log(data);
@@ -257,7 +257,7 @@ function startbody(){
 	//渲染货道规格
 	$.ajax({
 		type: 'post',
-		url: URLS + 'bg-uc/jxzd/goods.json',
+		url: URLS + '/jxzd/goods.json',
 		data: {},
 		async: false,
 		success: function(data){
@@ -417,7 +417,7 @@ function submit(){
 		console.log(type + "");
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/jxzd/addMachineType.json',
+			url: URLS + '/jxzd/addMachineType.json',
 			data: {
 				basicData: JSON.stringify(basicObj),
 				paramData: JSON.stringify(paramObj),
@@ -464,7 +464,7 @@ function subUP(){
 		console.log(JSON.stringify(mobelUpdateObject));
 		$.ajax({
 			type: 'post',
-			url: URLX + 'bg-uc/jf/bg/file/web/addfile.json',
+			url: URLX + '/jf/bg/file/web/addfile.json',
 			data: {
 				obj: JSON.stringify(mobelUpdateObject),
 			},
@@ -478,7 +478,7 @@ function subUP(){
 		var mobelId = d('model_number').value;		//机型编号
 		$.ajax({
 			type: 'post',
-			url: URLX + 'bg-uc/jf/bg/file/web/machver.json',
+			url: URLX + '/jf/bg/file/web/machver.json',
 			data: {
 				modelNum: mobelId,
 			},
@@ -619,7 +619,7 @@ function subUP(){
 		console.log(JSON.stringify(modelArray));
 		$.ajax({
 			type: 'post',
-			url: URLX + 'bg-uc/jf/bg/file/web/pushfile.json',
+			url: URLX + '/jf/bg/file/web/pushfile.json',
 			data: {
 				modelNum: mobelId,							//机器型号
 				clientfileUrl: fixedHomeTableaInta.name,	//客户端URL

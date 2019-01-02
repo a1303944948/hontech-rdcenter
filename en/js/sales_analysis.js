@@ -109,7 +109,7 @@ function start(){
 	//第二种类渲染
 	//给下拉框元素创建下拉内容
 	$.ajax({
-		url: URLX + 'bg-uc/jf/com/report/dealtype.json',
+		url: URLX + '/jf/com/report/dealtype.json',
 		type: 'post',
 		data: {},
 		async: false,
@@ -938,7 +938,7 @@ function selesForm(){
 		console.log(JSON.stringify(LISTGROUP));
 		$.ajax({
 			type: 'post',
-			url: URLX + 'bg-uc/jf/com/report/forms.json',
+			url: URLX + '/jf/com/report/forms.json',
 			data: {
 				array: JSON.stringify(LISTGROUP),
 				payway: mehtod,

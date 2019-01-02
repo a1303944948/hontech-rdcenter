@@ -126,7 +126,7 @@ function start(){
   //第二种类渲染
   //给下拉框元素创建下拉内容
   $.ajax({
-    url: URLX + 'bg-uc/jf/com/report/dealtype.json',
+    url: URLX + '/jf/com/report/dealtype.json',
     type: 'post',
     data: {},
     async: false,
@@ -959,7 +959,7 @@ function selesForm(){
     loading();
     $.ajax({
       type: 'post',
-      url: URLX + 'bg-uc/jf/com/report/web/refund.json',
+      url: URLX + '/jf/com/report/web/refund.json',
       data: {
         array: JSON.stringify(LISTGROUP),
         out_trade_no: mehtod.value,
@@ -1096,7 +1096,7 @@ c('refund_fixed_body_submit')[0].onclick = function(){
     if(refundOrderIdValue == "wechat"){
       $.ajax({
         type: 'post',
-        url: URLX + 'bg-uc/jf/com/pm/butto/returnrefundWechat.json',
+        url: URLX + '/jf/com/pm/butto/returnrefundWechat.json',
         data: {
           out_trade_no: refundOrderId,
           mark: refundMark,
@@ -1112,7 +1112,7 @@ c('refund_fixed_body_submit')[0].onclick = function(){
     }else if(refundOrderIdValue == "alipay"){
       $.ajax({
         type: 'post',
-        url: URLX + 'bg-uc/jf/com/pm/butto/returnrefundAlipay.json',
+        url: URLX + '/jf/com/pm/butto/returnrefundAlipay.json',
         data: {
           out_trade_no: refundOrderId,
           mark: refundMark,
@@ -1128,7 +1128,7 @@ c('refund_fixed_body_submit')[0].onclick = function(){
     }else if(refundOrderIdValue == "SilverMerchant"){
       $.ajax({
         type: 'post',
-        url: URLX + 'bg-uc/jf/com/pm/butto/returnRefundSilvermerchant.json',
+        url: URLX + '/jf/com/pm/butto/returnRefundSilvermerchant.json',
         data: {
           out_trade_no: refundOrderId,
           mark: refundMark,
@@ -1144,7 +1144,7 @@ c('refund_fixed_body_submit')[0].onclick = function(){
     }else if(refundOrderIdValue == "icbc"){
       $.ajax({
         type: 'post',
-        url: URLX + 'bg-uc/jf/com/pm/butto/returnRefundICBC.json',
+        url: URLX + '/jf/com/pm/butto/returnRefundICBC.json',
         data: {
           out_trade_no: refundOrderId,
           mark: refundMark,

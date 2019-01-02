@@ -193,7 +193,7 @@ function startbody(l){
 				//详细信息内容渲染
  				$.ajax({
 					type: 'post',
-					url: URLZ + 'bg-uc/operate/getOperate.json',
+					url: URLZ + '/operate/getOperate.json',
 					data: {
 						operatorID: thatName,
 					},
@@ -228,7 +228,7 @@ function startbody(l){
 				//账户配置内容渲染
 				$.ajax({
 					type: 'post',
-					url: URLS + 'bg-uc/paycenter/getPaycenter.json',
+					url: URLS + '/paycenter/getPaycenter.json',
 					data: {
 						operatorID: thatName,
 					},
@@ -500,7 +500,7 @@ function submit(){
 		}
 		$.ajax({
 			type: 'post',
-			url: URLZ + 'bg-uc/operate/saveOperate.json',
+			url: URLZ + '/operate/saveOperate.json',
 			data: {
 				operatorID: detailedOperatorId,
 				operator: detailedOperatorNumbering,
@@ -617,7 +617,7 @@ function submit(){
 		};
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/paycenter/savePaycenter.json',
+			url: URLS + '/paycenter/savePaycenter.json',
 			data: {
 				wxData: JSON.stringify(wechatObject),
 				zfData: JSON.stringify(alipayObject),

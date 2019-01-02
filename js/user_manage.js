@@ -76,7 +76,7 @@ userHeadSubmit.onclick = function(){
 	console.log(userHeadStatus);
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/cfc/searchClassifi.json',
+		url: URLZ + '/jf/bg/basic/cfc/searchClassifi.json',
 		data: {
 			id: userHeadGroup,
 			by: "",
@@ -310,7 +310,7 @@ function startbody(addper){
 	}else{
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/operate/getOperate.json',
+			url: URLS + '/operate/getOperate.json',
 			data: {
 				operatorID: loginUserName.operatorID,
 			},
@@ -506,7 +506,7 @@ function startbody(addper){
 	
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/sac/searchSubAthor.json',
+		url: URLZ + '/jf/bg/basic/sac/searchSubAthor.json',
 		async: false,
 		data: {
 			emplCode: loginUserName.empcode,
@@ -699,7 +699,7 @@ function rendering(empcode,that){
 	}
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/pc/searchper.json',
+		url: URLZ + '/jf/bg/basic/pc/searchper.json',
 		data: {
 			empcode: empcode,
 		},
@@ -748,7 +748,7 @@ function rendering(empcode,that){
 	//权限分配
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/sac/searchSubAthor.json',
+		url: URLZ + '/jf/bg/basic/sac/searchSubAthor.json',
 		async: false,
 		data: {
 			emplCode: empcode,
@@ -763,7 +763,7 @@ function rendering(empcode,that){
 	})
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/sac/searchSubAthor.json',
+		url: URLZ + '/jf/bg/basic/sac/searchSubAthor.json',
 		async: false,
 		data: {
 			emplCode: loginUserName.empcode,
@@ -1034,7 +1034,7 @@ function submit(){
 			//创建事件
 			$.ajax({
 				type: 'post',
-				url: URLZ + 'bg-uc/jf/bg/basic/pc/addper.json',
+				url: URLZ + '/jf/bg/basic/pc/addper.json',
 				data: {
 					pObj: JSON.stringify(userObject),
 				},
@@ -1056,7 +1056,7 @@ function submit(){
 			//更新事件
 			$.ajax({
 				type: 'post',
-				url: URLZ + 'bg-uc/jf/bg/basic/pc/saveper.json',
+				url: URLZ + '/jf/bg/basic/pc/saveper.json',
 				data: {
 					pObj: JSON.stringify(userObject),
 				},
@@ -1079,7 +1079,7 @@ function submit(){
 			console.log(userPassword.value);
 			$.ajax({
 				type: 'post',
-				url: URLZ + 'bg-uc/jf/bg/basic/new/updatePWD.json',
+				url: URLZ + '/jf/bg/basic/new/updatePWD.json',
 				data: {
 					empcode: userAccount.value,
 					password: userPassword.value,
@@ -1115,7 +1115,7 @@ function submit(){
 		}
 		$.ajax({
 			type: 'post',
-			url: URLZ + 'bg-uc/jf/bg/basic/sac/addSubAthor.json',
+			url: URLZ + '/jf/bg/basic/sac/addSubAthor.json',
 			data: {
 				subAthorObjArarry: JSON.stringify(itemPanelUlArray),
 			},
@@ -1136,7 +1136,7 @@ c('user_rest_pass')[0].onclick = function(){
 	if(confirm('重置用户'+userName.value+'的账号'+userAccount.value+'的密码吗？')){
 		$.ajax({
 			type: 'post',
-			url: URLZ + 'bg-uc/jf/bg/basic/pc/initPasswd.json',
+			url: URLZ + '/jf/bg/basic/pc/initPasswd.json',
 			data: {
 				empcode: userAccount.value,
 			},

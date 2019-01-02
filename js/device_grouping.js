@@ -170,7 +170,7 @@ deviceHeadSubmit.onclick = function(){
 	console.log(deviceHeadSelect);
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/cfc/searchClassifi.json',
+		url: URLZ + '/jf/bg/basic/cfc/searchClassifi.json',
 		data: {
 			id: deviceHeadGroupingz,
 			by: "",
@@ -699,7 +699,7 @@ bSubmit.onclick = function(){
 			//如果不存在ID就会走创建区域/组方法
 			$.ajax({
 				type: 'post',
-				url: URLZ + 'bg-uc/jf/bg/basic/cfc/addClassifi.json',
+				url: URLZ + '/jf/bg/basic/cfc/addClassifi.json',
 				data: {
 					classiObj: JSON.stringify(deviceObject),
 				},
@@ -716,7 +716,7 @@ bSubmit.onclick = function(){
 			//如果存在ID就会走更新区域/组方法
 			$.ajax({
 				type: 'post',
-				url: URLZ + 'bg-uc/jf/bg/basic/cfc/saveClassifi.json',
+				url: URLZ + '/jf/bg/basic/cfc/saveClassifi.json',
 				data: {
 					classiObj: JSON.stringify(deviceObject),
 				},

@@ -4,7 +4,7 @@ function start(){
 	//获取BOM树
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/cfc/searchClassifi.json',
+		url: URLZ + '/jf/bg/basic/cfc/searchClassifi.json',
 		async: false,
 		data: {
 			id: loginUserName.scopeofauthority,
@@ -315,6 +315,7 @@ function rendering(msgObject,that){
 	var machineGrouping = d('machine_grouping');	//设备分组
 	var machineName = d('machine_name');			//设备名称
 	var machineNumber = d('machine_number');		//设备编号
+	var machineMac = d('machine_mac');				//设备mac地址
 	var machineAddr = d('machine_addr');			//设备地址
 	var machineTraffic = d('machine_traffic');		//设备流量卡
 	var machineExplain = d('machine_explain');		//设备说明
@@ -322,7 +323,7 @@ function rendering(msgObject,that){
 	//渲染详细信息
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/dvm/searchParamObj.json',
+		url: URLZ + '/jf/bg/basic/dvm/searchParamObj.json',
 		data: {
 			devicecode: msgObject.devicecode,
 		},
@@ -337,6 +338,7 @@ function rendering(msgObject,that){
 			}
 			machineName.value = data.obj.machName;
 			machineNumber.value = data.obj.machCode;
+			machineMac.value = data.obj.macAddr;
 			if(data.obj.useAddr != undefined){
 				machineAddr.value = data.obj.useAddr;
 			}else{
@@ -365,10 +367,15 @@ function rendering(msgObject,that){
 				data.obj.description = machineExplain.value;
 				data.obj.scopeofauthority = machineGrouping.name;
 				data.obj.machName = machineName.value;
+				if(data.obj.machName == ""){
+					alern('设备名称不能为空');
+					return false;
+				}
 				console.log(JSON.stringify(data.obj));
+
 				$.ajax({
 					type: 'post',
-					url: URLZ + 'bg-uc/jf/bg/basic/dvm/update.json',
+					url: URLZ + '/jf/bg/basic/dvm/update.json',
 					data: {
 						uObj: JSON.stringify(data.obj),
 					},
@@ -409,7 +416,7 @@ userHeadSubmit.onclick = function(){
 	}
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/cfc/searchClassifi.json',
+		url: URLZ + '/jf/bg/basic/cfc/searchClassifi.json',
 		data: {
 			id: userHeadGroup,
 			by: "",
@@ -564,7 +571,7 @@ function startfoot(machCODE){
 		if(roadaName != null){
 			$.ajax({
 				type: 'post',
-				url: URLS + 'bg-uc/template/saveTemplate.json',
+				url: URLS + '/template/saveTemplate.json',
 				data: {
 					templateName: roadaName,
 					operatorID: loginUserName.operatorID,
@@ -680,7 +687,7 @@ function startfoot(machCODE){
 		}
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/template/getTemplate.json',
+			url: URLS + '/template/getTemplate.json',
 			data: {
 				operatorID: loginUserName.operatorID,
 				machModelID: MACHOBJECT.machModelID,
@@ -790,7 +797,7 @@ function startfoot(machCODE){
 								//根据模板ID请求改模板的信息
 								$.ajax({
 									type: 'post',
-									url: URLS + '/bg-uc/template/getTemplate1.json',
+									url: URLS + '//template/getTemplate1.json',
 									data: {
 										templateID: divList[i].children[1].innerHTML,
 									},
@@ -996,7 +1003,7 @@ function startfoot(machCODE){
 							console.log(JSON.stringify(roadaObj));
 							$.ajax({
 								type: 'post',
-								url: URLS + 'bg-uc/rocars/saveRecars.json',
+								url: URLS + '/rocars/saveRecars.json',
 								data: {
 									machCode: machCODE,
 									jsData: JSON.stringify(roadaObj),
@@ -1011,7 +1018,7 @@ function startfoot(machCODE){
 							var commodityaTbody = c('user_body_right_foot_item_commoditya_tbody')[0];
 							$.ajax({
 								type: 'post',
-								url: URLS + 'bg-uc/rocars/getRecarsByMachCode.json',
+								url: URLS + '/rocars/getRecarsByMachCode.json',
 								data: {
 									machCode: machCODE,
 								},
@@ -1143,7 +1150,7 @@ function startfoot(machCODE){
 										var that = this;
 										$.ajax({
 											type: 'post',
-											url: URLS + 'bg-uc/rocars/getGoodsByType.json',
+											url: URLS + '/rocars/getGoodsByType.json',
 											data: {
 												operPartyID: loginUserName.operatorID,
 												recarsType: this.name,
@@ -1190,7 +1197,7 @@ function startfoot(machCODE){
 							console.log(JSON.stringify(objTbody));
 							$.ajax({
 								type: 'post',
-								url: URLS + 'bg-uc/rocars/updateRecars.json',
+								url: URLS + '/rocars/updateRecars.json',
 								data: {
 									machCode: machCODE,
 									jsData: JSON.stringify(objTbody),
@@ -1278,7 +1285,7 @@ function startfoot(machCODE){
 							console.log(JSON.stringify(roadaObj));
 							$.ajax({
 								type: 'post',
-								url: URLS + 'bg-uc/rocars/saveRecars.json',
+								url: URLS + '/rocars/saveRecars.json',
 								data: {
 									machCode: machCODE,
 									jsData: JSON.stringify(roadaObj),
@@ -1293,7 +1300,7 @@ function startfoot(machCODE){
 							var commodityaTbody = c('user_body_right_foot_item_commoditya_tbody')[0];
 							$.ajax({
 								type: 'post',
-								url: URLS + 'bg-uc/rocars/getRecarsByMachCode.json',
+								url: URLS + '/rocars/getRecarsByMachCode.json',
 								data: {
 									machCode: machCODE,
 								},
@@ -1425,7 +1432,7 @@ function startfoot(machCODE){
 										var that = this;
 										$.ajax({
 											type: 'post',
-											url: URLS + 'bg-uc/rocars/getGoodsByType.json',
+											url: URLS + '/rocars/getGoodsByType.json',
 											data: {
 												operPartyID: loginUserName.operatorID,
 												recarsType: this.name,
@@ -1472,7 +1479,7 @@ function startfoot(machCODE){
 							console.log(JSON.stringify(objTbody));
 							$.ajax({
 								type: 'post',
-								url: URLS + 'bg-uc/rocars/updateRecars.json',
+								url: URLS + '/rocars/updateRecars.json',
 								data: {
 									machCode: machCODE,
 									jsData: JSON.stringify(objTbody),
@@ -1578,7 +1585,7 @@ function startfoot(machCODE){
 							console.log(JSON.stringify(roadaObj));
 							$.ajax({
 								type: 'post',
-								url: URLS + 'bg-uc/rocars/saveRecars.json',
+								url: URLS + '/rocars/saveRecars.json',
 								data: {
 									machCode: machCODE,
 									jsData: JSON.stringify(roadaObj),
@@ -1593,7 +1600,7 @@ function startfoot(machCODE){
 							var commodityaTbody = c('user_body_right_foot_item_commoditya_tbody')[0];
 							$.ajax({
 								type: 'post',
-								url: URLS + 'bg-uc/rocars/getRecarsByMachCode.json',
+								url: URLS + '/rocars/getRecarsByMachCode.json',
 								data: {
 									machCode: machCODE,
 								},
@@ -1725,7 +1732,7 @@ function startfoot(machCODE){
 										var that = this;
 										$.ajax({
 											type: 'post',
-											url: URLS + 'bg-uc/rocars/getGoodsByType.json',
+											url: URLS + '/rocars/getGoodsByType.json',
 											data: {
 												operPartyID: loginUserName.operatorID,
 												recarsType: this.name,
@@ -1772,7 +1779,7 @@ function startfoot(machCODE){
 							console.log(JSON.stringify(objTbody));
 							$.ajax({
 								type: 'post',
-								url: URLS + 'bg-uc/rocars/updateRecars.json',
+								url: URLS + '/rocars/updateRecars.json',
 								data: {
 									machCode: machCODE,
 									jsData: JSON.stringify(objTbody),
@@ -1807,7 +1814,7 @@ function startfoot(machCODE){
 		}
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/template/getTemplate.json',
+			url: URLS + '/template/getTemplate.json',
 			data: {
 				operatorID: loginUserName.operatorID,
 				machModelID: MACHOBJECT.machModelID,
@@ -1856,7 +1863,7 @@ function startfoot(machCODE){
 							if(confirm('删除模板?')){
 								$.ajax({
 									type: 'post',
-									url: URLS + 'bg-uc/template/deleteTemplate.json',
+									url: URLS + '/template/deleteTemplate.json',
 									data: {
 										templateID: this.name,
 									},
@@ -1879,7 +1886,7 @@ function startfoot(machCODE){
 function renderingRoad(machCODE){
 	$.ajax({
 		type: 'post',
-		url: URLS + 'bg-uc/rocars/getRecars.json',
+		url: URLS + '/rocars/getRecars.json',
 		data: {
 			machCode: machCODE,
 		},
@@ -1888,7 +1895,7 @@ function renderingRoad(machCODE){
 			MACHROAD = data;
 			$.ajax({
 				type: 'post',
-				url: URLS + 'bg-uc/rocars/getRecarsByMachCode.json',
+				url: URLS + '/rocars/getRecarsByMachCode.json',
 				data: {
 					machCode: machCODE,
 				},
@@ -2265,7 +2272,7 @@ function renderingRoad(machCODE){
 		}
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/rocars/saveRecars.json',
+			url: URLS + '/rocars/saveRecars.json',
 			data: {
 				machCode: machCODE,
 				jsData: JSON.stringify(roadaObj),
@@ -2576,7 +2583,7 @@ function renderingAlarm(machCODE,mobleId){
 	var footItemBtnf = c('user_body_right_foot_item_btnf')[0];
 	$.ajax({
 		type: 'post',
-		url: URLS + 'bg-uc/worn/getTroubleMsg.json',
+		url: URLS + '/worn/getTroubleMsg.json',
 		data: {
 			machModelID: mobleId,
 		},
@@ -2633,7 +2640,7 @@ function renderingAlarm(machCODE,mobleId){
 			//获取故障信息与警报接收人选中初始化
 			$.ajax({
 				type: 'post',
-				url: URLS + 'bg-uc/worn/getWornByMachCode.json',
+				url: URLS + '/worn/getWornByMachCode.json',
 				data: {
 					machCode: machCODE,
 				},
@@ -2764,7 +2771,7 @@ function renderingAlarm(machCODE,mobleId){
 		console.log(JSON.stringify(alarmTopObject));
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/worn/saveWorn.json',
+			url: URLS + '/worn/saveWorn.json',
 			data: {
 				dataTrouble: JSON.stringify(alarmLeftUlObject),
 				dataEmpcode: JSON.stringify(alarmRightUlObject),

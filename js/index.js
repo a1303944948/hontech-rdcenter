@@ -15,7 +15,7 @@ console.log(JSON.stringify(groupitemArrays));
 var ybpobj;
 $.ajax({
 	type: 'post',
-	url: URLX + 'bg-uc/jf/com/report/thirty.json',
+	url: URLX + '/jf/com/report/thirty.json',
 	data: {
 		array: JSON.stringify(groupitemArray),
 	},
@@ -29,7 +29,7 @@ $.ajax({
 
 
 /*$.ajax({
-	url: URLS + 'bg-uc/sbzt/indexNum.json',
+	url: URLS + '/sbzt/indexNum.json',
 	type: 'post',
 	data: {'emplCode': '13758333226'},
 	dataType: 'json',
@@ -40,7 +40,7 @@ $.ajax({
 	}
 })*/
 $.ajax({
-	url: URLS + 'bg-uc/status/getHomePage.json',
+	url: URLS + '/status/getHomePage.json',
 	type: 'post',
 	data: {
 		strArray: JSON.stringify(groupitemArrays),

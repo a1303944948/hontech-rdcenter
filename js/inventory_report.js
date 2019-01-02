@@ -122,7 +122,7 @@ function start(){
   //第二种类渲染
   //给下拉框元素创建下拉内容
   $.ajax({
-    url: URLX + 'bg-uc/jf/com/report/dealtype.json',
+    url: URLX + '/jf/com/report/dealtype.json',
     type: 'post',
     data: {},
     async: false,
@@ -240,7 +240,7 @@ function selesForm(){
     salesBody.style.display = 'block';
     $.ajax({
       type: 'post',
-      url: URLX + 'bg-uc/jf/com/inventory/report.json',
+      url: URLX + '/jf/com/inventory/report.json',
       data: {
         machCode: deviceHeadGroupingz.name,
         mark: 'ASC',
@@ -261,7 +261,7 @@ function selesForm(){
       c('sales_body_table_cargo')[0].children[0].innerHTML = '↑';
       $.ajax({
         type: 'post',
-        url: URLX + 'bg-uc/jf/com/inventory/report.json',
+        url: URLX + '/jf/com/inventory/report.json',
         data: {
           machCode: deviceHeadGroupingz.name,
           mark: 'ASC',
@@ -279,7 +279,7 @@ function selesForm(){
       c('sales_body_table_cargo')[0].children[0].innerHTML = '↓';
       $.ajax({
         type: 'post',
-        url: URLX + 'bg-uc/jf/com/inventory/report.json',
+        url: URLX + '/jf/com/inventory/report.json',
         data: {
           machCode: deviceHeadGroupingz.name,
           mark: 'DESC',

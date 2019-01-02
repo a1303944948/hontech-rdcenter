@@ -173,7 +173,7 @@ userHeadSubmit.onclick = function(){
 	console.log(userHeadGroup);
 	$.ajax({
 		type: 'post',
-		url: URLZ + 'bg-uc/jf/bg/basic/cfc/searchClassifi.json',
+		url: URLZ + '/jf/bg/basic/cfc/searchClassifi.json',
 		data: {
 			id: userHeadGroup,
 			by: "",
@@ -203,7 +203,7 @@ function rendering(devicecode,that){
 	}
 	$.ajax({
 		type: 'post',
-		url: URLS + 'bg-uc/adviertisement/giveAdviertise.json',
+		url: URLS + '/adviertisement/giveAdviertise.json',
 		data: {
 			machCode: devicecode,
 		},
@@ -752,7 +752,7 @@ function submit(){
 		console.log(JSON.stringify(advertiseArray));
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/adviertisement/save.json',
+			url: URLS + '/adviertisement/save.json',
 			data: {
 				machCode: ADMACHCODE,
 				adDate: JSON.stringify(advertiseArray)
@@ -810,7 +810,7 @@ function submit(){
 		loading();
 		$.ajax({
 			type: 'post',
-			url: URLS + 'bg-uc/adviertisement/copy.json',
+			url: URLS + '/adviertisement/copy.json',
 			data: {
 				adverData: JSON.stringify(advertiseArray),
 				machCodeData: JSON.stringify(advertiseArr),
