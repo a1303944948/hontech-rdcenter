@@ -154,18 +154,18 @@ var URLY = 'http://10.1.8.34:8080/';*/
 var URLX = 'http://hfrd.hontech-rdcenter.com:8080/hontechgroup';
 var URLZ = 'http://hfrd.hontech-rdcenter.com:8080/hontechgroup';
 var URLY = 'http://hfrd.hontech-rdcenter.com:8080/hontechgroup';*/
-/*var URLS = 'http://test.hontech-rdcenter.com:8080/bg-uc';
+var URLS = 'http://test.hontech-rdcenter.com:8080/bg-uc';
 var URLX = 'http://test.hontech-rdcenter.com:8080/bg-uc';
 var URLZ = 'http://test.hontech-rdcenter.com:8080/bg-uc';
-var URLY = 'http://test.hontech-rdcenter.com:8080/bg-uc';*/
+var URLY = 'http://test.hontech-rdcenter.com:8080/bg-uc';
 /*var URLS = 'http://zcvqki.natappfree.cc/bg-uc';
 var URLX = 'http://zcvqki.natappfree.cc/bg-uc';
 var URLZ = 'http://zcvqki.natappfree.cc/bg-uc';
 var URLY = 'http://zcvqki.natappfree.cc/bg-uc';*/
-var URLS = 'http://10.1.8.36:8080/bg-uc';
-var URLX = 'http://10.1.8.36:8080/bg-uc';
-var URLZ = 'http://10.1.8.36:8080/bg-uc';
-var URLY = 'http://10.1.8.36:8080/bg-uc';
+/*var URLS = 'http://10.1.8.36:8080/';
+var URLX = 'http://10.1.8.36:8080/';
+var URLZ = 'http://10.1.8.36:8080/';
+var URLY = 'http://10.1.8.36:8080/';*/
 //禁用页面log,要恢复调试请注释
 //console.log = ()=>{};
 

@@ -2717,7 +2717,7 @@ function renderingAlarm(machCODE,mobleId){
 		var machineTempTop = d('machine_temp_top');
 		var machineTempBom = d('machine_temp_bom');
 		var machineTempTime = d('machine_temp_time');
-		if(Number(machineTempTop.value) < Number(machineTempBom.value)){
+		if(machineTempTop.value < machineTempBom.value){
 			alern('Temperature Upper Limit < Lower Limit Is Null');
 			return false;
 		}

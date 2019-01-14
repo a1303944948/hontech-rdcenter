@@ -118,7 +118,7 @@ function alern(text,name,btn,btns){
 		divbtn.style.backgroundColor = '#0D6FB8';
 	}
 	divbtn.onmouseup = function(){
-		fixed.parentNode.removeChild(fixed);
+		fixed.style.display = "none";
 		divbtn.style.backgroundColor = '#0E76C6';
 		document.onkeydown = false;
 	}
@@ -132,41 +132,27 @@ function alern(text,name,btn,btns){
 		divbtn.style.backgroundColor = '#0D6FB8';
 	}
 	divbtns.onmouseup = function(){
-		fixed.parentNode.removeChild(fixed);
+		fixed.style.display = "none";
 		divbtn.style.backgroundColor = '#0E76C6';
 		document.onkeydown = false;
 	}
 	document.onkeydown = function(e){
 		if(e.keyCode == 13){
-		fixed.parentNode.removeChild(fixed);
+			fixed.style.display = "none";
 			document.onkeydown = false;
 		}
 		if(e.keyCode == 32){
-		fixed.parentNode.removeChild(fixed);
+			fixed.style.display = "none";
 			document.onkeydown = false;
 			return false;
 		}
 	}
 }
 
-
-//如果引用该加载效果需先在全局css文件中加入以下样式
-/*
-.body_load_div_image{
-	animation: loadDiv 0.8s linear 0s infinite;
-}
-@keyframes loadDiv{
-	0%{
-		transform: rotate(0deg);
-	}
-	100%{
-		transform: rotate(360deg);
-	}
-}*/
 var loadingTimore;
 function loading(text){
 	if(text == undefined){
-		text = "加载中";
+		text = "loading";
 	}
 	var body = n('body')[0];
 	var load = creat('div');
@@ -199,13 +185,14 @@ function loading(text){
 	loadDiv.appendChild(loadDivItem);
 	loadDivItem.innerHTML = text;
 	var loadCount = 0;
+	loadDivItem.innerHTML = text + '○○○';
 	loadingTimore = setInterval(function(){
 		loadCount++;
 		if(loadCount == 1){
-			loadDivItem.innerHTML = text + '●';
+			loadDivItem.innerHTML = text + '●○○';
 		}
 		if(loadCount == 2){
-			loadDivItem.innerHTML = text + '●●';
+			loadDivItem.innerHTML = text + '●●○';
 		}
 		if(loadCount == 3){
 			loadDivItem.innerHTML = text + '●●●';
@@ -213,7 +200,7 @@ function loading(text){
 		}
 	},300);
 	var loadDivImg = new Image();
-	loadDivImg.src = 'image/loding.png';
+	loadDivImg.src = 'image/loading.png';
 	loadDivImg.className = 'body_load_div_image';
 	loadDivImg.style.width = '100%';
 	loadDivImg.style.height = '100%';
@@ -222,39 +209,11 @@ function loading(text){
 	loadDivImg.style.left = '0px';
 	loadDiv.appendChild(loadDivImg);
 	load.appendChild(loadDiv);
-	console.log(loadDiv);
-	console.log(body);
-	console.log(load);
-	if(body != undefined){
-		body.appendChild(load);
-	}
+	body.appendChild(load);
 }
 function loadingClear(){
 	clearInterval(loadingTimore);
 	var body = n('body')[0];
 	var load = c('body_load')[0];
 	body.removeChild(load);
-}
-
-function ajax(type,url,data,succ,error,json,async){
-	var xhr = new XMLHttpRequest ();
-	if(async != true&&async != false){
-		async = true;
-	}
-	xhr.open(type,url,async);
-	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-	xhr.send(data);
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4){
-			if(xhr.status == 200){
-				if(json == 'json'){
-					succ(JSON.parse(xhr.responseText));
-				}else{
-					succ(xhr.responseText);
-				}
-			}else{
-				error(xhr.status);
-			}
-		}
-	}
 }

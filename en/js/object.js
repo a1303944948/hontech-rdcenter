@@ -155,11 +155,11 @@ var URLS = 'http://test.hontech-rdcenter.com:8080/bg-uc';
 var URLX = 'http://test.hontech-rdcenter.com:8080/bg-uc';
 var URLZ = 'http://test.hontech-rdcenter.com:8080/bg-uc';
 var URLY = 'http://test.hontech-rdcenter.com:8080/bg-uc';
-/*var URLS = 'http://10.1.8.36:8080/bg-uc';
-var URLX = 'http://10.1.8.36:8080/bg-uc';
-var URLZ = 'http://10.1.8.36:8080/bg-uc';
-var URLY = 'http://10.1.8.36:8080/bg-uc';
-*/
+/*var URLS = 'http://10.1.8.36:808/';
+var URLX = 'http://10.1.8.36:808/';
+var URLZ = 'http://10.1.8.36:808/';
+var URLY = 'http://10.1.8.36:808/';*/
+
 //销售分析页面数据
 var LIST = [
 	['By Value','By Sales'],
