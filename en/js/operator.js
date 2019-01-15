@@ -201,14 +201,15 @@ function startbody(l){
 					success: function(data){
 						console.log(data);
 						var detailedOperatorId = d('detailed_operator_id');							//运营方ID
-						var detailedOperatorNumbering = d('detailed_operator_numbering');				//运营方编号
-						var detailedOperatorCompanyname = d('detailed_operator_companyname');			//公司名称
+						var detailedOperatorNumbering = d('detailed_operator_numbering');			//运营方编号
+						var detailedOperatorCompanyname = d('detailed_operator_companyname');		//公司名称
 						var detailedOperatorCompanyaddress = d('detailed_operator_companyaddress');	//公司地址
-						var detailedOperatorPrincipal = d('detailed_operator_principal');				//运营方负责人
-						var detailedOperatorPhone = d('detailed_operator_phone');						//联系手机
+						var detailedOperatorPrincipal = d('detailed_operator_principal');			//运营方负责人
+						var detailedOperatorPhone = d('detailed_operator_phone');					//联系手机
 						var detailedOperatorSparephone = d('detailed_operator_sparephone');			//备用手机
-						var detailedOperatorEmail = d('detailed_operator_email');						//Email邮箱
-						var detailedOperatorStop = d('detailed_operator_stop');								//是否停用
+						var detailedOperatorEmail = d('detailed_operator_email');					//Email邮箱
+						var detailedOperatorStop = d('detailed_operator_stop');						//是否停用
+						var detailedOperatorIsFree = d('detailed_operator_isFree');					//是否免费
 						detailedOperatorId.value = data.operatorID;
 						detailedOperatorId.disabled = "disabled";
 						detailedOperatorNumbering.value = data.operator;
@@ -222,6 +223,11 @@ function startbody(l){
 							detailedOperatorStop.checked = "checked";
 						}else{
 							detailedOperatorStop.checked = false;
+						}
+						if(data.isFree == 1){
+							detailedOperatorIsFree.checked = "checked";
+						}else{
+							detailedOperatorIsFree.checked = false;
 						}
 					}
 				})
@@ -417,6 +423,7 @@ function submit(){
 		d('detailed_operator_sparephone').value = "";						//备用手机
 		d('detailed_operator_email').value = "";							//Email邮箱
 		d('detailed_operator_stop').checked = false;						//是否停用
+		d('detailed_operator_isFree').checked = false;						//是否免费
 
 		var BodyLeftList = c('operator_body_left_list');
 		for(var j = 0; j < BodyLeftList.length; j++){
@@ -485,6 +492,7 @@ function submit(){
 		var detailedOperatorSparephone = d('detailed_operator_sparephone').value;			//备用手机
 		var detailedOperatorEmail = d('detailed_operator_email').value;						//Email邮箱
 		var detailedOperatorStop = d('detailed_operator_stop').checked;						//是否停用
+		var detailedOperatorIsFree = d('detailed_operator_isFree').checked;					//是否免费
 		if(detailedOperatorId == ''){
 			alern('运营方ID不能为空');
 			return false;
@@ -498,6 +506,11 @@ function submit(){
 		}else{
 			detailedOperatorStop = '1';
 		}
+		if(detailedOperatorIsFree){
+			detailedOperatorIsFree = 1;
+		}else{
+			detailedOperatorIsFree = 0;
+		}
 		$.ajax({
 			type: 'post',
 			url: URLZ + '/operate/saveOperate.json',
@@ -510,7 +523,8 @@ function submit(){
 				phone1: detailedOperatorPhone,
 				phone2: detailedOperatorSparephone,
 				email: detailedOperatorEmail,
-				mark: detailedOperatorStop
+				mark: detailedOperatorStop,
+				isFree: detailedOperatorIsFree,
 			},
 			success: function(data){
 				console.log(data);
