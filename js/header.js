@@ -16,8 +16,8 @@ document.writeln("				</div>");
 document.writeln("				<div class=\'header_user\'>");
 document.writeln("					欢迎，"+loginUserName.name+"<b></b>");
 document.writeln("					<div class=\'header_user_slip\'>");
+document.writeln("						<span id='pay_ment'><img src=\'image/czjf.png\'>充值缴费</span>");
 document.writeln("						<span id='edit_pass'><img src=\'image/zhgl.png\'>修改密码</span>");
-//document.writeln("						<span><img src=\'image/qh.png\'>切换账号</span>");
 document.writeln("						<span id='exit_login'><img src=\'image/tc.png\'>安全退出</span>");
 document.writeln("					</div>");
 document.writeln("				</div>");
@@ -150,6 +150,17 @@ function head(obj){
 		}
 	}
 	headSelect();
+}
+
+//充值缴费
+if(sessionStorage.menuidPayMent != undefined){
+	if(sessionStorage.menuidPayMent == GetQueryString('menuid')){
+		d('pay_ment').style.backgroundColor = '#323F52';
+	}
+}
+d('pay_ment').onclick = function(){
+	sessionStorage.menuidPayMent = new Date().getTime();
+	window.location.href = 'pay_ment.html?menuid=' + sessionStorage.menuidPayMent;
 }
 
 //退出登录
