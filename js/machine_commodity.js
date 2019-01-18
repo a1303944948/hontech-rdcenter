@@ -49,7 +49,7 @@ function byStart(machCODE){
 				(function(q){
 					commodityaTbodyIntaClose[q].onclick = function(){
 						commodityaTbodyInta[q].value = "";
-						commodityaTbodyInta[q].name = "";
+						commodityaTbodyInta[q].setAttribute('data-value','');
 					}
 					commodityaTbodyInta[q].onfocus = function(){
 						var that = this;
@@ -744,7 +744,7 @@ function hdStart(machCODE){
 						var tdd = creat('td');
 						var tde = creat('td');
 						tda.innerHTML = i+1;
-						tdb.innerHTML = data.dataQC[i].cargoDatan;
+						tdb.innerHTML = '<' + data.dataQC[i].cargoDatan + '>';
 						tdc.innerHTML = data.dataQC[i].waresName;
 						tdd.innerHTML = data.dataQC[i].isPastdue;
 						tde.innerHTML = data.dataQC[i].clearData;
@@ -819,7 +819,7 @@ function hdStart(machCODE){
 						var tdc = creat('td');
 						var tdd = creat('td');
 						tda.innerHTML = i+1;
-						tdb.innerHTML = data.dataBR[i].cargoData;
+						tdb.innerHTML = '<' + data.dataBR[i].cargoData + '>';
 						tdc.innerHTML = data.dataBR[i].goodsName;
 						tdd.innerHTML = data.dataBR[i].isExist;
 						tr.appendChild(tda);

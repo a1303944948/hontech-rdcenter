@@ -1176,6 +1176,8 @@ function submit(){
 			userObject.matter = AllMach.obj.matter;
 			userObject.problem = AllMach.obj.problem;
 			userObject.trouble = AllMach.obj.trouble;
+			userObject.freeze = AllMach.obj.freeze;
+
 		}
 
 		console.log(type);

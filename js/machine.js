@@ -319,7 +319,7 @@ function rendering(msgObject,that){
 	var machineAddr = d('machine_addr');			//设备地址
 	var machineTraffic = d('machine_traffic');		//设备流量卡
 	var machineExplain = d('machine_explain');		//设备说明
-	/*var machineStop = d('machine_stop');			//是否停用*/
+	var machineFreeze = d('machine_freeze');		//是否冻结
 	//渲染详细信息
 	$.ajax({
 		type: 'post',
@@ -354,11 +354,16 @@ function rendering(msgObject,that){
 			}else{
 				machineExplain.value = "";
 			}
-			/*if(data.obj.dltflag != 1){
-				machineStop.checked = 'checked';
+			if(msgObject.isFree == 1){
+				c('machine_freeze_tr')[0].style.display = 'none';
 			}else{
-				machineStop.checked = false;
-			}	*/
+				c('machine_freeze_tr')[0].style.display = 'table-row';
+				if(data.obj.freeze != 1){
+					machineFreeze.checked = 'checked';
+				}else{
+					machineFreeze.checked = false;
+				}
+			}
 			//详细信息保存
 			var rightFootItemBtna = c('user_body_right_foot_item_btna')[0];
 			rightFootItemBtna.onclick = function(){
@@ -367,6 +372,16 @@ function rendering(msgObject,that){
 				data.obj.description = machineExplain.value;
 				data.obj.scopeofauthority = machineGrouping.name;
 				data.obj.machName = machineName.value;
+
+				if(msgObject.isFree == 1){
+					data.obj.freeze = 1;
+				}else{
+					if(machineFreeze.checked){
+						data.obj.freeze = 0;
+					}else{
+						data.obj.freeze = 1;
+					}
+				}
 				if(data.obj.machName == ""){
 					alern('设备名称不能为空');
 					return false;
@@ -457,6 +472,42 @@ function startbody(){
 		count.push(MACHS[i].parent_id);
 	}
 	var tree = sonsTree(MACHS,Math.min.apply(Math,count));
+	$.ajax({
+		type: 'post',
+		url: URLS + '/jf/com/util/web/alldev.json',
+		data: {},
+		async: false,
+		success: function(data){
+			console.log(data);
+			for(var i = 0; i < tree.length; i++){
+				if(tree[i].icon == 4){
+					for(var j = 0; j < data.devs.length; j++){
+						if(tree[i].devicecode == data.devs[j].machCode){
+							tree[i].operatorID = data.devs[j].operatorID;
+						}
+					}
+				}
+			}
+		}
+	})
+	$.ajax({
+		type: 'post',
+		url: URLS + '/jf/com/util/web/alloperate.json',
+		data: {},
+		async: false,
+		success: function(data){
+			console.log(data);
+			for(var i = 0; i < tree.length; i++){
+				if(tree[i].icon == 4){
+					for(var j = 0; j < data.operates.length; j++){
+						if(tree[i].operatorID == data.operates[j].operatorID){
+							tree[i].isFree = data.operates[j].isFree;
+						}
+					}
+				}
+			}
+		}
+	})
 	var temp = [];
 	for(var i=0;i<tree.length;i++){
 		var item = tree[i],u = "";
