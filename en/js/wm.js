@@ -213,7 +213,7 @@ function loading(text){
 		}
 	},300);
 	var loadDivImg = new Image();
-	loadDivImg.src = 'image/loding.png';
+	loadDivImg.src = 'image/loading.png';
 	loadDivImg.className = 'body_load_div_image';
 	loadDivImg.style.width = '100%';
 	loadDivImg.style.height = '100%';
