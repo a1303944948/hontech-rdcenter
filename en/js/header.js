@@ -160,7 +160,7 @@ if(sessionStorage.menuidPayMent != undefined){
 	}
 }
 d('pay_ment').onclick = function(){
-	sessionStorage.menuidPayMent = new Date().getTime();
+	sessionStorage.menuidPayMent = 'payMent';
 	window.location.href = 'pay_ment.html?menuid=' + sessionStorage.menuidPayMent;
 }
 
