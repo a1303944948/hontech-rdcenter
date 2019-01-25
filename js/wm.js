@@ -1,15 +1,24 @@
-﻿function d(id){
+﻿//ID选择器
+function d(id){
 	return document.getElementById(id);
 }
+
+//class选择器
 function c(cls){
 	return document.getElementsByClassName(cls);
 }
+
+//元素选择器
 function n(name){
 	return document.getElementsByTagName(name);
 }
+
+//创建元素器
 function creat(object){
 	return document.createElement(object);
 }
+
+//弹窗
 function alern(text,name,btn,btns){
 	if(text == undefined){
 		text = '';
@@ -163,6 +172,8 @@ function alern(text,name,btn,btns){
 		transform: rotate(360deg);
 	}
 }*/
+
+//加载动画
 var loadingTimore;
 function loading(text){
 	if(text == undefined){
@@ -229,6 +240,7 @@ function loading(text){
 		body.appendChild(load);
 	}
 }
+//关闭加载动画
 function loadingClear(){
 	clearInterval(loadingTimore);
 	var body = n('body')[0];
@@ -236,6 +248,7 @@ function loadingClear(){
 	body.removeChild(load);
 }
 
+//ajax请求
 function ajax(type,url,data,succ,error,json,async){
 	var xhr = new XMLHttpRequest ();
 	if(async != true&&async != false){
