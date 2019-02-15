@@ -1225,6 +1225,7 @@ html,body{
 	margin-top: 10px;
 	padding: 10px;
 	overflow-y: auto;
+	overflow-x: hidden;
 }
 .user_body_right_foot_item_tonic>p{
 	height: 30px;
