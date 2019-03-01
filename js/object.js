@@ -166,6 +166,10 @@ var URLY = 'http://zcvqki.natappfree.cc/bg-uc';*/
 var URLX = 'http://10.1.8.36:8080/bg-uc';
 var URLZ = 'http://10.1.8.36:8080/bg-uc';
 var URLY = 'http://10.1.8.36:8080/bg-uc';*/
+/*var URLS = 'http://cc5yy2.natappfree.cc/bg-uc';
+var URLX = 'http://cc5yy2.natappfree.cc/bg-uc';
+var URLZ = 'http://cc5yy2.natappfree.cc/bg-uc';
+var URLY = 'http://cc5yy2.natappfree.cc/bg-uc';*/
 //禁用页面log,要恢复调试请注释
 //console.log = ()=>{};
 

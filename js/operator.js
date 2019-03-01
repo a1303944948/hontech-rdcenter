@@ -245,12 +245,14 @@ function startbody(l){
 							var wechatPay = d('wechat_pay');			//微信支付
 							var wechatPass = d('wechat_pass');			//微信密钥
 							var wechatId = d('wechat_id');				//微信公众号id
+							var wechatSecret = d('wechat_secret');		//微信公众号secret
 							var wecahtShanghu = d('wecaht_shanghu');		//微信商户号
 							var wecahtFile = d('wecahtFile');				//微信商户号
 							var wecahtFileValue = d('wecahtFile_value');	//微信商户号
 							wechatPay.checked = false;
 							wechatPass.value = "";
 							wechatId.value = "";
+							wechatSecret.value = "";
 							wecahtShanghu.value = "";
 							readers = "";
 							wecahtFileValue.innerHTML = "";
@@ -295,6 +297,7 @@ function startbody(l){
 							var wechatPay = d('wechat_pay');			//微信支付
 							var wechatPass = d('wechat_pass');			//微信密钥
 							var wechatId = d('wechat_id');				//微信公众号id
+							var wechatSecret = d('wechat_secret');		//微信公众号secret
 							var wecahtShanghu = d('wecaht_shanghu');		//微信商户号
 							var wecahtFile = d('wecahtFile');				//微信商户号
 							var wecahtFileValue = d('wecahtFile_value');	//微信商户号
@@ -305,6 +308,7 @@ function startbody(l){
 							}
 							wechatPass.value = data.pass;
 							wechatId.value = data.user;
+							wechatSecret.value = data.wxAPPSecret;
 							wecahtShanghu.value = data.mch_id;
 							readers = data.fileRealName;
 							wecahtFileValue.innerHTML = data.fileRealName;
@@ -430,15 +434,17 @@ function submit(){
 			BodyLeftList[j].style.backgroundColor = "rgba(0,0,0,0)";
 		}
 
-		var wechatPay = d('wechat_pay');			//微信支付
-		var wechatPass = d('wechat_pass');			//微信密钥
-		var wechatId = d('wechat_id');				//微信公众号id
+		var wechatPay = d('wechat_pay');				//微信支付
+		var wechatPass = d('wechat_pass');				//微信密钥
+		var wechatId = d('wechat_id');					//微信公众号id
+		var wechatSecret = d('wechat_secret');			//微信公众号secret
 		var wecahtShanghu = d('wecaht_shanghu');		//微信商户号
 		var wecahtFile = d('wecahtFile');				//微信商户号
 		var wecahtFileValue = d('wecahtFile_value');	//微信商户号
 		wechatPay.checked = false;
 		wechatPass.value = "";
 		wechatId.value = "";
+		wechatSecret.value = "";
 		wecahtShanghu.value = "";
 		readers = "";
 		wecahtFileValue.innerHTML = "";
@@ -559,10 +565,12 @@ function submit(){
 		}
 		var wechatPass = d('wechat_pass').value;			//微信密钥
 		var wechatId = d('wechat_id').value;				//微信公众号id
+		var wechatSecret = d('wechat_secret').value;		//微信公众号secret
 		var wecahtShanghu = d('wecaht_shanghu').value;		//微信商户号
 		wechatObject.wechatPay = wechatPay;
 		wechatObject.wechatPass = wechatPass;
 		wechatObject.wechatId = wechatId;
+		wechatObject.wechatSecret = wechatSecret;
 		wechatObject.wecahtShanghu = wecahtShanghu;
 
 		var alipayObject = new Object();
