@@ -1084,7 +1084,7 @@ function tableRendering(allDate,type){
       }
     }
   }else{
-    tableHead.innerHTML = '<tr><th>售货机名称</th><th>售货机编号</th><th>商品名称</th><th>商户订单号</th><th>货道</th><th>支付方式</th><th>支付金额</th><th>账号标记</th><th>付款时间</th><th>状态</th><th>操作人</th><th>操作说明</th></tr>';
+    tableHead.innerHTML = '<tr><th>售货机名称</th><th>售货机编号</th><th>商品名称</th><th>商户订单号</th><th>货道</th><th>支付方式</th><th>支付金额</th><th>账号标记</th><th>付款时间</th><th>状态</th><th>操作人</th><th>退款说明</th></tr>';
     if(allDate.length == 0){
       table.innerHTML = '<tr><td colspan="11" style="color: #888888;">暂无记录</td></tr>'
     }else{
@@ -1113,7 +1113,7 @@ function tableRendering(allDate,type){
         td9.innerHTML = allDate[i].paymentDate;
         td10.innerHTML = allDate[i].free;
         td11.innerHTML = allDate[i].operator;
-        td12.innerHTML = '<button onclick="alern(\''+allDate[i].refund_remark+'\',\'退款说明\')">说明</button>';
+        td12.innerHTML = '<button style="padding: 3px 5px; border-radius: 4px; border: 1px #e5e5e5 solid; background-color: #ffffff;" onmouseover="this.style.backgroundColor = \'#f0f0f0\';" onmouseout="this.style.backgroundColor = \'#ffffff\';" onclick="alern(\''+allDate[i].refund_remark+'\',\'退款说明\')">说明</button>';
         tr.appendChild(td1);
         tr.appendChild(td2);
         tr.appendChild(td3);
