@@ -928,6 +928,17 @@ function hdStart(machCODE){
 								tr.appendChild(tdc);
 								tonicBodybTbody.appendChild(tr);
 							}
+							var tr = creat('tr');
+							var tda = creat('td');
+							var tdb = creat('td');
+							var tdc = creat('td');
+							tda.innerHTML = "";
+							tdb.innerHTML = "Total";
+							tdc.innerHTML = data.totalBR;
+							tr.appendChild(tda);
+							tr.appendChild(tdb);
+							tr.appendChild(tdc);
+							tonicBodybTbody.appendChild(tr);
 						}else{
 							var tr = creat('tr');
 							var td= creat('td');
@@ -1626,6 +1637,24 @@ function ycStart(machCODE,mobleId){
 			})
 		}
 	}
+
+	//保存取物门开门时间
+	c('remote_time_save')[0].onclick = function(){
+		remoteSelectcValue = c('remote_selectc')[0].value;
+		$.ajax({
+			type: 'post',
+			url: URLS + '/jf/bg/basic/long-control/web/setpickuptime.json',
+			data: {
+				machCode: machCODE,
+				pickupdoor: Number(remoteSelectcValue),
+			},
+			success: function(data){
+				alern(data.textEn);
+			}
+		})
+	}
+
+
 	//温度设置模块
 	var remoteTitleAdd = c('user_body_right_foot_item_remote_title_add')[0];	//添加温度条目按钮
 	var itemRemoteTbodys = c('user_body_right_foot_item_remote_tbodys')[0];		//温度设置载体

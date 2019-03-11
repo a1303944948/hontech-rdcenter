@@ -330,6 +330,10 @@ function rendering(msgObject,that){
 		},
 		success: function(data){
 			console.log(data.obj);
+
+			//渲染保存远程取物门开启时间
+			c('remote_selectc')[0].value = data.obj.pickupdoor;
+			
 			for(var i = 0; i < MACH.length; i++){
 				if(data.obj.scopeofauthority == MACH[i].id){
 					machineGrouping.value = MACH[i].text;

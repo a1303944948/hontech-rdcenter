@@ -1013,7 +1013,7 @@ function selesForm(){
       success: function(data){
         loadingClear();
         console.log(data);
-        tableRendering(data.dealMonitor);
+        tableRendering(data.dealMonitor,mehtodz);
       }
     })
   }
@@ -1024,7 +1024,7 @@ datepicke();
 selesForm();
 
 //底部table渲染
-function tableRendering(allDate){
+function tableRendering(allDate,type){
   var totalAmountArr = [];
   for(var i = 0; i < allDate.length; i++){
     totalAmountArr.push(allDate[i].total_amount);
@@ -1038,44 +1038,98 @@ function tableRendering(allDate){
   salesBodyFirstSpan.innerHTML = '总数量：' + allDate.length;
   salesBodyLastSpan.innerHTML = '总金额：' + Number(totalAmount.toFixed(2));
   var table = c('sales_body_table_tbody')[0];
+  var tableHead = c('sales_body_table_thead')[0];
   table.innerHTML = '';
-  for(var i = 0; i < allDate.length; i++){
-    var tr = creat('tr');
-    var td1 = creat('td');
-    var td2 = creat('td');
-    var td3 = creat('td');
-    var td4 = creat('td');
-    var td5 = creat('td');
-    var td6 = creat('td');
-    var td7 = creat('td');
-    var td8 = creat('td');
-    var td9 = creat('td');
-    var td10 = creat('td');
-    var td11 = creat('td');
-    td1.innerHTML = allDate[i].machCode;
-    td2.innerHTML = allDate[i].macaddress;
-    td3.innerHTML = allDate[i].waresName;
-    td4.innerHTML = allDate[i].waresId;
-    td5.innerHTML = allDate[i].out_trade_no;
-    td6.innerHTML = allDate[i].goodsType;
-    td7.innerHTML = allDate[i].mark;
-    td8.innerHTML = allDate[i].total_amount;
-    td9.innerHTML = allDate[i].openid;
-    td10.innerHTML = allDate[i].paymentDate;
-    td11.innerHTML = allDate[i].free;
-    tr.appendChild(td1);
-    tr.appendChild(td2);
-    tr.appendChild(td3);
-    tr.appendChild(td4);
-    tr.appendChild(td5);
-    tr.appendChild(td6);
-    tr.appendChild(td7);
-    tr.appendChild(td8);
-    tr.appendChild(td9);
-    tr.appendChild(td10);
-    tr.appendChild(td11);
-    table.appendChild(tr);
-  }
+  if(type == 0){
+    tableHead.innerHTML = '<tr><th>售货机名称</th><th>售货机编号</th><th>商品名称</th><th>商品编号</th><th>商户订单号</th><th>货道</th><th>支付方式</th><th>支付金额</th><th>账号标记</th><th>付款时间</th><th>状态</th></tr>';
+    if(allDate.length == 0){
+      table.innerHTML = '<tr><td colspan="11" style="color: #888888;">暂无记录</td></tr>'
+    }else{
+      for(var i = 0; i < allDate.length; i++){
+        var tr = creat('tr');
+        var td1 = creat('td');
+        var td2 = creat('td');
+        var td3 = creat('td');
+        var td4 = creat('td');
+        var td5 = creat('td');
+        var td6 = creat('td');
+        var td7 = creat('td');
+        var td8 = creat('td');
+        var td9 = creat('td');
+        var td10 = creat('td');
+        var td11 = creat('td');
+        td1.innerHTML = allDate[i].machCode;
+        td2.innerHTML = allDate[i].macaddress;
+        td3.innerHTML = allDate[i].waresName;
+        td4.innerHTML = allDate[i].waresId;
+        td5.innerHTML = allDate[i].out_trade_no;
+        td6.innerHTML = allDate[i].goodsType;
+        td7.innerHTML = allDate[i].mark;
+        td8.innerHTML = allDate[i].total_amount;
+        td9.innerHTML = allDate[i].openid;
+        td10.innerHTML = allDate[i].paymentDate;
+        td11.innerHTML = allDate[i].free;
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+        tr.appendChild(td6);
+        tr.appendChild(td7);
+        tr.appendChild(td8);
+        tr.appendChild(td9);
+        tr.appendChild(td10);
+        tr.appendChild(td11);
+        table.appendChild(tr);
+      }
+    }
+  }else{
+    tableHead.innerHTML = '<tr><th>售货机名称</th><th>售货机编号</th><th>商品名称</th><th>商户订单号</th><th>货道</th><th>支付方式</th><th>支付金额</th><th>账号标记</th><th>付款时间</th><th>状态</th><th>操作人</th><th>操作说明</th></tr>';
+    if(allDate.length == 0){
+      table.innerHTML = '<tr><td colspan="11" style="color: #888888;">暂无记录</td></tr>'
+    }else{
+      for(var i = 0; i < allDate.length; i++){
+        var tr = creat('tr');
+        var td1 = creat('td');
+        var td2 = creat('td');
+        var td3 = creat('td');
+        var td4 = creat('td');
+        var td5 = creat('td');
+        var td6 = creat('td');
+        var td7 = creat('td');
+        var td8 = creat('td');
+        var td9 = creat('td');
+        var td10 = creat('td');
+        var td11 = creat('td');
+        var td12 = creat('td');
+        td1.innerHTML = allDate[i].machCode;
+        td2.innerHTML = allDate[i].macaddress;
+        td3.innerHTML = allDate[i].waresName;
+        td4.innerHTML = allDate[i].out_trade_no;
+        td5.innerHTML = allDate[i].goodsType;
+        td6.innerHTML = allDate[i].mark;
+        td7.innerHTML = allDate[i].total_amount;
+        td8.innerHTML = allDate[i].openid;
+        td9.innerHTML = allDate[i].paymentDate;
+        td10.innerHTML = allDate[i].free;
+        td11.innerHTML = allDate[i].operator;
+        td12.innerHTML = '<button onclick="alern(\''+allDate[i].refund_remark+'\',\'退款说明\')">说明</button>';
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+        tr.appendChild(td6);
+        tr.appendChild(td7);
+        tr.appendChild(td8);
+        tr.appendChild(td9);
+        tr.appendChild(td10);
+        tr.appendChild(td11);
+        tr.appendChild(td12);
+        table.appendChild(tr);
+      }
+    }
+  };
 }
 
 

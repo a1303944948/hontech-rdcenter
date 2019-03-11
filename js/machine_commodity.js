@@ -729,9 +729,9 @@ function hdStart(machCODE){
 				tr.appendChild(tdd);
 				tonicHeadTable.appendChild(tr);
 			}
-			buhuoqingdan('Machine ID:',data.machCode,'Machine Name:',data.machName);
-			buhuoqingdan('Operator:',data.operator,'Create Time:',data.timeBR);
-			buhuoqingdan('Machine Type:',data.model,'Address:',data.useAddr);
+			buhuoqingdan('设备编号:',data.machCode,'设备名称:',data.machName);
+			buhuoqingdan('运营方:',data.operator,'创建时间:',data.timeBR);
+			buhuoqingdan('机型:',data.model,'设备地址:',data.useAddr);
 			//清出列表
 			function qingchuliebiao(){
 				tonicBodyaTbody.innerHTML = "";
@@ -927,6 +927,17 @@ function hdStart(machCODE){
 								tr.appendChild(tdc);
 								tonicBodybTbody.appendChild(tr);
 							}
+							var tr = creat('tr');
+							var tda = creat('td');
+							var tdb = creat('td');
+							var tdc = creat('td');
+							tda.innerHTML = "";
+							tdb.innerHTML = "总计";
+							tdc.innerHTML = data.totalBR;
+							tr.appendChild(tda);
+							tr.appendChild(tdb);
+							tr.appendChild(tdc);
+							tonicBodybTbody.appendChild(tr);
 						}else{
 							var tr = creat('tr');
 							var td= creat('td');
@@ -1623,6 +1634,23 @@ function ycStart(machCODE,mobleId){
 			})
 		}
 	}
+
+	//保存取物门开门时间
+	c('remote_time_save')[0].onclick = function(){
+		remoteSelectcValue = c('remote_selectc')[0].value;
+		$.ajax({
+			type: 'post',
+			url: URLS + '/jf/bg/basic/long-control/web/setpickuptime.json',
+			data: {
+				machCode: machCODE,
+				pickupdoor: Number(remoteSelectcValue),
+			},
+			success: function(data){
+				alern(data.text);
+			}
+		})
+	}
+
 	//温度设置模块
 	var remoteTitleAdd = c('user_body_right_foot_item_remote_title_add')[0];	//添加温度条目按钮
 	var itemRemoteTbodys = c('user_body_right_foot_item_remote_tbodys')[0];		//温度设置载体

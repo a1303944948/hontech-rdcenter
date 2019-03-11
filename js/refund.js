@@ -1100,9 +1100,9 @@ c('refund_fixed_body_submit')[0].onclick = function(){
         data: {
           out_trade_no: refundOrderId,
           mark: refundMark,
+          operator: JSON.parse(sessionStorage.loginUserName).name,
         },
         success: function(data){
-          console.log(data);
           if(data.success){
             c('refund_fixed')[0].style.display = 'none';
           }
@@ -1116,6 +1116,7 @@ c('refund_fixed_body_submit')[0].onclick = function(){
         data: {
           out_trade_no: refundOrderId,
           mark: refundMark,
+          operator: JSON.parse(sessionStorage.loginUserName).name,
         },
         success: function(data){
           console.log(data);
@@ -1132,6 +1133,7 @@ c('refund_fixed_body_submit')[0].onclick = function(){
         data: {
           out_trade_no: refundOrderId,
           mark: refundMark,
+          operator: JSON.parse(sessionStorage.loginUserName).name,
         },
         success: function(data){
           console.log(data);
@@ -1148,6 +1150,7 @@ c('refund_fixed_body_submit')[0].onclick = function(){
         data: {
           out_trade_no: refundOrderId,
           mark: refundMark,
+          operator: JSON.parse(sessionStorage.loginUserName).name,
         },
         success: function(data){
           console.log(data);
