@@ -1084,7 +1084,7 @@ function tableRendering(allDate,type){
       }
     }
   }else{
-    tableHead.innerHTML = '<tr><th>售货机名称</th><th>售货机编号</th><th>商品名称</th><th>商户订单号</th><th>货道</th><th>支付方式</th><th>支付金额</th><th>账号标记</th><th>付款时间</th><th>状态</th><th>操作人</th><th>退款说明</th></tr>';
+    tableHead.innerHTML = '<tr><th>售货机名称</th><th>售货机编号</th><th>商品名称</th><th>商户订单号</th><th>货道</th><th>支付方式</th><th>支付金额</th><th>账号标记</th><th>退款时间</th><th>状态</th><th>操作人</th><th>退款说明</th></tr>';
     if(allDate.length == 0){
       table.innerHTML = '<tr><td colspan="11" style="color: #888888;">暂无记录</td></tr>'
     }else{

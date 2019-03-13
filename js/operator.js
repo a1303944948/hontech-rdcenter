@@ -32,7 +32,6 @@ function start(){
 
 	for(var i = 0; i < headUl.length; i++){
 		(function(q){
-			console.log(Select[q]);
 			Select[q].onfocus = function(){
 				headUl[q].style.display = 'inline-block';
 			}
@@ -199,7 +198,6 @@ function startbody(l){
 					},
 					dataType: 'json',
 					success: function(data){
-						console.log(data);
 						var detailedOperatorId = d('detailed_operator_id');							//运营方ID
 						var detailedOperatorNumbering = d('detailed_operator_numbering');			//运营方编号
 						var detailedOperatorCompanyname = d('detailed_operator_companyname');		//公司名称
@@ -240,7 +238,6 @@ function startbody(l){
 					},
 					dataType: 'json',
 					success: function(data){
-						console.log(data);
 						if(JSON.stringify(data) == "{}"){
 							var wechatPay = d('wechat_pay');			//微信支付
 							var wechatPass = d('wechat_pass');			//微信密钥
@@ -533,7 +530,6 @@ function submit(){
 				isFree: detailedOperatorIsFree,
 			},
 			success: function(data){
-				console.log(data);
 				count++;
 				if(count == 2){
 					alern('保存成功');
@@ -627,12 +623,12 @@ function submit(){
 		icbcObject.icbcPrivpay = icbcPrivpay;
 		icbcObject.icbcSpecial = icbcSpecial;
 		icbcObject.icbcLife = icbcLife;
-		console.log(JSON.stringify(wechatObject));
+		/*console.log(JSON.stringify(wechatObject));
 		console.log(JSON.stringify(alipayObject));
 		console.log(JSON.stringify(silverObject));
 		console.log(JSON.stringify(icbcObject));
 		console.log(readers);
-		console.log(detailedOperatorId);
+		console.log(detailedOperatorId);*/
 
 		if(readers == undefined){
 			readers = "";
@@ -649,7 +645,6 @@ function submit(){
 				operatorID: detailedOperatorId,
 			},
 			success: function(data){
-				console.log(data);
 				count++;
 				if(count == 2){
 					alert(data.msg);
