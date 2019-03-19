@@ -500,6 +500,9 @@ function subUP(){
 				}
 				var ul = creat('ul');
 				ul.className = 'model_push_fixed_home_tablea_ula';
+				ul.style.maxHeight = '300px';
+				ul.style.overflowX = 'hidden';
+				ul.style.overflowY = 'auto';
 				for(var i = 0; i < data.filemaster.length; i++){
 					if(data.filemaster[i].clientfileVersion !=""&&data.filemaster[i].clientfileUrl != ""){
 						var li = creat('li');
@@ -514,6 +517,9 @@ function subUP(){
 				}
 				var uls = creat('ul');
 				uls.className = 'model_push_fixed_home_tablea_ulb';
+				uls.style.maxHeight = '300px';
+				uls.style.overflowX = 'hidden';
+				uls.style.overflowY = 'auto';
 				for(var i = 0; i < data.filemaster.length; i++){
 					if(data.filemaster[i].lowerfileVersion != ""&&data.filemaster[i].lowerfileUrl !=""){
 						var li = creat('li');
