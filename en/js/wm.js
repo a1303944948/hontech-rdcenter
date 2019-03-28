@@ -15,13 +15,13 @@ function alern(text,name,btn,btns){
 		text = '';
 	}
 	if(name == undefined||name == ''){
-		name = '温馨提醒';
+		name = 'warning';
 	}
 	if(btn == undefined||btn == ''){
-		btn = '确定';
+		btn = 'ok';
 	}
 	if(btns == ''){
-		btns = '取消';
+		btns = 'cancel';
 	}
 	var body = document.getElementsByTagName('body')[0];
 	var fixed = document.createElement('div');
@@ -166,7 +166,7 @@ function alern(text,name,btn,btns){
 var loadingTimore;
 function loading(text){
 	if(text == undefined){
-		text = "加载中";
+		text = "loading";
 	}
 	var body = n('body')[0];
 	var load = creat('div');

@@ -7,7 +7,7 @@ document.writeln("						<img src=\'image/logo.jpg\'/>");
 document.writeln("					</a>");
 document.writeln("				</div>");
 document.writeln("				<div class=\'header_title\'>");
-document.writeln("					鸿丰智能售货系统");
+document.writeln("					鸿丰智能终端管理系统");
 document.writeln("				</div>");
 document.writeln("			</div>");
 document.writeln("			<div class=\'header_right_bottom\'>");
@@ -366,7 +366,7 @@ function groupanalysis(kit,qid,array){
 	}
 	KITANALYSIS = temp;
 }
-//获取BOM结构中指定目标方法 传入：0为工厂，1为运营方，2为组别，3为人员，4为设备；//处理好所有页面后可弃用
+//获取BOM结构中指定目标方法 传入：0为工厂，1为运营方，2为组别，3为人员，4为设备；//处理好所有页面后可弃用，请用下面的升级版方法
 function groupitem(num){
 	var groupobj;
 	var groupobject = [];
@@ -401,7 +401,7 @@ function groupitem(num){
 	return groupobject;
 }
 
-//获取BOM结构中指定目标方法 传入：0为工厂，1为运营方，2为组别，3为人员，4为设备；//上面方法的升级版
+//获取BOM结构中指定目标方法 传入：0为工厂，1为运营方，2为组别，3为人员，4为设备；bom为要操作的BOM结构数据//上面方法的升级版
 function groupitemlevel(num,bom){
 	var groupobject = [];
 	for(var groupi = 0; groupi < bom.length; groupi++){
