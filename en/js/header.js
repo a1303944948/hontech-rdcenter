@@ -187,7 +187,6 @@ $.ajax({
 			data: {},
 			dataType: 'json',
 			success: function(data){
-				console.log(data.menusData);
 				var objs = JSON.parse(data.menusData);
 				var objects = [];
 				for(var i = 0; i < objs.length; i++){

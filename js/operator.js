@@ -151,6 +151,56 @@ function start(){
 			footList[j].style.display = 'none';
 		}
 	}*/
+	//监听复选框事件
+	let wechatPayOn = new OnChange('wechat_pay');
+	let alipayPayOn = new OnChange('alipay_pay');
+	let silverPayOn = new OnChange('silver_pay');
+	let icbcPayOn = new OnChange('icbc_pay');
+	d('wechat_pay').onchange = function(){
+		if(this.checked){
+			wechatPayOn.yes('wechat_pay');
+		}else{
+			wechatPayOn.no('wechat_pay');
+		}
+	};
+	d('alipay_pay').onchange = function(){
+		if(this.checked){
+			alipayPayOn.yes('alipay_pay');
+		}else{
+			alipayPayOn.no('alipay_pay');
+		}
+	};
+	d('silver_pay').onchange = function(){
+		if(this.checked){
+			silverPayOn.yes('silver_pay');
+		}else{
+			silverPayOn.no('silver_pay');
+		}
+	};
+	d('icbc_pay').onchange = function(){
+		if(this.checked){
+			icbcPayOn.yes('icbc_pay');
+		}else{
+			icbcPayOn.no('icbc_pay');
+		}
+	}
+}
+function OnChange(String){
+	this.yes = function(value){
+		for(let i = 0; i < c(value).length; i++){
+			c(value)[i].style.display = 'inline';
+		}
+	};
+	this.no = function(value){
+		for(let i = 0; i < c(value).length; i++){
+			c(value)[i].style.display = 'none';
+		}
+	};
+	if(d(String).checked){
+		this.yes(String);
+	}else{
+		this.no(String);
+	}
 }
 
 function startbody(l){
@@ -358,7 +408,11 @@ function startbody(l){
 							icbcPrivpay.value = data.my_private_key;
 							icbcSpecial.value = data.merId;
 							icbcLife.value = data.storecode;
-						};
+						}
+						new OnChange('wechat_pay');
+						new OnChange('alipay_pay');
+						new OnChange('silver_pay');
+						new OnChange('icbc_pay');
 					}
 				})
 			}
@@ -371,7 +425,7 @@ window.onresize = function(){
 	var Head = c('operator_head')[0];
 	var obody = c('operator_body')[0];
 	obody.style.height = window.innerHeight - Head.clientHeight - 119 + 'px';
-}
+};
 
 //搜索按钮
 c('operator_home_head_submit')[0].onclick = function(){
@@ -380,7 +434,7 @@ c('operator_home_head_submit')[0].onclick = function(){
 	}else{
 		startbody(0);
 	}
-}
+};
 
 var wecahtFile = d('wecahtFile');//获取上传的文件内容
 var readers;
@@ -392,7 +446,7 @@ wecahtFile.onchange = function(){
 		var wecahtFileValue = d('wecahtFile_value');
 		wecahtFileValue.innerHTML = wecahtFile.value;
 	}
-}
+};
 
 //判断运营方ID是否重复
 d('detailed_operator_id').onchange = function(){
@@ -482,7 +536,11 @@ function submit(){
 		icbcPrivpay.value = "";
 		icbcSpecial.value = "";
 		icbcLife.value = "";
-	}
+		new OnChange('wechat_pay');
+		new OnChange('alipay_pay');
+		new OnChange('silver_pay');
+		new OnChange('icbc_pay');
+	};
 	bodySubmit.onclick = function(){
 		var count = 0;
 		//详细信息提交
@@ -552,7 +610,9 @@ function submit(){
 				};
 			}
 		}
-		var wechatObject = new Object();
+
+		var ErrorString = "";
+		var wechatObject = {};
 		var wechatPay = d('wechat_pay').checked;			//微信支付
 		if(wechatPay){
 			wechatPay = '1';
@@ -563,11 +623,29 @@ function submit(){
 		var wechatId = d('wechat_id').value;				//微信公众号id
 		var wechatSecret = d('wechat_secret').value;		//微信公众号secret
 		var wecahtShanghu = d('wecaht_shanghu').value;		//微信商户号
+		var wecahtFileValue = d('wecahtFile_value');		//检测p12文件是否存在
 		wechatObject.wechatPay = wechatPay;
 		wechatObject.wechatPass = wechatPass;
 		wechatObject.wechatId = wechatId;
 		wechatObject.wechatSecret = wechatSecret;
 		wechatObject.wecahtShanghu = wecahtShanghu;
+		if(wechatPay === '1'){
+			if(wechatPass === ''){
+				ErrorString += "微信API密钥不能为空<br/>";
+			}
+			if(wechatId === ''){
+				ErrorString += "微信公众号id不能为空</br>";
+			}
+			if(wechatSecret === ''){
+				ErrorString += "微信APPSecret不能为空</br>";
+			}
+			if(wecahtShanghu === ''){
+				ErrorString += "微信商户号不能为空</br>";
+			}
+			if(wecahtFileValue === ''){
+				ErrorString += "微信Pcks12证书不能为空</br>";
+			}
+		}
 
 		var alipayObject = new Object();
 		var alipayPay = d('alipay_pay').checked;			//支付宝支付
@@ -583,6 +661,17 @@ function submit(){
 		alipayObject.alipayId = alipayId;
 		alipayObject.alipayPrivpay = alipayPrivpay;
 		alipayObject.alipayPublicpay = alipayPublicpay;
+		if(alipayPay === '1'){
+			if(alipayId === ''){
+				ErrorString += "支付宝APPID不能为空<br/>";
+			}
+			if(alipayPrivpay === ''){
+				ErrorString += "支付宝私钥不能为空<br/>";
+			}
+			if(alipayPublicpay === ''){
+				ErrorString += "支付宝公钥不能为空<br/>";
+			}
+		}
 
 		var silverObject = new Object();
 		var silverPay = d('silver_pay').checked;			//银商支付
@@ -604,6 +693,26 @@ function submit(){
 		silverObject.silverNews = silverNews;
 		silverObject.silverNumber = silverNumber;
 		silverObject.silverTest = silverTest;
+		if(silverPay === '1'){
+			if(silverShanghu === ''){
+				ErrorString += "银商平台商户号不能为空<br/>";
+			}
+			if(silverEnd === ''){
+				ErrorString += "银商终端号不能为空<br/>";
+			}
+			if(silverJshanghu === ''){
+				ErrorString += "银商机构商户号不能为空<br/>";
+			}
+			if(silverNews === ''){
+				ErrorString += "银商消息来源不能为空<br/>";
+			}
+			if(silverNumber === ''){
+				ErrorString += "银商来源编号不能为空<br/>";
+			}
+			if(silverTest === ''){
+				ErrorString += "银商测试环境MD5不能为空<br/>";
+			}
+		}
 
 		var icbcObject = new Object();
 		var icbcPay = d('icbc_pay').checked;				//工行支付
@@ -623,12 +732,33 @@ function submit(){
 		icbcObject.icbcPrivpay = icbcPrivpay;
 		icbcObject.icbcSpecial = icbcSpecial;
 		icbcObject.icbcLife = icbcLife;
+		if(icbcPay === '1'){
+			if(icbcPublicpay === ''){
+				ErrorString += "工行网关公钥不能为空<br/>";
+			}
+			if(icbcAppid === ''){
+				ErrorString += "工行appid不能为空<br/>";
+			}
+			if(icbcPrivpay === ''){
+				ErrorString += "工行私钥不能为空<br/>";
+			}
+			if(icbcSpecial === ''){
+				ErrorString += "工行特约商户档案不能为空<br/>";
+			}
+			if(icbcLife === ''){
+				ErrorString += "工行e生活商户档案不能为空<br/>";
+			}
+		}
 		/*console.log(JSON.stringify(wechatObject));
 		console.log(JSON.stringify(alipayObject));
 		console.log(JSON.stringify(silverObject));
 		console.log(JSON.stringify(icbcObject));
 		console.log(readers);
 		console.log(detailedOperatorId);*/
+		if(ErrorString !== ""){
+			alern(ErrorString);
+			return false;
+		}
 
 		if(readers == undefined){
 			readers = "";

@@ -988,56 +988,58 @@ function hdStart(machCODE){
 	}
 	//补货完成按钮
 	itemBtncbb.onclick = function(){
-		$.ajax({
-			type: 'post',
-			url: URLX + "/replenishment/auto-vendmach/web-btn/finish.json",
-			data: {
-				machCode: machCODE,
-			},
-			success: function(data){
-				alern('Success');
-				zsStart(machCODE);
-				tonicBodyaTbody.innerHTML = "";
-				tonicBodybTbody.innerHTML = "";
-				tonicBodycTbody.innerHTML = "";
-				//清出列表
-				function qingchuliebiao(){
-					var tr = creat('tr');
-					var td= creat('td');
-					td.innerHTML = "Null...";
-					td.colSpan = 5;
-					td.style.backgroundColor = "#ffffff";
-					td.style.color = "#999999";
-					tr.appendChild(td);
-					tonicBodyaTbody.appendChild(tr);
+		if(confirm('Have you confirmed that the equipment has been replenished?')){
+			$.ajax({
+				type: 'post',
+				url: URLX + "/replenishment/auto-vendmach/web-btn/finish.json",
+				data: {
+					machCode: machCODE,
+				},
+				success: function(data){
+					alern('Success');
+					zsStart(machCODE);
+					tonicBodyaTbody.innerHTML = "";
+					tonicBodybTbody.innerHTML = "";
+					tonicBodycTbody.innerHTML = "";
+					//清出列表
+					function qingchuliebiao(){
+						var tr = creat('tr');
+						var td= creat('td');
+						td.innerHTML = "Null...";
+						td.colSpan = 5;
+						td.style.backgroundColor = "#ffffff";
+						td.style.color = "#999999";
+						tr.appendChild(td);
+						tonicBodyaTbody.appendChild(tr);
+					}
+					qingchuliebiao();
+					//补入商品汇总
+					function burushangpinhuizong(){
+						var tr = creat('tr');
+						var td= creat('td');
+						td.innerHTML = "Null...";
+						td.colSpan = 3;
+						td.style.backgroundColor = "#ffffff";
+						td.style.color = "#999999";
+						tr.appendChild(td);
+						tonicBodybTbody.appendChild(tr);
+					}
+					burushangpinhuizong();
+					//补入明细
+					function burumingxi(){
+						var tr = creat('tr');
+						var td= creat('td');
+						td.innerHTML = "Null...";
+						td.colSpan = 4;
+						td.style.backgroundColor = "#ffffff";
+						td.style.color = "#999999";
+						tr.appendChild(td);
+						tonicBodycTbody.appendChild(tr);
+					}
+					burumingxi();
 				}
-				qingchuliebiao();
-				//补入商品汇总
-				function burushangpinhuizong(){
-					var tr = creat('tr');
-					var td= creat('td');
-					td.innerHTML = "Null...";
-					td.colSpan = 3;
-					td.style.backgroundColor = "#ffffff";
-					td.style.color = "#999999";
-					tr.appendChild(td);
-					tonicBodybTbody.appendChild(tr);
-				}
-				burushangpinhuizong();
-				//补入明细
-				function burumingxi(){
-					var tr = creat('tr');
-					var td= creat('td');
-					td.innerHTML = "Null...";
-					td.colSpan = 4;
-					td.style.backgroundColor = "#ffffff";
-					td.style.color = "#999999";
-					tr.appendChild(td);
-					tonicBodycTbody.appendChild(tr);
-				}
-				burumingxi();
-			}
-		})
+			})
+		}
 	}
 }
 
