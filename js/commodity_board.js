@@ -370,6 +370,7 @@ function startbodyleft(commmodityLeft){
 				var commoditySupplier = d('commodity_supplier');							//供应商
 				var detailedOperatorPickimg = c('detailed_operator_pickimg')[0];			//选餐图片
 				var detailedOperatorOrderimg = c('detailed_operator_orderimg')[0];			//下单图片
+				var detailedOperatorIngredientimg = c('detailed_operator_ingredientimg')[0];//成分图片
 				var commodityRemark = d('commodity_remark');								//备注
 				var detailedOperatorStop = d('detailed_operator_stop');						//停用
 				console.log(commmodityLeft[q]);
@@ -406,6 +407,7 @@ function startbodyleft(commmodityLeft){
 				commoditySupplier.value = commmodityLeft[q].supplier;
 				detailedOperatorPickimg.innerHTML = commmodityLeft[q].waresImage1;
 				detailedOperatorOrderimg.innerHTML = commmodityLeft[q].waresImage2;
+				detailedOperatorIngredientimg.innerHTML = commmodityLeft[q].waresImage3;
 				commodityRemark.value = commmodityLeft[q].remark;
 				if(commmodityLeft[q].dltflag == '0'){
 					detailedOperatorStop.checked = "checked";
@@ -550,10 +552,14 @@ function submit(){
 	var detailedOperatorPickimg = c('detailed_operator_pickimg')[0];
 	var OperatorOrderimg = d('detailed_operator_orderimg');
 	var detailedOperatorOrderimg = c('detailed_operator_orderimg')[0];
+	var OperatorIngredientimg = d('detailed_operator_ingredientimg');
+	var detailedOperatorIngredientimg = c('detailed_operator_ingredientimg')[0];
 	var operatorPickimgBtn = d('detailed_operator_pickimg_btn');
 	var operatorOrderimgBtn = d('detailed_operator_orderimg_btn');
+	var operatorIngredientimgBtn = d('detailed_operator_ingredientimg_btn');
 	var OperatorPickimgBase = "";
 	var OperatorOrderimgBase = "";
+	var OperatorIngredientimgBase = "";
 	var imageFixed = c('image_fixed')[0];
 	OperatorPickimg.onchange = function(e){
 		var reader = new FileReader();
@@ -571,6 +577,14 @@ function submit(){
 			OperatorOrderimgBase = oFREvent.target.result;
 		}
 		detailedOperatorOrderimg.innerHTML = this.value;
+	}
+	OperatorIngredientimg.onchange = function(e){
+		var reader = new FileReader();
+		reader.readAsDataURL(this.files[0]);
+		reader.onload=function(oFREvent){
+			OperatorIngredientimgBase = oFREvent.target.result;
+		}
+		detailedOperatorIngredientimg.innerHTML = this.value;
 	}
 	operatorPickimgBtn.onclick = function(){
 		if(OperatorPickimgBase == ""){
@@ -642,6 +656,41 @@ function submit(){
 			}
 		}
 	}
+	operatorIngredientimgBtn.onclick = function(){
+		if(OperatorIngredientimgBase == ""){
+			if(detailedOperatorIngredientimg.innerHTML != ""){
+				imageFixed.style.display = 'block';
+				imageFixed.children[0].src = detailedOperatorIngredientimg.innerHTML;
+				imageFixed.children[0].onload = function(){
+					imageFixed.children[0].style.height = 'auto';
+					imageFixed.children[0].style.width = 'auto';
+					if(imageFixed.clientHeight < imageFixed.children[0].clientHeight){
+						imageFixed.children[0].style.height = imageFixed.clientHeight - 50 + 'px';
+					}
+					if(imageFixed.clientWidth < imageFixed.children[0].clientWidth){
+						imageFixed.children[0].style.width = imageFixed.clientWidth - 50 + 'px';
+					}
+					imageFixed.children[0].style.marginTop = (imageFixed.clientHeight - imageFixed.children[0].clientHeight)/2 + 'px';
+				}
+			}else{
+				alern('未上传图片!');
+			}
+		}else{
+			imageFixed.style.display = 'block';
+			imageFixed.children[0].src = OperatorIngredientimgBase;
+			imageFixed.children[0].onload = function(){
+				imageFixed.children[0].style.height = 'auto';
+				imageFixed.children[0].style.width = 'auto';
+				if(imageFixed.clientHeight < imageFixed.children[0].clientHeight){
+					imageFixed.children[0].style.height = imageFixed.clientHeight - 50 + 'px';
+				}
+				if(imageFixed.clientWidth < imageFixed.children[0].clientWidth){
+					imageFixed.children[0].style.width = imageFixed.clientWidth - 50 + 'px';
+				}
+				imageFixed.children[0].style.marginTop = (imageFixed.clientHeight - imageFixed.children[0].clientHeight)/2 + 'px';
+			}
+		}
+	}
 	imageFixed.onclick = function(){
 		this.style.display = 'none';
 	}
@@ -673,7 +722,9 @@ function submit(){
 		c('detailed_operator_pickimg')[0].innerHTML = "";					//选餐图片
 		d('detailed_operator_pickimg').value = "";					
 		c('detailed_operator_orderimg')[0].innerHTML = "";					//下单图片
-		d('detailed_operator_orderimg').value = "";					
+		d('detailed_operator_orderimg').value = "";
+		c('detailed_operator_ingredientimg')[0].innerHTML = "";				//成分图片
+		d('detailed_operator_ingredientimg').value = "";
 		d('commodity_remark').value = "";									//备注
 		d('detailed_operator_stop').checked = false;						//停用启用
 		
@@ -782,8 +833,10 @@ function submit(){
 		var commoditySupplier = d('commodity_supplier').value;			//供应商
 		console.log(OperatorPickimgBase)								//选餐图片
 		console.log(OperatorOrderimgBase)								//下单图片
-		var OperatorPickimgBases = c('detailed_operator_pickimg')[0].innerHTML;		//选餐图片
-		var OperatorOrderimgBases = c('detailed_operator_orderimg')[0].innerHTML;		//下单图片		
+		console.log(OperatorOrderimgBase)								//成分图片
+		var OperatorPickimgBases = c('detailed_operator_pickimg')[0].innerHTML;			//选餐图片
+		var OperatorOrderimgBases = c('detailed_operator_orderimg')[0].innerHTML;		//下单图片
+		var OperatorIngredientimgBases = c('detailed_operator_ingredientimg')[0].innerHTML;	//成分图片
 		var commodityRemark = d('commodity_remark').value;				//备注
 	 	if(d('detailed_operator_stop').checked){						//停用启用
 	 		var detailedOperatorStop = 0;
@@ -856,6 +909,7 @@ function submit(){
 							obj: JSON.stringify(commodityobj),
 							picture1: OperatorPickimgBase,
 							picture2: OperatorOrderimgBase,
+							picture3: OperatorIngredientimgBase,
 						},
 						success: function(data){
 							alert('保存成功');
@@ -871,6 +925,9 @@ function submit(){
 					if(OperatorOrderimgBase != ""){
 						OperatorOrderimgBases = OperatorOrderimgBase;
 					}
+					if(OperatorIngredientimgBase != ""){
+						OperatorIngredientimgBases = OperatorIngredientimgBase;
+					}
 					$.ajax({
 						type: 'post',
 						url: URLZ + '/jf/bg/basic/gdsm/update.json',
@@ -878,6 +935,7 @@ function submit(){
 							obj: JSON.stringify(commodityobj),
 							picture1: OperatorPickimgBases,
 							picture2: OperatorOrderimgBases,
+							picture3: OperatorIngredientimgBases,
 						},
 						success: function(data){
 							alert('保存成功');
