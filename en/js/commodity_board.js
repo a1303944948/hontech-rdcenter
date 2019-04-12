@@ -370,7 +370,7 @@ function startbodyleft(commmodityLeft){
 				var commoditySupplier = d('commodity_supplier');							//供应商
 				var detailedOperatorPickimg = c('detailed_operator_pickimg')[0];			//选餐图片
 				var detailedOperatorOrderimg = c('detailed_operator_orderimg')[0];			//下单图片
-				var detailedOperatorIngredientimg = c('detailed_operator_ingredientimg')[0];//成分图片
+				var detailedOperatorIngredientimg = c('detailed_operator_ingredientimg')[0];//商品介绍
 				var commodityRemark = d('commodity_remark');								//备注
 				var detailedOperatorStop = d('detailed_operator_stop');						//停用
 				console.log(commmodityLeft[q]);
@@ -407,7 +407,11 @@ function startbodyleft(commmodityLeft){
 				commoditySupplier.value = commmodityLeft[q].supplier;
 				detailedOperatorPickimg.innerHTML = commmodityLeft[q].waresImage1;
 				detailedOperatorOrderimg.innerHTML = commmodityLeft[q].waresImage2;
-				detailedOperatorIngredientimg.innerHTML = commmodityLeft[q].waresImage3;
+				if(commmodityLeft[q].waresImage3 !== undefined){
+					detailedOperatorIngredientimg.innerHTML = commmodityLeft[q].waresImage3;
+				}else{
+					detailedOperatorIngredientimg.innerHTML = "";
+				}
 				commodityRemark.value = commmodityLeft[q].remark;
 				if(commmodityLeft[q].dltflag == '0'){
 					detailedOperatorStop.checked = "checked";
@@ -737,7 +741,7 @@ function submit(){
 		d('detailed_operator_pickimg').value = "";					
 		c('detailed_operator_orderimg')[0].innerHTML = "";					//下单图片
 		d('detailed_operator_orderimg').value = "";
-		c('detailed_operator_ingredientimg')[0].innerHTML = "";				//成分图片
+		c('detailed_operator_ingredientimg')[0].innerHTML = "";				//商品介绍
 		d('detailed_operator_ingredientimg').value = "";
 		d('commodity_remark').value = "";									//备注
 		d('detailed_operator_stop').checked = false;						//停用启用
@@ -848,10 +852,10 @@ function submit(){
 		var commoditySupplier = d('commodity_supplier').value;			//供应商
 		console.log(OperatorPickimgBase)								//选餐图片
 		console.log(OperatorOrderimgBase)								//下单图片
-		console.log(OperatorOrderimgBase)								//成分图片
+		console.log(OperatorOrderimgBase)								//商品介绍
 		var OperatorPickimgBases = c('detailed_operator_pickimg')[0].innerHTML;				//选餐图片
 		var OperatorOrderimgBases = c('detailed_operator_orderimg')[0].innerHTML;			//下单图片
-		var OperatorIngredientimgBases = c('detailed_operator_ingredientimg')[0].innerHTML;	//成分图片
+		var OperatorIngredientimgBases = c('detailed_operator_ingredientimg')[0].innerHTML;	//商品介绍
 		var commodityRemark = d('commodity_remark').value;				//备注
 	 	if(d('detailed_operator_stop').checked){						//停用启用
 	 		var detailedOperatorStop = 0;
