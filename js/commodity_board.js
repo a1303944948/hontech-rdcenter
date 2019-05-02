@@ -233,7 +233,7 @@ function start(){
 function startbody(){
 	console.log(loginUserName);
 	//获取运营方下拉框数据
-	/*DATALEFT = groupitem(1);
+	DATALEFT = groupitem(1);
 	//获取商品数据
 	$.ajax({
 		type: 'post',
@@ -247,7 +247,7 @@ function startbody(){
 			var commmodityLeft = data.obj;
 			startbodyleft(commmodityLeft);
 		}
-	})*/
+	})
 }
 
 function startbodyleft(commmodityLeft){
@@ -425,6 +425,10 @@ function startbodyleft(commmodityLeft){
 
 //搜索商品列表
 c('operator_home_head_submit')[0].onclick = function(){
+	var orightFootItem = c('operator_body_right_foot_item');
+	for(var i = 0; i < orightFootItem.length; i++){
+		orightFootItem[i].style.display = 'none';
+	}
 	var commodityOperators = d('commodity_operators');
 	var commodityStatus = d('commodity_status');
 	console.log(commodityOperators.name);
@@ -919,7 +923,6 @@ function submit(){
 							alert('保存成功');
 							startbody();
 							c('operator_home_head_submit')[0].click();
-							location.reload();
 						}
 					})
 				}else if(type == 0){
@@ -945,7 +948,6 @@ function submit(){
 							alert('保存成功');
 							startbody();
 							c('operator_home_head_submit')[0].click();
-							location.reload();
 						}
 					})
 				}else{

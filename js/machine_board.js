@@ -1196,10 +1196,11 @@ function submit(){
 						alert('创建成功！');
 						start();
 						startbody();
-						location.reload();
+						userHeadSubmit.click();
+						bodyCreat.click();
 					}else{
 						alern('创建失败！');
-					};
+					}
 				},
 				error: function(){
 					alern('创建失败');
@@ -1218,10 +1219,11 @@ function submit(){
 						alert('更新成功');
 						start();
 						startbody();
-						location.reload();
+						userHeadSubmit.click();
+						bodyCreat.click();
 					}else{
 						alern('更新失败！');
-					};
+					}
 				},
 				error: function(){
 					alern('更新失败');

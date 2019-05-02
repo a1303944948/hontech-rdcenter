@@ -425,6 +425,10 @@ function startbodyleft(commmodityLeft){
 
 //搜索商品列表
 c('operator_home_head_submit')[0].onclick = function(){
+	var orightFootItem = c('operator_body_right_foot_item');
+	for(var i = 0; i < orightFootItem.length; i++){
+		orightFootItem[i].style.display = 'none';
+	}
 	var commodityOperators = d('commodity_operators');
 	var commodityStatus = d('commodity_status');
 	console.log(commodityOperators.name);
@@ -934,7 +938,7 @@ function submit(){
 						success: function(data){
 							alert('Success');
 							startbody();
-							location.reload();
+							c('operator_home_head_submit')[0].click();
 						}
 					})
 				}else if(type == 0){
@@ -961,7 +965,7 @@ function submit(){
 						success: function(data){
 							alert('Success');
 							startbody();
-							location.reload();
+							c('operator_home_head_submit')[0].click();
 						}
 					})
 				}

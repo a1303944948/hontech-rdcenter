@@ -1104,7 +1104,7 @@ function tableRendering(allDate,type){
   }else{
     tableHead.innerHTML = '<tr><th>Machine Name</th><th>Machine ID</th><th>Commodity</th><th>Order Number</th><th>Cargo Track</th><th>Pay way</th><th>Payment amount</th><th>User Info</th><th>Time</th><th>Status</th><th>Operator</th><th>Note</th></tr>';
     if(allDate.length == 0){
-      table.innerHTML = '<tr><td colspan="11" style="color: #888888;">Null</td></tr>'
+      table.innerHTML = '<tr><td colspan="12" style="color: #888888;">Null</td></tr>'
     }else{
       for(var i = 0; i < allDate.length; i++){
         var tr = creat('tr');

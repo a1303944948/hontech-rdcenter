@@ -1195,7 +1195,8 @@ function submit(){
 						alert('Success');
 						start();
 						startbody();
-						location.reload();
+						userHeadSubmit.click();
+						bodyCreat.click();
 					}else{
 						alern('Failure');
 					};
@@ -1217,7 +1218,8 @@ function submit(){
 						alert('Success');
 						start();
 						startbody();
-						location.reload();
+						userHeadSubmit.click();
+						bodyCreat.click();
 					}else{
 						alern('Failure');
 					};

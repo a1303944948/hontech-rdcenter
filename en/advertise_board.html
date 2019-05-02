@@ -6,6 +6,7 @@
 	<link rel="icon" type="image/x-icon" href="image/logos.jpg"/>
 	<link rel="stylesheet" type="text/css" href="css/index.css"/>
 	<link rel="stylesheet" type="text/css" href="css/advertise_board.css"/>
+	<link rel="stylesheet" type="text/css" href="../lib/import/style.css"/>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="js/wm.js"></script>
 	<script type="text/javascript" src="js/object.js"></script>
@@ -42,7 +43,6 @@
 									<td>Start Time</td>
 									<td>End Time</td>
 									<td>Billboard</td>
-									<td>label</td>
 									<td>Operating</td>
 								</tr>
 							</thead>
@@ -56,19 +56,53 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td></td>
 								</tr>
 							</tbody>
 						</table>
+					</div>
+					<div class="user_body_right_foot_foot_left">
+						<button class="user_body_right_foot_foot_upload"><img src="image/upload.png"/>Upload</button>
 					</div>
 					<div class="user_body_right_foot_foot">
 						<button class="user_body_right_foot_foot_add"><img src="image/tj.png"/>Add</button>
 						<button class="user_body_right_foot_foot_more"><img src="image/fzd.png"/>Copy To</button>
 						<button class="user_body_right_foot_foot_sum"><img src="image/bc.png"/>Save</button>
 					</div>
+					<div class="clear"></div>
 				</div>
 			</div>
 			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="advertise_board_upload_fixed">
+		<div class="advertise_board_upload_fixed_body">
+			<p>Please Upload a File <span class="advertise_board_upload_fixed_body_clear">×</span></p>
+			<div class="advertise_board_upload_fixed_body_home">
+				<table class="advertise_board_upload_fixed_body_home_table">
+					<thead>
+					<tr>
+						<td>URL</td>
+						<td>Type</td>
+						<td>Ad Name</td>
+						<td>peRating</td>
+					</tr>
+					</thead>
+					<tbody class="advertise_board_upload_fixed_body_home_tbody"></tbody>
+				</table>
+				<table class="advertise_board_upload_fixed_body_home_tableS">
+					<thead>
+					<tr>
+						<td>upLoad</td>
+						<td>Select Type</td>
+						<td>Select Ad Name</td>
+						<td>peRating</td>
+					</tr>
+					</thead>
+					<tbody class="advertise_board_upload_fixed_body_home_tbodyS"></tbody>
+				</table>
+			</div>
+			<button class="advertise_board_upload_fixed_body_home_add">Add</button>
+			<!--<button class="advertise_board_upload_fixed_body_submit">Save</button>-->
 		</div>
 	</div>
 	<div class="advertise_board_fixed">
@@ -81,5 +115,7 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="js/advertise_board.js"></script>
+	<script type="text/javascript" src="../lib/plupload-2.1.2/js/plupload.full.min.js"></script>
+	<script type="text/javascript" src="../lib/import/upload.js"></script>
 </body>
 </html>
