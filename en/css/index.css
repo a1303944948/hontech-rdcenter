@@ -12,24 +12,6 @@
     border-radius: 3px;
     background-color: rgba(0,0,0,0.2);
 }
-::-moz-scrollbar{
-    width:6px;
-    height:6px;
-    background-color: #f0f0f0;
-}
-::-moz-scrollbar-thumb{
-    border-radius: 3px;
-    background-color: rgba(0,0,0,0.2);
-}
-::-ms-scrollbar{
-    width:6px;
-    height:6px;
-    background-color: #f0f0f0;
-}
-::-ms-scrollbar-thumb{
-    border-radius: 3px;
-    background-color: rgba(0,0,0,0.2);
-}
 [v-cloak] {
    display: none;
 }
@@ -198,7 +180,7 @@ header{
 }
 .header_right{
 	width: 100%;
-	height: 98;
+	height: 98px;
 }
 .header_right_top{
 	width: 100%;

@@ -109,13 +109,15 @@ function byStart(machCODE){
 										var commodityaTbodyUla = c('user_body_right_foot_item_commoditya_tbody_ula');
 										commodityaTbodyInta[q].parentNode.appendChild(ul);
 										for(var j = 0; j < commodityaTbodyUla[0].children.length; j++){
-											commodityaTbodyUla[0].children[j].onmousedown = function(){
-												if(this.dataset.value == ''){
-													that.value = '';
-													that.setAttribute('data-value','');
-												}else{
-													that.value = this.innerHTML;
-													that.setAttribute('data-value',this.dataset.value);
+											if(j !== 0){
+												commodityaTbodyUla[0].children[j].onmousedown = function(){
+													if(this.dataset.value == ''){
+														that.value = '';
+														that.setAttribute('data-value','');
+													}else{
+														that.value = this.innerHTML;
+														that.setAttribute('data-value',this.dataset.value);
+													}
 												}
 											}
 										}
@@ -136,15 +138,17 @@ function byStart(machCODE){
 												};
 											}
 											for(var j = 0; j < commodityaTbodyUla[0].children.length; j++){
-												commodityaTbodyUla[0].children[j].onmousedown = function(){
-													if(this.dataset.value == ''){
-														that.value = '';
-														that.setAttribute('data-value','');
-													}else{
-														that.value = this.innerHTML;
-														that.setAttribute('data-value',this.dataset.value);
+												if(j !== 0) {
+													commodityaTbodyUla[0].children[j].onmousedown = function () {
+														if (this.dataset.value == '') {
+															that.value = '';
+															that.setAttribute('data-value', '');
+														} else {
+															that.value = this.innerHTML;
+															that.setAttribute('data-value', this.dataset.value);
+														}
+														//commodityaTbodyUla[0].parentNode.removeChild(commodityaTbodyUla[0].parentNode.children[2]);
 													}
-													//commodityaTbodyUla[0].parentNode.removeChild(commodityaTbodyUla[0].parentNode.children[2]);
 												}
 											}
 										}
@@ -159,13 +163,15 @@ function byStart(machCODE){
 								//ul.style.height = that.parentNode.offsetParent.clientHeight - that.parentNode.offsetTop + ScrollTop - 40 + 'px';
 
 								for(var j = 0; j < commodityaTbodyUla[0].children.length; j++){
-									commodityaTbodyUla[0].children[j].onmousedown = function(){
-										if(this.innerHTML == '请选择...'){
-											that.value = '';
-											that.setAttribute('data-value','');
-										}else{
-											that.value = this.innerHTML;
-											that.setAttribute('data-value',this.dataset.value);
+									if(j !== 0){
+										commodityaTbodyUla[0].children[j].onmousedown = function(){
+											if(this.innerHTML == '请选择...'){
+												that.value = '';
+												that.setAttribute('data-value','');
+											}else{
+												that.value = this.innerHTML;
+												that.setAttribute('data-value',this.dataset.value);
+											}
 										}
 									}
 								}

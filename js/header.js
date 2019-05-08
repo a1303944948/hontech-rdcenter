@@ -382,7 +382,7 @@ function groupitem(num){
 		success: function(data){
 			groupobj = data.obj;
 		}
-	})
+	});
 	/*$.ajax({
 		type: 'post',
 		url: URLZ + '/jf/bg/basic/cfc/getClassifi.json',

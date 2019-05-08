@@ -131,7 +131,7 @@ html,body{
 	color: red;
 }
 .user_head>table tr td>input{
-	width: (100% - 10px);
+	width: calc(100% - 10px);
 	height: 100%;
 	border-radius: 3px;
 	border: 1px #d4d4d4 solid;
@@ -980,7 +980,7 @@ html,body{
 	border-top: 5px #808080 solid;
 	border-left: 5px rgba(0,0,0,0) solid;
 	border-right: 5px rgba(0,0,0,0) solid;
-	border-bottom:　none;
+	border-bottom: none;
 	position: relative;
 	left: -15px;
 	top: 14px;
@@ -1019,7 +1019,7 @@ html,body{
 	border-top: 5px #808080 solid;
 	border-left: 5px rgba(0,0,0,0) solid;
 	border-right: 5px rgba(0,0,0,0) solid;
-	border-bottom:　none;
+	border-bottom: none;
 	position: relative;
 	left: -15px;
 	top: 14px;

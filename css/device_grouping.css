@@ -98,7 +98,7 @@ html,body{
 	color: red;
 }
 .device_head>table tr td>input{
-	width: (100% - 10px);
+	width: calc(100% - 10px);
 	height: 100%;
 	border-radius: 3px;
 	border: 1px #d4d4d4 solid;
