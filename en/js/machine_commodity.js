@@ -1714,7 +1714,7 @@ function ycStart(machCODE,mobleId){
 		tdb.innerHTML = 'End：<input class="endTime" type="text" readonly="readonly" style="cursor: pointer" value="'+Arrb+'"/><div class="endTimeDick"><div class="endTimeDick_left"><div class="endTimeDick_left_top"><b></b></div><div class="endTimeDick_left_center"><input type="number" value="00"/>:</div><div class="endTimeDick_left_bottom"><b></b></div></div><div class="endTimeDick_right"><div class="endTimeDick_right_top"><b></b></div><div class="endTimeDick_right_center"><input type="number" value="00"/></div><div class="endTimeDick_right_bottom"><b></b></div></div><div class="clear"></div><div class="endTimeDick_bottom">OK<div></div>';
 		tdc.innerHTML = 'Upper Limit(℃)：<input class="topRemote" type="number" value="'+Arrc+'"/>';
 		tdd.innerHTML = 'Lower Limit(℃)：<input class="bottomRemote" type="number" value="'+Arrd+'"/>';
-		tde.innerHTML = 'Work Time(min)：<input class="remoteTimeOut" type="number" value="'+Arre+'"/>';
+		tde.innerHTML = 'heating time out(min)：<input class="remoteTimeOut" type="number" value="'+Arre+'"/>';
 		tdf.innerHTML = '<button class="user_body_right_foot_item_remote_tbodysc_btn"><img src="image/sc.png"/>Delete</button>';
 		tr.appendChild(tda);
 		tr.appendChild(tdb);

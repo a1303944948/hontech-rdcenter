@@ -322,8 +322,13 @@
 						var tr = creat('tr');
 						for(var j = 0; j < data[i].length;j++){
 							var td = creat('td');
-							td.innerHTML = data[i][j].name;
-							tr.appendChild(td);
+							if(!isNaN(Date.parse(timestampToTime(data[i][j].name/1000)))){
+								td.innerHTML = timestampToTime(data[i][j].name/1000);
+								tr.appendChild(td);
+							}else{
+								td.innerHTML = data[i][j].name;
+								tr.appendChild(td);
+							}
 						}
 						table.appendChild(tr);
 						div.appendChild(table); 

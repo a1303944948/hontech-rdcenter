@@ -714,13 +714,16 @@ function deleteBoardList(that){
 			},
 			success: function(){
 				that.parentNode.parentNode.style.display = 'none';
+				renderingS(ADMACHCODE);
 			},
 			error: function(){
 				that.parentNode.parentNode.style.display = 'none';
+				renderingS(ADMACHCODE);
 			}
 		})
 	}else{
 		that.parentNode.parentNode.style.display = 'none';
+		renderingS(ADMACHCODE);
 	}
 }
 

@@ -481,10 +481,10 @@ userHeadSubmit.onclick = function(){
 		success: function(data){
 			console.log(data);
 			KITSort = data.obj;
-			startbody();
 			c('user_body_right_body_foot')[0].innerHTML = "";
 			c('user_body_right_foot_num')[0].innerHTML = 0;
 			c('user_body_right_foot_pric')[0].innerHTML = 0;
+			startbody();
 		}
 	})
 }
