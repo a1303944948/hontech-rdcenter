@@ -258,3 +258,116 @@ function ajax(type,url,data,succ,error,json,async){
 		}
 	}
 }
+
+//js中批量给元素添加innerHTML方法封装
+function setHTML(domArr,objArr){	//domArr为dom数组集合 objArr为被添加的字符串组成的数组
+	for(let i = 0; i < domArr.length; i++){
+		domArr[i].innerHTML = objArr[i];
+	}
+}
+
+//js中批量修改样式的方法封装
+function setStyle(dom,json){	//dom为元素 json为要更改的样式键值对
+	for(let i in json){
+		if(!json.hasOwnProperty(i)) continue;
+		dom.style[i] = json[i];
+	}
+}
+
+//js中批量设置className方法封装
+function setClass(domArr,objArr){
+	for(let i = 0; i < domArr.length; i++){
+		domArr[i].className = objArr[i];
+	}
+}
+
+//批量append目标
+function setAppend(dom,arr){
+	for(let i = 0; i < arr.length; i++){
+		dom.appendChild(arr[i]);
+	}
+}
+
+//js中批量修改样式的方法封装(主要用于页面准备样式添加)
+function setStyleX(text){
+	let wmHead = n('head')[0];
+	if(c('wmStyle')[0] === undefined){
+		let wmStyle = creat('style');
+		wmStyle.type = 'text/css';
+		wmStyle.className = 'wmStyle';
+		wmHead.appendChild(wmStyle);
+	}
+	c('wmStyle')[0].innerHTML = c('wmStyle')[0].innerHTML + text;
+}
+
+//添加页面需要的样式
+setStyleX('/*分页样式渲染*/.wm_pagemark{border: 1px #e5e5e5 solid;border-radius: 5px;background-color: #ffffff;margin-left: auto;margin-right: auto; position: relative;opacity: 0; margin-top: 10px;}.wm_pagemark_body{width: 100%;height: 100%;text-align: center;}.wm_pagemark_body>button{height: 30px; line-height:30px; background-color: #3498Db;color: #ffffff;border: none; border-radius: 5px; padding-left: 10px; padding-right: 10px; margin-right: 15px;}.wm_pagemark_body>button:hover{background-color: #258BCF;}.wm_pagemark_body>button:active{background-color: #3498DB;}.wm_pagemark_body>button:last-child{margin-right: 0;}.wm_pagemark_body>span>input{width: 34px; height: 30px; text-align: center; margin-left:5px; margin-right: 5px;border: 1px #e5e5e5 solid; padding: 5px; box-sizing: border-box; border-radius: 3px; background-color: #ffffff;}.wm_pagemark_body>span{font-size: 12px;display: inline-block;vertical-align: bottom;text-align: center;padding-right: 15px;color: #a4a4a4;}');
+
+//分页实现
+function WmPageMark(){
+	let wmPageMark = c('wm_pagemark');
+	if(c('wm_pagemark_body').length > 0){
+		for(let i = c('wm_pagemark_body').length;i > 0; i--){
+			c('wm_pagemark_body')[i-1].parentNode.removeChild(c('wm_pagemark_body')[i-1]);
+		}
+	}
+	for(let i = 0; i < wmPageMark.length; i++){
+		let datasetLength = JSON.parse(wmPageMark[i].dataset.length);
+		let datasetType = Number(wmPageMark[i].dataset.pagetype);
+		let Width,Height;
+		!wmPageMark[i].dataset.width?Width = 530:Width = wmPageMark[i].dataset.width;
+		!wmPageMark[i].dataset.height?Height = 40:Height = wmPageMark[i].dataset.height;
+		wmPageMark[i].style.height = Height + 'px';
+		wmPageMark[i].style.width = Width + 'px';
+		wmPageMark[i].style.opacity = 1;
+		let wmPageMarkBody = creat('div');
+		setClass([wmPageMarkBody],['wm_pagemark_body']);
+		setHTML([wmPageMarkBody],['<button onclick="WmPageMarkItem(this,1,'+datasetType+')" style="margin-top:'+(Height-30)/2+'px;">First</button><button onclick="WmPageMarkItem(this,2,'+datasetType+')" style="margin-top:'+(Height-30)/2+'px;">Prev</button><span>'+Math.ceil(datasetLength[0]/datasetLength[2])+' pages in total，Go to page<input type="number" style="margin-top:'+(Height-30)/2+'px;" value="'+datasetLength[1]+'"/></span><button onclick="WmPageMarkItem(this,3,'+datasetType+')" style="margin-top:'+(Height-30)/2+'px;">Go</button><button onclick="WmPageMarkItem(this,4,'+datasetType+')" style="margin-top:'+(Height-30)/2+'px;">Next</button><button onclick="WmPageMarkItem(this,5,'+datasetType+')" style="margin-top:'+(Height-30)/2+'px;">Final</button>']);
+		setAppend(wmPageMark[i],[wmPageMarkBody]);
+	}
+}
+//分页的按钮触发事件
+function WmPageMarkItem(that,num,type){
+	let datasetLength = JSON.parse(that.parentNode.parentNode.dataset.length);
+	switch(num){
+		case 1:
+			if(Number(that.parentNode.children[2].children[0].value) !== 1){
+				that.parentNode.children[2].children[0].value = 1;
+				WmPageMarkItemGo();
+			}
+			break;
+		case 2:
+			that.parentNode.children[2].children[0].value = Number(that.parentNode.children[2].children[0].value)-1;
+			WmPageMarkItemGo();
+			break;
+		case 3:
+			WmPageMarkItemGo();
+			break;
+		case 4:
+			that.parentNode.children[2].children[0].value = Number(that.parentNode.children[2].children[0].value)+1;
+			WmPageMarkItemGo();
+			break;
+		case 5:
+			if(Number(that.parentNode.children[2].children[0].value) !== Math.ceil(datasetLength[0]/datasetLength[2])){
+				that.parentNode.children[2].children[0].value = Math.ceil(datasetLength[0]/datasetLength[2]);
+				WmPageMarkItemGo();
+			}
+			break;
+		default:
+			break;
+	}
+	function WmPageMarkItemGo(){
+		if(Number(that.parentNode.children[2].children[0].value) <= Math.ceil(datasetLength[0]/datasetLength[2])&&Number(that.parentNode.children[2].children[0].value)>0){
+			datasetLength[1] = Number(that.parentNode.children[2].children[0].value);
+			that.parentNode.parentNode.setAttribute('data-length',JSON.stringify(datasetLength));
+			console.log(JSON.parse(that.parentNode.parentNode.dataset.length)[1],type);
+			WmPageMarkStart(JSON.parse(that.parentNode.parentNode.dataset.length)[1],type);
+		}else{
+			if(Number(that.parentNode.children[2].children[0].value)>0){
+				that.parentNode.children[2].children[0].value = Math.ceil(datasetLength[0]/datasetLength[2]);
+			}else{
+				that.parentNode.children[2].children[0].value = 1;
+			}
+		}
+	}
+}
