@@ -36,7 +36,8 @@
 	</div>
 	<script type="text/javascript">
 		//var URLZ = 'http://cc5yy2.natappfree.cc/bg-uc';
-		var URLZ = 'http://test.hontech-rdcenter.com:8080/bg-uc';
+		//var URLZ = 'http://test.hontech-rdcenter.com:8080/bg-uc';
+		var URLZ = 'https://api.hontech-rdcenter.com:8443/bg-uc';
 		//var URLZ = 'http://hfrd.hontech-rdcenter.com:8080/hontechgroup';
 		//var URLZ = 'http://10.1.8.34:8080/bg-uc';
 		var Width = window.innerWidth;				//画布的宽度
@@ -56,7 +57,7 @@
 		context.style.backgroundColor = 'rgba(0,53,117,1)';
 		//context.style.backgroundColor = 'rgba(0,73,162,1)';
 
-		window.addEventListener('resize', function(e) {
+		window.addEventListener('resize', function(e){
 			record = [];
 			context.width = Width = window.innerWidth;
 			context.height = Height = window.innerHeight - 220;
@@ -87,10 +88,11 @@
 				cxt.fillStyle = 'rgba(255,255,255,0.7)';
 				cxt.fill();
 
-				record.push({x,y,r,c,ox,oy});
+				record.push({'x':x,'y':y,'r':r,'c':c,'ox':ox,'oy':oy});
 			}
 		}
 		back(1);
+		console.log(record);
 		setInterval(function(){
 			context.width = Width = window.innerWidth;
 			context.height = Height = window.innerHeight - 220;

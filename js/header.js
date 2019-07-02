@@ -335,6 +335,7 @@ d('pay_ment').onclick = function(){
 var exitLogin = d('exit_login');
 exitLogin.onclick = function(){
 	sessionStorage.removeItem("loginUserName");
+	sessionStorage.removeItem("fixedCount");
 	window.location.href = 'login.html';
 }
 
@@ -486,7 +487,7 @@ function group(){
 		}
 	})*/
 }
-//解析BOM结构方法		参数1为BOM数据(必传) 参数2为最上级ID(选传) 参数3为要显示的类型集合(选传)
+//解析BOM结构方法		参数1为BOM数据(必传) 参数2为最上级ID(选传) 参数3为要显示的类型集合(选传)[0,1,2,3,4]不需要的去掉就好了
 function groupanalysis(kit,qid,array){
 	function sonsTree(arr,id){
 	    var temp = [],lev=0;
@@ -732,6 +733,7 @@ function passFixed(){
 			success: function(data){
 				alert('您已经修改了密码，请重新登陆！');
 				sessionStorage.removeItem("loginUserName");
+				sessionStorage.removeItem("fixedCount");
 				window.location.href = 'login.html';
 			}
 		})

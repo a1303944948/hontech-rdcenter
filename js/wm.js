@@ -233,9 +233,6 @@ function loading(text){
 	loadDivImg.style.left = '0px';
 	loadDiv.appendChild(loadDivImg);
 	load.appendChild(loadDiv);
-	console.log(loadDiv);
-	console.log(body);
-	console.log(load);
 	if(body != undefined){
 		body.appendChild(load);
 	}
