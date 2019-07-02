@@ -35,7 +35,7 @@
 	</div>
 	<script type="text/javascript">
 		//var URLZ = 'http://hfrd.hontech-rdcenter.com:8080/hontechgroup';
-		var URLZ = 'http://test.hontech-rdcenter.com:8080/bg-uc';
+		var URLZ = 'https://api.hontech-rdcenter.com:8443/bg-uc';
 		//var URLZ = 'http://10.1.8.36:808/';
 		var Width = window.innerWidth;				//画布的宽度
 		var Height = window.innerHeight - 220;		//画布的高度
@@ -85,7 +85,7 @@
 				cxt.fillStyle = 'rgba(255,255,255,0.7)';
 				cxt.fill();
 
-				record.push({x,y,r,c,ox,oy});
+				record.push({'x':x,'y':y,'r':r,'c':c,'ox':ox,'oy':oy});
 			}
 		}
 		back(1);

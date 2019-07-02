@@ -336,6 +336,7 @@ d('pay_ment').onclick = function(){
 var exitLogin = d('exit_login');
 exitLogin.onclick = function(){
 	sessionStorage.removeItem("loginUserName");
+	sessionStorage.removeItem("fixedCount");
 	window.location.href = 'login.html';
 }
 
@@ -735,6 +736,7 @@ function passFixed(){
 			success: function(data){
 				alert('Success Re-Register！');
 				sessionStorage.removeItem("loginUserName");
+				sessionStorage.removeItem("fixedCount");
 				window.location.href = 'login.html';
 			}
 		})

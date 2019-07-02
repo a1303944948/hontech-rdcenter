@@ -10,8 +10,6 @@ for(var i = 0; i < groupitemKit.length; i++){
 		groupitemArrays.push(groupitemKit[i].devicecode);
 	}
 }
-console.log(JSON.stringify(groupitemArray));
-console.log(JSON.stringify(groupitemArrays));
 var ybpobj;
 $.ajax({
 	type: 'post',
@@ -22,7 +20,6 @@ $.ajax({
 	async: false,
 	dataType: 'json',
 	success: function(data){
-		console.log(data);
 		ybpobj = data;
 	}
 })
@@ -47,8 +44,9 @@ $.ajax({
 	},
 	async: false,
 	success: function(data){
-		console.log(data);
 		canvas(data);
+		c('index_fixed_loading')[0].style.display = 'none';
+		sessionStorage.setItem("fixedCount", 1);
 	}
 })
 
