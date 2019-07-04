@@ -406,9 +406,12 @@ function startbodyleft(commmodityLeft){
 				commodityCooking.value = commmodityLeft[q].cooking;
 				commoditySupplier.value = commmodityLeft[q].supplier;
 				detailedOperatorPickimg.innerHTML = commmodityLeft[q].waresImage1;
+				d('detailed_operator_pickimg').setAttribute('data-url',commmodityLeft[q].waresImage1);
 				detailedOperatorOrderimg.innerHTML = commmodityLeft[q].waresImage2;
+				d('detailed_operator_orderimg').setAttribute('data-url',commmodityLeft[q].waresImage2);
 				if(commmodityLeft[q].waresImage3 !== undefined){
 					detailedOperatorIngredientimg.innerHTML = commmodityLeft[q].waresImage3;
+					d('detailed_operator_ingredientimg').setAttribute('data-url',commmodityLeft[q].waresImage3);
 				}else{
 					detailedOperatorIngredientimg.innerHTML = "";
 				}
@@ -452,6 +455,169 @@ window.onresize = function(){
 	var Head = c('operator_head')[0];
 	var obody = c('operator_body')[0];
 	obody.style.height = window.innerHeight - Head.clientHeight - 119 + 'px';
+}
+
+let count = 0;
+let deleteUrl = ['','',''];
+
+for(let i = 0; i < c('detailed_operator_int').length; i++){
+	console.log(i);
+	UploadOss(i);
+}
+//OSS文件上传事件
+
+function UploadOss(num){
+	var uploader = new plupload.Uploader({
+		runtimes : 'html5,flash,silverlight,html4',
+		browse_button : c('detailed_operator_int')[num],
+		//multi_selection: false,
+		container: c('detailed_operator_int')[num].parentNode,
+		multi_selection: false,
+		flash_swf_url : 'lib/plupload-2.1.2/js/Moxie.swf',
+		silverlight_xap_url : 'lib/plupload-2.1.2/js/Moxie.xap',
+		url : 'http://oss.aliyuncs.com',
+
+		filters: {
+			mime_types : [ //只允许上传图片和视频文件
+				{title:"Image files", extensions : "jpg,jpeg,gif,png"}
+			],
+			max_file_size : '2mb', //最大只能上传200mb的文件
+			prevent_duplicates : true, //不允许选取重复文件
+			prevent_empty:true, //忽略空文件，大小为0kb的文件
+		},
+		init: {
+			PostInit: function(up) {
+				c('detailed_operator_int')[num].innerHTML = '请选择文件...';
+				c('detailed_operator_img_btns')[num].onclick = function(){
+					if(this.previousSibling.previousSibling.children.length === 0){
+						alern('请添加一个图片在上传！');
+						return false;
+					};
+					if(count === 1){
+						alern('请等待上一个文件上传完毕再上传！');
+						return false;
+					}
+					let detailedOperatorInt = c('detailed_operator_int');
+						tbodyFileError = '';
+					if(detailedOperatorInt.length === 0){
+						alern('请添加资源后在保存！');
+						return false;
+					}
+					/*if(detailedOperatorInt[num].dataset.name === ""){
+						tbodyFileError += '广告名不能为空！<br/>';
+					}else{
+						tbodyFileObject.remark = detailedOperatorInt[num].dataset.name;
+					}
+					tbodyFileObject.type = detailedOperatorInt[num].dataset.type;
+					if(up.files.length === 0){
+						tbodyFileError += '未发现待上传的文件！<br/>';
+					}
+					if(tbodyFileError !== ""){
+						alern(tbodyFileError);
+						return false;
+					}*/
+					set_upload_param(up,'', false,'offical-web/hontech-rdcenter/commodity_board/');
+				};
+			},
+
+			FilesAdded: function(up, files){
+				if(up.files.length > 1){
+					up.splice(0,1);
+				}
+				deleteUrl[num] = c('detailed_operator_img')[num].innerHTML;
+				console.log(deleteUrl);
+				c('detailed_operator_img')[num].innerHTML = '';
+				plupload.each(files, function(file)
+				{
+					c('detailed_operator_img')[num].innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ')<b></b>'+'<div class="progress"><div class="progress-bar" style="width: 0%"></div></div>'+'</div>';
+				});
+			},
+			BeforeUpload: function(up, file) {
+				set_upload_param(up, file.name, true,'offical-web/hontech-rdcenter/commodity_board/');
+			},
+			UploadFile: function(){
+				count = 1;
+			},
+			UploadProgress: function(up, file) {
+				var d = document.getElementById(file.id);
+				d.getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+				var prog = d.getElementsByTagName('div')[0];
+				prog.style.width='140px';
+				var progBar = prog.getElementsByTagName('div')[0];
+				progBar.style.width= 1.4*file.percent+'px';
+				progBar.setAttribute('aria-valuenow', file.percent);
+			},
+			FileUploaded: function(up, file, info) {
+				count = 0;
+				if (info.status == 200)
+				{
+					let detailedOperatorInt = c('detailed_operator_int');
+					console.log(host + '/' + new_multipart_params.key);
+					detailedOperatorInt[num].setAttribute('data-url',host + '/' + new_multipart_params.key);
+					c('detailed_operator_img')[num].innerHTML = OSSURL + get_uploaded_object_name();
+					c('detailed_operator_img')[num].setAttribute('data-url',deleteUrl[num]);
+					/*$.ajax({
+						type: 'post',
+						url: URLS + '/oss/upload/saveUrl.json',
+						data: {
+							ossObjList: JSON.stringify(tbodyFileArray),
+							operator: JSON.parse(sessionStorage.loginUserName).operatorID,
+						},
+						success: function(data){
+							if(data.result === 1){
+								alern('上传成功！');
+							}else if(data.result === 0){
+								alern('上传失败！');
+							}else{
+								alern('未知错误！');
+							}
+						},
+						error: function(){
+							alern('保存失败！');
+						}
+					});*/
+					alern('上传成功！');
+					console.log('upload to oss success, object name:' + get_uploaded_object_name() + ' 回调服务器返回的内容是:' + info.response);
+					//document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = 'upload to oss success, object name:' + get_uploaded_object_name() + ' 回调服务器返回的内容是:' + info.response;
+				}
+				else if (info.status == 203)
+				{
+					alern('上传失败！');
+					console.log('上传到OSS成功，但是oss访问用户设置的上传回调服务器失败，失败原因是:' + info.response);
+					//document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '上传到OSS成功，但是oss访问用户设置的上传回调服务器失败，失败原因是:' + info.response;
+				}
+				else
+				{
+					alern('出现一个未知错误！');
+					console.log(info.response);
+					//document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = info.response;
+				}
+			},
+
+			Error: function(up, err) {
+				count = 0;
+				if (err.code == -600) {
+					alern("选择的文件太大了，请选择2M以内的文件上传！");
+					//document.getElementById('console').appendChild(document.createTextNode("\n选择的文件太大了,可以根据应用情况，在upload.js 设置一下上传的最大大小"));
+				}
+				else if (err.code == -601) {
+					alern("选择的文件后缀不对，目前仅支持图片类型：jpg,jpeg,gif,png；");
+					//document.getElementById('console').appendChild(document.createTextNode("\n选择的文件后缀不对,可以根据应用情况，在upload.js进行设置可允许的上传文件类型"));
+				}
+				else if (err.code == -602) {
+					alern("这个文件已经上传过一遍了");
+					//document.getElementById('console').appendChild(document.createTextNode("\n这个文件已经上传过一遍了"));
+				}
+				else
+				{
+					alern('出现一个未知错误！');
+					console.log("Error xml:" + err.response);
+					//document.getElementById('console').appendChild(document.createTextNode("\nError xml:" + err.response));
+				}
+			}
+		}
+	});
+	uploader.init();
 }
 
 var operatorStars = 0;
@@ -565,11 +731,12 @@ function submit(){
 	var operatorPickimgBtn = d('detailed_operator_pickimg_btn');
 	var operatorOrderimgBtn = d('detailed_operator_orderimg_btn');
 	var operatorIngredientimgBtn = d('detailed_operator_ingredientimg_btn');
-	var OperatorPickimgBase = "";
-	var OperatorOrderimgBase = "";
-	var OperatorIngredientimgBase = "";
+	let detailedOperatorImg = c('detailed_operator_img');
+	let	OperatorPickimgBase = d('detailed_operator_pickimg').dataset.url;			//创建选餐图片
+	let	OperatorOrderimgBase = d('detailed_operator_orderimg').dataset.url;			//创建下单图片
+	let	OperatorIngredientimgBase = d('detailed_operator_ingredientimg').dataset.url;	//创建商品介绍
 	var imageFixed = c('image_fixed')[0];
-	OperatorPickimg.onchange = function(e){
+	/*OperatorPickimg.onchange = function(e){
 		var reader = new FileReader();
 		console.log(this.files[0]);
 		reader.readAsDataURL(this.files[0]);
@@ -593,29 +760,11 @@ function submit(){
 			OperatorIngredientimgBase = oFREvent.target.result;
 		}
 		detailedOperatorIngredientimg.innerHTML = this.value;
-	}
+	}*/
 	operatorPickimgBtn.onclick = function(){
-		if(OperatorPickimgBase == ""){
-			if(detailedOperatorPickimg.innerHTML != ""){
-				imageFixed.style.display = 'block';
-				imageFixed.children[0].src = detailedOperatorPickimg.innerHTML;
-				imageFixed.children[0].onload = function(){
-					imageFixed.children[0].style.height = 'auto';
-					imageFixed.children[0].style.width = 'auto';
-					if(imageFixed.clientHeight < imageFixed.children[0].clientHeight){
-						imageFixed.children[0].style.height = imageFixed.clientHeight - 50 + 'px';
-					}
-					if(imageFixed.clientWidth < imageFixed.children[0].clientWidth){
-						imageFixed.children[0].style.width = imageFixed.clientWidth - 50 + 'px';
-					}
-					imageFixed.children[0].style.marginTop = (imageFixed.clientHeight - imageFixed.children[0].clientHeight)/2 + 'px';
-				}
-			}else{
-				alern('未上传图片!');
-			}
-		}else{
+		if(this.previousSibling.previousSibling.dataset.url){
 			imageFixed.style.display = 'block';
-			imageFixed.children[0].src = OperatorPickimgBase;
+			imageFixed.children[0].src = this.previousSibling.previousSibling.dataset.url;
 			imageFixed.children[0].onload = function(){
 				imageFixed.children[0].style.height = 'auto';
 				imageFixed.children[0].style.width = 'auto';
@@ -627,30 +776,14 @@ function submit(){
 				}
 				imageFixed.children[0].style.marginTop = (imageFixed.clientHeight - imageFixed.children[0].clientHeight)/2 + 'px';
 			}
+		}else{
+			alern('未上传图片');
 		}
 	}
 	operatorOrderimgBtn.onclick = function(){
-		if(OperatorOrderimgBase == ""){
-			if(detailedOperatorOrderimg.innerHTML != ""){
-				imageFixed.style.display = 'block';
-				imageFixed.children[0].src = detailedOperatorOrderimg.innerHTML;
-				imageFixed.children[0].onload = function(){
-					imageFixed.children[0].style.height = 'auto';
-					imageFixed.children[0].style.width = 'auto';
-					if(imageFixed.clientHeight < imageFixed.children[0].clientHeight){
-						imageFixed.children[0].style.height = imageFixed.clientHeight - 50 + 'px';
-					}
-					if(imageFixed.clientWidth < imageFixed.children[0].clientWidth){
-						imageFixed.children[0].style.width = imageFixed.clientWidth - 50 + 'px';
-					}
-					imageFixed.children[0].style.marginTop = (imageFixed.clientHeight - imageFixed.children[0].clientHeight)/2 + 'px';
-				}
-			}else{
-				alern('未上传图片!');
-			}
-		}else{
+		if(this.previousSibling.previousSibling.dataset.url){
 			imageFixed.style.display = 'block';
-			imageFixed.children[0].src = OperatorOrderimgBase;
+			imageFixed.children[0].src = this.previousSibling.previousSibling.dataset.url;
 			imageFixed.children[0].onload = function(){
 				imageFixed.children[0].style.height = 'auto';
 				imageFixed.children[0].style.width = 'auto';
@@ -662,30 +795,14 @@ function submit(){
 				}
 				imageFixed.children[0].style.marginTop = (imageFixed.clientHeight - imageFixed.children[0].clientHeight)/2 + 'px';
 			}
+		}else{
+			alern('未上传图片');
 		}
 	}
 	operatorIngredientimgBtn.onclick = function(){
-		if(OperatorIngredientimgBase == ""){
-			if(detailedOperatorIngredientimg.innerHTML != ""){
-				imageFixed.style.display = 'block';
-				imageFixed.children[0].src = detailedOperatorIngredientimg.innerHTML;
-				imageFixed.children[0].onload = function(){
-					imageFixed.children[0].style.height = 'auto';
-					imageFixed.children[0].style.width = 'auto';
-					if(imageFixed.clientHeight < imageFixed.children[0].clientHeight){
-						imageFixed.children[0].style.height = imageFixed.clientHeight - 50 + 'px';
-					}
-					if(imageFixed.clientWidth < imageFixed.children[0].clientWidth){
-						imageFixed.children[0].style.width = imageFixed.clientWidth - 50 + 'px';
-					}
-					imageFixed.children[0].style.marginTop = (imageFixed.clientHeight - imageFixed.children[0].clientHeight)/2 + 'px';
-				}
-			}else{
-				alern('未上传图片!');
-			}
-		}else{
+		if(this.previousSibling.previousSibling.dataset.url){
 			imageFixed.style.display = 'block';
-			imageFixed.children[0].src = OperatorIngredientimgBase;
+			imageFixed.children[0].src = this.previousSibling.previousSibling.dataset.url;
 			imageFixed.children[0].onload = function(){
 				imageFixed.children[0].style.height = 'auto';
 				imageFixed.children[0].style.width = 'auto';
@@ -697,6 +814,8 @@ function submit(){
 				}
 				imageFixed.children[0].style.marginTop = (imageFixed.clientHeight - imageFixed.children[0].clientHeight)/2 + 'px';
 			}
+		}else{
+			alern('未上传图片');
 		}
 	}
 	imageFixed.onclick = function(){
@@ -729,10 +848,13 @@ function submit(){
 		d('commodity_supplier').value = "";									//供应商
 		c('detailed_operator_pickimg')[0].innerHTML = "";					//选餐图片
 		d('detailed_operator_pickimg').value = "";					
+		d('detailed_operator_pickimg').setAttribute('data-url','');					
 		c('detailed_operator_orderimg')[0].innerHTML = "";					//下单图片
 		d('detailed_operator_orderimg').value = "";
+		d('detailed_operator_orderimg').setAttribute('data-url','');					
 		c('detailed_operator_ingredientimg')[0].innerHTML = "";				//商品介绍
 		d('detailed_operator_ingredientimg').value = "";
+		d('detailed_operator_ingredientimg').setAttribute('data-url','');			
 		d('commodity_remark').value = "";									//备注
 		d('detailed_operator_stop').checked = false;						//停用启用
 		
@@ -839,12 +961,12 @@ function submit(){
 		var commodityMicrowave = d('commodity_microwave').value;		//微博加热
 		var commodityCooking = d('commodity_cooking').value;			//烹饪温度
 		var commoditySupplier = d('commodity_supplier').value;			//供应商
-		console.log(OperatorPickimgBase)								//选餐图片
-		console.log(OperatorOrderimgBase)								//下单图片
-		console.log(OperatorOrderimgBase)								//商品介绍
-		var OperatorPickimgBases = c('detailed_operator_pickimg')[0].innerHTML;			//选餐图片
-		var OperatorOrderimgBases = c('detailed_operator_orderimg')[0].innerHTML;		//下单图片
-		var OperatorIngredientimgBases = c('detailed_operator_ingredientimg')[0].innerHTML;	//商品介绍
+		OperatorPickimgBase = d('detailed_operator_pickimg').dataset.url;			//创建选餐图片
+		OperatorOrderimgBase = d('detailed_operator_orderimg').dataset.url;			//创建下单图片
+		OperatorIngredientimgBase = d('detailed_operator_ingredientimg').dataset.url;	//创建商品介绍
+		var OperatorPickimgBases = d('detailed_operator_pickimg').dataset.url;			//修改选餐图片
+		var OperatorOrderimgBases = d('detailed_operator_orderimg').dataset.url;		//修改下单图片
+		var OperatorIngredientimgBases = d('detailed_operator_ingredientimg').dataset.url;	//修改商品介绍
 		var commodityRemark = d('commodity_remark').value;				//备注
 	 	if(d('detailed_operator_stop').checked){						//停用启用
 	 		var detailedOperatorStop = 0;
@@ -872,7 +994,7 @@ function submit(){
 			alern(commodityError);
 			return false;
 		}
-
+		loading();
 		$.ajax({
 			type: 'post',
 			url: URLZ + '/jf/bg/basic/gdsm/check.json',
@@ -887,6 +1009,7 @@ function submit(){
 					if(data.obj.waresId != commodityNum){
 						alern('条码与'+data.obj.waresName+'重复!');
 						d('commodity_code').value = "";
+						loadingClear();
 						return false;
 					}
 				}
@@ -921,6 +1044,7 @@ function submit(){
 						},
 						success: function(data){
 							alert('保存成功');
+							loadingClear();
 							startbody();
 							c('operator_home_head_submit')[0].click();
 						}
@@ -945,7 +1069,30 @@ function submit(){
 							picture3: OperatorIngredientimgBases,
 						},
 						success: function(data){
+							for(let i = 0; i < detailedOperatorImg.length; i++){
+								if(detailedOperatorImg[i].dataset.url){
+									$.ajax({
+										type: 'post',
+										url: URLS + '/oss/upload/deleteOssUrl.json',
+										data: {
+											ossUrl: detailedOperatorImg[i].dataset.url,
+											setUrl: 'offical-web/hontech-rdcenter/commodity_board/',
+										},
+										async: false,
+										success: function(data){
+											if(data.result === 1){
+												console.log('OSS资源删除成功！');
+											}else if(data.result === 0){
+												console.log('OSS资源删除失败！');
+											}else{
+												console.log('OSS资源删除出现未知错误！');
+											}
+										}
+									})
+								}
+							}
 							alert('保存成功');
+							loadingClear();
 							startbody();
 							c('operator_home_head_submit')[0].click();
 						}

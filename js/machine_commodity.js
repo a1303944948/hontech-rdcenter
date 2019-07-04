@@ -12,6 +12,7 @@ function byStart(machCODE){
 		},
 		dataType: 'json',
 		success: function(data){
+			console.log(data);
 			MACHCOMMOD = data;
 			var commodityaTbody = c('user_body_right_foot_item_commoditya_tbody')[0];
 			commodityaTbody.innerHTML = "";

@@ -6,6 +6,7 @@
 	<link rel="icon" type="image/x-icon" href="image/logos.jpg"/>
 	<link rel="stylesheet" type="text/css" href="css/index.css"/>
 	<link rel="stylesheet" type="text/css" href="css/commodity_board.css"/>
+	<link rel="stylesheet" type="text/css" href="../lib/import/style.css"/>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="js/wm.js"></script>
 	<script type="text/javascript" src="js/object.js"></script>
@@ -110,15 +111,15 @@
 								</tr>
 								<tr>
 									<td>Menu Picture : </td>
-									<td><div class="detailed_operator_pickimg detailed_operator_img"></div><input id="detailed_operator_pickimg" accept="image/gif,image/jpeg,image/jpg,image/png" type="file"/><button id="detailed_operator_pickimg_btn" class="detailed_operator_img_btn">Preview</button></td>
+									<td><div class="detailed_operator_pickimg detailed_operator_img"></div><input id="detailed_operator_pickimg" class="detailed_operator_int" accept="image/gif,image/jpeg,image/jpg,image/png" type="file" data-url=""/><button id="detailed_operator_pickimg_btns" class="detailed_operator_img_btns">Upload</button><button id="detailed_operator_pickimg_btn" class="detailed_operator_img_btn">Preview</button></td>
 								</tr>
 								<tr>
 									<td>Payment Picture : </td>
-									<td><div class="detailed_operator_orderimg detailed_operator_img"></div><input id="detailed_operator_orderimg" accept="image/gif,image/jpeg,image/jpg,image/png" type="file"/><button id="detailed_operator_orderimg_btn" class="detailed_operator_img_btn">Preview</button></td>
+									<td><div class="detailed_operator_orderimg detailed_operator_img"></div><input id="detailed_operator_orderimg" class="detailed_operator_int" accept="image/gif,image/jpeg,image/jpg,image/png" type="file" data-url=""/><button id="detailed_operator_orderimg_btns" class="detailed_operator_img_btns">Upload</button><button id="detailed_operator_orderimg_btn" class="detailed_operator_img_btn">Preview</button></td>
 								</tr>
 								<tr>
 									<td>nutrition : </td>
-									<td><div class="detailed_operator_ingredientimg detailed_operator_img"></div><input id="detailed_operator_ingredientimg" accept="image/gif,image/jpeg,image/jpg,image/png" type="file"/><button id="detailed_operator_ingredientimg_btn" class="detailed_operator_img_btn">Preview</button></td>
+									<td><div class="detailed_operator_ingredientimg detailed_operator_img"></div><input id="detailed_operator_ingredientimg" class="detailed_operator_int" accept="image/gif,image/jpeg,image/jpg,image/png" type="file" data-url=""/><button id="detailed_operator_ingredientimg_btns" class="detailed_operator_img_btns">Upload</button><button id="detailed_operator_ingredientimg_btn" class="detailed_operator_img_btn">Preview</button></td>
 								</tr>
 								<tr>
 									<td>Remark : </td>
@@ -140,6 +141,8 @@
 	<div class="image_fixed">
 		<img src=""/>
 	</div>
+	<script type="text/javascript" src="../lib/plupload-2.1.2/js/plupload.full.min.js"></script>
+	<script type="text/javascript" src="../lib/import/upload.js"></script>
 	<script type="text/javascript" src="js/commodity_board.js"></script>
 </body>
 </html>

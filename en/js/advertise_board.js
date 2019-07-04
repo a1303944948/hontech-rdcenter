@@ -711,6 +711,7 @@ function deleteBoardList(that){
 			url: URLS + '/oss/upload/deleteOssUrl.json',
 			data: {
 				ossUrl: that.parentNode.parentNode.children[0].children[0].dataset.url,
+				setUrl: 'offical-web/hontech-rdcenter/advertise_board/',
 			},
 			success: function(){
 				that.parentNode.parentNode.style.display = 'none';
@@ -803,7 +804,7 @@ function UploadOss(num){
 						alern(tbodyFileError);
 						return false;
 					}
-					set_upload_param(up,'', false);
+					set_upload_param(up,'', false,'offical-web/hontech-rdcenter/advertise_board/');
 				};
 			},
 
@@ -818,7 +819,7 @@ function UploadOss(num){
 				});
 			},
 			BeforeUpload: function(up, file) {
-				set_upload_param(up, file.name, true);
+				set_upload_param(up, file.name, true,'offical-web/hontech-rdcenter/advertise_board/');
 			},
 			UploadFile: function(){
 				count = 1;
@@ -952,6 +953,7 @@ function deleteBoard(that){
 		url: URLS + '/oss/upload/deleteUrl.json',
 		data: {
 			ossUrlObj: that.dataset.value,
+			setUrl: 'offical-web/hontech-rdcenter/advertise_board/',
 		},
 		success: function(data){
 			console.log(data);
