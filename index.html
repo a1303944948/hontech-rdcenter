@@ -216,7 +216,7 @@
 		c('index_fixed_loading_body_child')[0].children[0].onmousedown = function(e){
 		    e.preventDefault()
 		};
-		if(sessionStorage.getItem("fixedCount")){
+		if(sessionStorage.getItem("fixedCount") === '1'){
 			indexFixedLoading.style.display = 'none';
 		}
 	</script>

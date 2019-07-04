@@ -177,6 +177,7 @@ function startbody(){
 		async: false,
 		success: function(data){
 			//为BOM数据中的设备加入过期时间与状态
+			console.log(data);
 			var treeArray = [];
 				for(var i = 0; i < tree.length; i++){
 					if(tree[i].icon == 4){
@@ -402,6 +403,7 @@ function startbody(){
 							var tdf = creat('td');
 							var tdg = creat('td');
 							var tdh = creat('td');
+							var tdi = creat('td');
 							tda.innerHTML = k+1;
 							tdb.innerHTML = data.serviceHistoricalRenewalFree[k].operatorCompany;
 							tdc.innerHTML = data.serviceHistoricalRenewalFree[k].machName;
@@ -409,7 +411,8 @@ function startbody(){
 							tde.innerHTML = data.serviceHistoricalRenewalFree[k].executor;
 							tdf.innerHTML = data.serviceHistoricalRenewalFree[k].rechargeOrder;
 							tdg.innerHTML = data.serviceHistoricalRenewalFree[k].paymentAmount;
-							tdh.innerHTML = data.serviceHistoricalRenewalFree[k].validityEndTime;
+							tdh.innerHTML = data.serviceHistoricalRenewalFree[k].updateTime;
+							tdi.innerHTML = data.serviceHistoricalRenewalFree[k].validityEndTime;
 							tr.appendChild(tda);
 							tr.appendChild(tdb);
 							tr.appendChild(tdc);
@@ -418,6 +421,7 @@ function startbody(){
 							tr.appendChild(tdf);
 							tr.appendChild(tdg);
 							tr.appendChild(tdh);
+							tr.appendChild(tdi);
 							c('user_body_right_body_foot_fixed_body_tbody')[0].appendChild(tr);
 						}
 					}
