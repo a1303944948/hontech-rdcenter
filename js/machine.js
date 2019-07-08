@@ -956,7 +956,7 @@ function startfoot(machCODE){
 									roadaTableInt[q].onchange = function(){
 										if(this.value > 40){
 											this.value = 40;
-											alern('货道列的格数不能超过40');
+											alern('货道行的格数不能超过40');
 										}
 									}
 									roadaTableClear[q].onclick = function(){
@@ -1034,7 +1034,7 @@ function startfoot(machCODE){
 											roadaTableInt[q].onchange = function(){
 												if(this.value > 40){
 													this.value = 40;
-													alern('货道列的格数不能超过40!');
+													alern('货道行的格数不能超过40!');
 												}
 											}
 											roadaTableClear[q].onclick = function(){
@@ -1047,7 +1047,7 @@ function startfoot(machCODE){
 										})(i)
 									}
 								}else{
-									alern('货道不能超过40列!');
+									alern('货道不能超过40行!');
 								}
 							}
 							var roadaObj = itemBtnbSubmits(machCODE);
@@ -2056,7 +2056,7 @@ function renderingRoad(machCODE){
 								roadaTableInt[q].onchange = function(){
 									if(this.value > 40){
 										this.value = 40;
-										alern('货道列的格数不能超过40');
+										alern('货道行的格数不能超过40');
 									}
 								}
 								roadaTableClear[q].onclick = function(){
@@ -2144,7 +2144,7 @@ function renderingRoad(machCODE){
 								roadaTableInt[q].onchange = function(){
 									if(this.value > 40){
 										this.value = 40;
-										alern('货道列的格数不能超过40');
+										alern('货道行的格数不能超过40');
 									}
 								}
 								roadaTableClear[q].onclick = function(){
@@ -2157,7 +2157,7 @@ function renderingRoad(machCODE){
 							})(i)
 						}
 					}else{
-						alern('货道不能超过40列');
+						alern('货道不能超过40行');
 					}
 				}
 			}else if(MACHROAD.type == 'b'){
