@@ -936,7 +936,7 @@ function boardListGet(){
 				tda.innerHTML = '<input readonly="readonly" type="text" value="'+data.result[i].url+'" />';
 				tdb.innerHTML = data.result[i].type;
 				tdc.innerHTML = data.result[i].remark;
-				tdd.innerHTML = '<button data-value=\''+JSON.stringify(data.result[i])+'\' onclick="deleteBoard(this)">删除</button>';
+				tdd.innerHTML = '<button style="margin-right: 5px;" data-url=\''+data.result[i].url+'\' onclick="viewBoard(this)">预览</button><button data-value=\''+JSON.stringify(data.result[i])+'\' onclick="deleteBoard(this)">删除</button>';
 				tr.appendChild(tda);
 				tr.appendChild(tdb);
 				tr.appendChild(tdc);
@@ -945,6 +945,68 @@ function boardListGet(){
 			}
 		}
 	})
+}
+//预览事件
+let advertiseBoardViewFixed = c('advertise_board_view_fixed')[0];
+function viewBoard(that){
+	console.log(that.dataset.url);
+	let thisSplit = that.dataset.url.split('.');
+	if(that.dataset.url){
+		if(thisSplit[thisSplit.length-1] == 'mp4'||thisSplit[thisSplit.length-1] == '3gp'||thisSplit[thisSplit.length-1] == 'avi'){
+			loading('加载资源');
+			advertiseBoardViewFixed.innerHTML = '';
+			let video = creat('video');
+			video.autoplay = 'autoplay';
+			video.controls = 'controls';
+			video.src = that.dataset.url;
+			advertiseBoardViewFixed.appendChild(video);
+			advertiseBoardViewFixed.children[0].oncanplay = function(){
+				loadingClear();
+				advertiseBoardViewFixed.style.display = 'block';
+				advertiseBoardViewFixed.children[0].style.height = 'auto';
+				advertiseBoardViewFixed.children[0].style.width = 'auto';
+				if(advertiseBoardViewFixed.clientHeight < advertiseBoardViewFixed.children[0].clientHeight){
+					advertiseBoardViewFixed.children[0].style.height = advertiseBoardViewFixed.clientHeight - 50 + 'px';
+				}
+				if(advertiseBoardViewFixed.clientWidth < advertiseBoardViewFixed.children[0].clientWidth){
+					advertiseBoardViewFixed.children[0].style.width = advertiseBoardViewFixed.clientWidth - 50 + 'px';
+				}
+				advertiseBoardViewFixed.children[0].style.marginTop = (advertiseBoardViewFixed.clientHeight - advertiseBoardViewFixed.children[0].clientHeight)/2 + 'px';
+			}
+			advertiseBoardViewFixed.children[0].onerror = function(){
+				alern('发生错误或是该资源不存在！');
+				loadingClear();
+			}
+		}else{
+			loading('加载资源');
+			advertiseBoardViewFixed.style.display = 'block';
+			advertiseBoardViewFixed.innerHTML = '';
+			let img = creat('img');
+			img.src = that.dataset.url;
+			advertiseBoardViewFixed.appendChild(img);
+			advertiseBoardViewFixed.children[0].onload = function(){
+				loadingClear();
+				advertiseBoardViewFixed.children[0].style.height = 'auto';
+				advertiseBoardViewFixed.children[0].style.width = 'auto';
+				if(advertiseBoardViewFixed.clientHeight < advertiseBoardViewFixed.children[0].clientHeight){
+					advertiseBoardViewFixed.children[0].style.height = advertiseBoardViewFixed.clientHeight - 50 + 'px';
+				}
+				if(advertiseBoardViewFixed.clientWidth < advertiseBoardViewFixed.children[0].clientWidth){
+					advertiseBoardViewFixed.children[0].style.width = advertiseBoardViewFixed.clientWidth - 50 + 'px';
+				}
+				advertiseBoardViewFixed.children[0].style.marginTop = (advertiseBoardViewFixed.clientHeight - advertiseBoardViewFixed.children[0].clientHeight)/2 + 'px';
+			}
+			advertiseBoardViewFixed.children[0].onerror = function(){
+				alern('发生错误或是该资源不存在！');
+				loadingClear();
+			}
+		}
+	}else{
+		alern('未检测到资源');
+	}
+}
+advertiseBoardViewFixed.onclick = function(){
+	this.style.display = 'none';
 }
 //删除事件
 function deleteBoard(that){

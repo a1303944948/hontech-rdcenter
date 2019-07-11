@@ -178,10 +178,11 @@ var URLX = 'http://10.1.8.34:8080/bg-uc';
 var URLZ = 'http://10.1.8.34:8080/bg-uc';
 var URLY = 'http://10.1.8.34:8080/bg-uc';
 var OSSURL = 'http://hf-web.oss-cn-shanghai.aliyuncs.com/';*/
-/*var URLS = 'http://cc5yy2.natappfree.cc/bg-uc';
-var URLX = 'http://cc5yy2.natappfree.cc/bg-uc';
-var URLZ = 'http://cc5yy2.natappfree.cc/bg-uc';
-var URLY = 'http://cc5yy2.natappfree.cc/bg-uc';*/
+/*var URLS = 'http://9n2sjp.natappfree.cc/bg-uc';
+var URLX = 'http://9n2sjp.natappfree.cc/bg-uc';
+var URLZ = 'http://9n2sjp.natappfree.cc/bg-uc';
+var URLY = 'http://9n2sjp.natappfree.cc/bg-uc';
+var OSSURL = 'http://hf-web.oss-cn-shanghai.aliyuncs.com/';*/
 //禁用页面log,要恢复调试请注释
 //console.log = ()=>{};
 

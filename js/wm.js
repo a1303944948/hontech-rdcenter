@@ -242,7 +242,9 @@ function loadingClear(){
 	clearInterval(loadingTimore);
 	var body = n('body')[0];
 	var load = c('body_load')[0];
-	body.removeChild(load);
+	if(load){
+		body.removeChild(load);
+	};
 }
 
 //ajax请求
