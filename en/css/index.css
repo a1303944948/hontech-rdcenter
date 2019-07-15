@@ -675,7 +675,7 @@ header{
 	position: absolute;
 	top: 90px;
 	left: -30px;
-	border: 2px #2C3748 solid;
+	border: 2px #4B5E7B solid;
 	box-sizing: border-box;
 	animation: AllLoading 1s linear 0s infinite;
 	z-index: 22;
@@ -685,7 +685,7 @@ header{
 	height: 50px;
 	margin-top: 3px;
 	margin-left: 3px;
-	border: 2px #2C3748 solid;
+	border: 2px #4B5E7B solid;
 	box-sizing: border-box;
 	border-radius: 50%;
 	position: relative;
@@ -695,7 +695,7 @@ header{
 	width: 12px;
 	height: 12px;
 	border-radius: 50%;
-	background-color: #2C3748;
+	background-color: #4B5E7B;
 	margin-top: 17px;
 	position: relative;
 }
@@ -836,7 +836,7 @@ header{
 	position: absolute;
 	top: 90px;
 	left: -30px;
-	border: 2px #0C64A8 solid;
+	border: 2px #0E73C0 solid;
 	box-sizing: border-box;
 	animation: AllLoading 1s linear 0s infinite;
 	z-index: 22;
@@ -846,7 +846,7 @@ header{
 	height: 50px;
 	margin-top: 3px;
 	margin-left: 3px;
-	border: 2px #0C64A8 solid;
+	border: 2px #0E73C0 solid;
 	box-sizing: border-box;
 	border-radius: 50%;
 	position: relative;
@@ -856,7 +856,7 @@ header{
 	width: 12px;
 	height: 12px;
 	border-radius: 50%;
-	background-color: #0C64A8;
+	background-color: #0E73C0;
 	margin-top: 17px;
 	position: relative;
 }
