@@ -17,10 +17,12 @@ $.ajax({
 	data: {
 		array: JSON.stringify(groupitemArray),
 	},
-	async: false,
+	async: true,
 	dataType: 'json',
 	success: function(data){
 		ybpobj = data;
+		canvasRight();	//首页仪表盘刻度绘制
+		ybp();			//首页仪表盘
 	}
 })
 
@@ -45,8 +47,6 @@ $.ajax({
 	async: false,
 	success: function(data){
 		canvas(data);
-		c('index_fixed_loading')[0].style.display = 'none';
-		sessionStorage.setItem("fixedCount", 1);
 	}
 })
 
@@ -487,5 +487,3 @@ window.onresize = function(){
 }
 
 //调用方法处
-canvasRight();	//首页仪表盘刻度绘制
-ybp();			//首页仪表盘

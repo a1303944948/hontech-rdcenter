@@ -115,7 +115,6 @@ var Timoers = setInterval(function(){
 	loginTimeOut += 1;
 	if(loginTimeOut >= 120){
 		sessionStorage.removeItem("loginUserName");
-		sessionStorage.removeItem("fixedCount");
 		alert('用户长时间未操作,请重新登录!');
 		clearInterval(Timoers);
 		window.location.href = 'login.html';
@@ -128,7 +127,6 @@ window.onmousemove = function(){
 		loginTimeOut += 1;
 		if(loginTimeOut >= 120){
 			sessionStorage.removeItem("loginUserName");
-			sessionStorage.removeItem("fixedCount");
 			alert('用户长时间未操作,请重新登录!');
 			clearInterval(Timoers);
 			window.location.href = 'login.html';
@@ -154,21 +152,21 @@ var URLX = 'http://10.1.8.36:8080/bg-uc';
 var URLZ = 'http://10.1.8.36:8080/bg-uc';
 var URLY = 'http://10.1.8.36:8080/bg-uc';*/
 // var URLY = 'http://test.hontech-rdcenter.com:8080/';
-/*var URLS = 'http://hfrd.hontech-rdcenter.com:8080/hontechgroup';
+var URLS = 'http://hfrd.hontech-rdcenter.com:8080/hontechgroup';
 var URLX = 'http://hfrd.hontech-rdcenter.com:8080/hontechgroup';
 var URLZ = 'http://hfrd.hontech-rdcenter.com:8080/hontechgroup';
 var URLY = 'http://hfrd.hontech-rdcenter.com:8080/hontechgroup';
-var OSSURL = 'http://hf-web.oss-cn-shanghai.aliyuncs.com/';*/
+var OSSURL = 'http://hf-web.oss-cn-shanghai.aliyuncs.com/';
 /*var URLS = 'http://test.hontech-rdcenter.com:8080/bg-uc';
 var URLX = 'http://test.hontech-rdcenter.com:8080/bg-uc';
 var URLZ = 'http://test.hontech-rdcenter.com:8080/bg-uc';
 var URLY = 'http://test.hontech-rdcenter.com:8080/bg-uc';
 var OSSURL = 'http://hf-web.oss-cn-shanghai.aliyuncs.com/';*/
-var URLS = 'https://api.hontech-rdcenter.com:8443/bg-uc';
-var URLX = 'https://api.hontech-rdcenter.com:8443/bg-uc';
-var URLZ = 'https://api.hontech-rdcenter.com:8443/bg-uc';
-var URLY = 'https://api.hontech-rdcenter.com:8443/bg-uc';
-var OSSURL = 'https://hf-web.oss-cn-shanghai.aliyuncs.com/';
+// var URLS = 'https://api.hontech-rdcenter.com:8443/bg-uc';
+// var URLX = 'https://api.hontech-rdcenter.com:8443/bg-uc';
+// var URLZ = 'https://api.hontech-rdcenter.com:8443/bg-uc';
+// var URLY = 'https://api.hontech-rdcenter.com:8443/bg-uc';
+// var OSSURL = 'https://hf-web.oss-cn-shanghai.aliyuncs.com/';
 /*var URLS = 'http://zcvqki.natappfree.cc/bg-uc';
 var URLX = 'http://zcvqki.natappfree.cc/bg-uc';
 var URLZ = 'http://zcvqki.natappfree.cc/bg-uc';

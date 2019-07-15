@@ -116,7 +116,6 @@ var Timoers = setInterval(function(){
 	loginTimeOut += 1;
 	if(loginTimeOut >= 120){
 		sessionStorage.removeItem("loginUserName");
-		sessionStorage.removeItem("fixedCount");
 		alert('please login!');
 		clearInterval(Timoers);
 		window.location.href = 'login.html';
@@ -129,7 +128,6 @@ window.onmousemove = function(){
 		loginTimeOut += 1;
 		if(loginTimeOut >= 120){
 			sessionStorage.removeItem("loginUserName");
-			sessionStorage.removeItem("fixedCount");
 			alert('please login!');
 			clearInterval(Timoers);
 			window.location.href = 'login.html';
