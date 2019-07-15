@@ -877,6 +877,7 @@ function submit(){
 	var operatorOrderimgBtn = d('detailed_operator_orderimg_btn');
 	var operatorIngredientimgBtn = d('detailed_operator_ingredientimg_btn');
 	let detailedOperatorImg = c('detailed_operator_img');
+	let detailedOperatorImgS = c('detailed_operator_imgs');
 	let	OperatorPickimgBase = d('detailed_operator_pickimg').dataset.url;			//创建选餐图片
 	let	OperatorOrderimgBase = d('detailed_operator_orderimg').dataset.url;			//创建下单图片
 	let	OperatorIngredientimgBase = d('detailed_operator_ingredientimg').dataset.url;	//创建商品介绍
@@ -1012,6 +1013,17 @@ function submit(){
 	}
 	imageFixeds.onclick = function(){
 		this.style.display = 'none';
+	}
+
+	//商品介绍资源清空按钮
+	d('detailed_operator_ingredientimg_delete_btn').onclick = function(){
+		if(c('detailed_operator_imgs')[0].innerHTML){
+			c('detailed_operator_imgs')[0].setAttribute('data-url',c('detailed_operator_imgs')[0].innerHTML);
+			c('detailed_operator_imgs')[0].innerHTML = '';
+			d('detailed_operator_ingredientimg').setAttribute('data-url','');
+		}else{
+			alern('没有内容！');
+		}
 	}
 
 	bodyCreat.onclick = function(){
@@ -1268,6 +1280,28 @@ function submit(){
 										url: URLS + '/oss/upload/deleteOssUrl.json',
 										data: {
 											ossUrl: detailedOperatorImg[i].dataset.url,
+											setUrl: 'offical-web/hontech-rdcenter/commodity_board/',
+										},
+										async: false,
+										success: function(data){
+											if(data.result === 1){
+												console.log('OSS资源删除成功！');
+											}else if(data.result === 0){
+												console.log('OSS资源删除失败！');
+											}else{
+												console.log('OSS资源删除出现未知错误！');
+											}
+										}
+									})
+								}
+							}
+							for(let i = 0; i < detailedOperatorImgS.length; i++){
+								if(detailedOperatorImgS[i].dataset.url){
+									$.ajax({
+										type: 'post',
+										url: URLS + '/oss/upload/deleteOssUrl.json',
+										data: {
+											ossUrl: detailedOperatorImgS[i].dataset.url,
 											setUrl: 'offical-web/hontech-rdcenter/commodity_board/',
 										},
 										async: false,

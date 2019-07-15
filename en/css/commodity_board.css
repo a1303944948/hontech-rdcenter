@@ -239,7 +239,7 @@ html,body{
 }
 .operator_body_right_foot_item{
 	display: none;
-	width: 340px;
+	width: 380px;
 	height: auto;
 	margin-right: 40px;
 	margin-bottom: 20px;
@@ -397,6 +397,53 @@ html,body{
 .detailed_operator_img_btns:active{
 	background-color: #ffffff;
 }
+.detailed_operator_imgs{
+	width: 110px;
+	height: 24px;
+	border: 1px #d4d4d4 solid;
+	border-radius: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	box-sizing: border-box;
+	pointer-events: none;
+	position: absolute;
+	cursor: pointer;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.detailed_operator_imgs>div{
+	font-size: 12px;
+}
+.detailed_operator_img_btn{	
+	width: 40px;
+	height: 26px;
+	border: 1px #d4d4d4 solid;
+	background-color: #ffffff;
+	border-radius: 3px;
+	font-size: 12px;
+}
+.detailed_operator_img_btn:hover{
+	background-color: #e5e5e5;
+}
+.detailed_operator_img_btn:active{
+	background-color: #ffffff;
+}
+
+.detailed_operator_img_btns_b{
+	width: 40px;
+	height: 26px;
+	border: 1px #d4d4d4 solid;
+	background-color: #ffffff;
+	border-radius: 3px;
+	font-size: 12px;
+}
+.detailed_operator_img_btns_b:hover{
+	background-color: #e5e5e5;
+}
+.detailed_operator_img_btns_b:active{
+	background-color: #ffffff;
+}
 .operator_body_right_foot_item>table tr>td>input[type="file"]{
 	width: 110px;
 	height: 24px;
@@ -409,6 +456,17 @@ html,body{
 	cursor: pointer;
 }
 .image_fixed{
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background-color: rgba(0,0,0,0.7);
+	text-align: center;
+	z-index: 9999999;
+}
+.image_fixeds{
 	display: none;
 	width: 100%;
 	height: 100%;
