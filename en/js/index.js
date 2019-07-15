@@ -21,7 +21,8 @@ $.ajax({
 	dataType: 'json',
 	success: function(data){
 		ybpobj = data;
-		canvasRight();	//首页仪表盘刻度绘制
+		d('index_chart_head_top_right_loading').style.display = 'none';
+		d('index_chart_foot_top_right_loading').style.display = 'none';
 		ybp();			//首页仪表盘
 	}
 })
@@ -489,3 +490,4 @@ window.onresize = function(){
 }
 
 //调用方法处
+canvasRight();	//首页仪表盘刻度绘制

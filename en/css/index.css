@@ -667,6 +667,46 @@ header{
 	position: relative;
 	float: left;
 }
+#index_chart_head_top_right_loading{
+	width: 60px;
+	height: 60px;
+	margin-left: 50%;
+	border-radius: 50%;
+	position: absolute;
+	top: 90px;
+	left: -30px;
+	border: 2px #2C3748 solid;
+	box-sizing: border-box;
+	animation: AllLoading 1s linear 0s infinite;
+	z-index: 22;
+}
+#index_chart_head_top_right_loading>div{
+	width: 50px;
+	height: 50px;
+	margin-top: 3px;
+	margin-left: 3px;
+	border: 2px #2C3748 solid;
+	box-sizing: border-box;
+	border-radius: 50%;
+	position: relative;
+}
+#index_chart_head_top_right_loading>div>b{
+	display: block;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background-color: #2C3748;
+	margin-top: 17px;
+	position: relative;
+}
+#index_chart_head_top_right_loading>div>b:nth-child(1){
+	left: -9px;
+	float: left;
+}
+#index_chart_head_top_right_loading>div>b:nth-child(2){
+	right: -9px;
+	float: right;
+}
 #index_chart_head_top_right_canvas{
 	position: absolute;
 	top: 0px;
@@ -787,6 +827,53 @@ header{
 	height: 240px;
 	position: relative;
 	float: left;
+}
+#index_chart_foot_top_right_loading{
+	width: 60px;
+	height: 60px;
+	margin-left: 50%;
+	border-radius: 50%;
+	position: absolute;
+	top: 90px;
+	left: -30px;
+	border: 2px #0C64A8 solid;
+	box-sizing: border-box;
+	animation: AllLoading 1s linear 0s infinite;
+	z-index: 22;
+}
+#index_chart_foot_top_right_loading>div{
+	width: 50px;
+	height: 50px;
+	margin-top: 3px;
+	margin-left: 3px;
+	border: 2px #0C64A8 solid;
+	box-sizing: border-box;
+	border-radius: 50%;
+	position: relative;
+}
+#index_chart_foot_top_right_loading>div>b{
+	display: block;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background-color: #0C64A8;
+	margin-top: 17px;
+	position: relative;
+}
+#index_chart_foot_top_right_loading>div>b:nth-child(1){
+	left: -9px;
+	float: left;
+}
+#index_chart_foot_top_right_loading>div>b:nth-child(2){
+	right: -9px;
+	float: right;
+}
+@keyframes AllLoading{
+	0%{
+		transform: rotate(0deg);
+	}100%{
+		transform: rotate(359deg);
+	}
 }
 #index_chart_foot_top_right_canvas{
 	position: absolute;
