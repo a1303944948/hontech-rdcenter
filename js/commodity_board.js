@@ -235,7 +235,21 @@ function startbody(){
 	//获取运营方下拉框数据
 	DATALEFT = groupitem(1);
 	//获取商品数据
+	var commodityOperators = d('commodity_operators');
+	var commodityStatus = d('commodity_status');
 	$.ajax({
+		type: 'post',
+		url: URLZ + '/jf/bg/basic/gdsm/searchObjParam.json',
+		data: {
+			operatorID: loginUserName.operatorID,
+			status: commodityStatus.name,
+		},
+		success: function(data){
+			console.log(data.obj);
+			startbodyleft(data.obj);
+		}
+	});
+	/*$.ajax({
 		type: 'post',
 		url: URLZ + '/jf/bg/basic/gdsm/getParam.json',
 		data: {
@@ -247,7 +261,7 @@ function startbody(){
 			var commmodityLeft = data.obj;
 			startbodyleft(commmodityLeft);
 		}
-	})
+	})*/
 }
 
 function startbodyleft(commmodityLeft){
