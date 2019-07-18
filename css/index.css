@@ -835,6 +835,7 @@ header{
 	top: 90px;
 	left: -30px;
 	border: 2px #0E73C0 solid;
+	font-size: 12px;
 	box-sizing: border-box;
 	animation: AllLoading 1s linear 0s infinite;
 	z-index: 22;
