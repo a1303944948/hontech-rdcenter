@@ -674,6 +674,7 @@ header{
 	left: -30px;
 	border: 2px #4B5E7B solid;
 	box-sizing: border-box;
+	font-size: 12px;
 	animation: AllLoading 1s linear 0s infinite;
 	z-index: 22;
 }

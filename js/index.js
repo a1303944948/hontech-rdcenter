@@ -24,6 +24,14 @@ $.ajax({
 		d('index_chart_head_top_right_loading').style.display = 'none';
 		d('index_chart_foot_top_right_loading').style.display = 'none';
 		ybp();			//首页仪表盘
+	},
+	error: function(){
+		d('index_chart_head_top_right_loading').innerHTML = '发生错误!';
+		d('index_chart_foot_top_right_loading').innerHTML = '发生错误!';
+		d('index_chart_head_top_right_loading').style.animation = 'false';
+		d('index_chart_foot_top_right_loading').style.animation = 'false';
+		d('index_chart_head_top_right_loading').style.lineHeight = d('index_chart_head_top_right_loading').clientHeight + 'px';
+		d('index_chart_foot_top_right_loading').style.lineHeight = d('index_chart_foot_top_right_loading').clientHeight + 'px';
 	}
 })
 
