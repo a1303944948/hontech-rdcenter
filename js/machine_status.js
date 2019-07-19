@@ -24,7 +24,6 @@ function start(){
 	for(var j = 0; j < KITANALYSIS.length; j++){
 		li += (KITANALYSIS[j]);
 	}
-	console.log(li);
 	ul.innerHTML = li;
 	ul.style.minWidth = Groupingz.clientWidth + 'px';
 	sales_head.appendChild(ul);
@@ -40,7 +39,6 @@ function start(){
 		headUlz[0].style.display = "none";
 	}
 
-	console.log(headUlz[0].children);
 	for(var j = 0; j < headUlz[0].children.length; j++){
 		headUlz[0].children[j].children[1].onmousedown = function(){
 			Groupingz.value = this.innerHTML;
@@ -51,7 +49,6 @@ function start(){
 			for(var i = 0; i < KITASSIGN.length; i++){
 				LISTGROUP.push(KITASSIGN[i].devicecode);
 			}
-			console.log(LISTGROUP);
 		}
 	}
 
@@ -66,7 +63,6 @@ function start(){
 		async: false,
 		dataType: 'json',
 		success: function(data){
-			console.log(data);
 			if(data.dealtypeJson.length != undefined){
 				LISTS.unshift(data.dealtypeJson);
 			}else{
@@ -82,7 +78,6 @@ function start(){
 		var ul = creat('ul');
 		ul.className = 'sales_head_selects_ulz';
 		ul.setAttribute('data-list',i);
-		console.log(LISTS);
 		for(var j = 0; j < LISTS[i].length; j++){
 			var li = creat('li');
 			var br = creat('br');
@@ -214,7 +209,33 @@ function submit(){
 				groupitemArrays.push(groupitemKit[i].devicecode);
 			}
 		}*/
-		WmPageMarkStart(JSON.parse(d('page_mark').dataset.length)[1]);
+
+		loading();
+
+		let model,status; 		//机器型号,售货机状态
+		model = c('machine_home_head_table_model')[0].name; 		//机器型号
+		status = c('machine_home_head_table_status')[0].name;		//售货机状态
+
+		$.ajax({
+			type: 'post',
+			url: URLS + '/status/getTotalStatus.json',
+			data: {
+				strArray: JSON.stringify(LISTGROUP),
+				machType: model, 
+				status: status,
+			},
+			async: false,
+			//dataType: 'json',
+			success: function(data){
+				OBJECT = data;
+				loadingClear();
+			}
+		})
+		tableObj();
+
+		/*WmPageMarkStart(JSON.parse(d('page_mark').dataset.length)[1]);*/
+
+		//请求售货机列表
 		/*OBJECT = [
 			[['金牛座1号',0],['tasdssd001', 0],['金牛座',0,'jiniu'],['正常',0],['在售',0],['10℃',0],[5,0],['2018-8-10',2],['2018-8-10',2],['2018-8-10',2],['2018-8-10',2],['2018-8-10',1],['10.0.0.1-10.0.1.0',2],['1.0.0-1.0.1',0]],
 			[['金牛座2号',0],['tasdssd002', 0],['金牛座',0,'jiniu'],['异常',1],['停售',2],['15℃',1],[4,0],['2018-8-18',2],['2018-8-10',2],['2018-8-10',2],['2018-8-28',0],['2018-8-10',1],['10.0.0.1-10.0.1.0',2],['1.0.0-1.0.1',0]],
@@ -236,29 +257,27 @@ function submit(){
 	}
 }
 
-function WmPageMarkStart(num,type){
-	loading();
+/*function WmPageMarkStart(num,type){
 	//分页功能实现
 	let pageMark = d('page_mark');
 	let pagemarkArr = JSON.parse(pageMark.dataset.length);
 	let count = pagemarkArr[2];
+	let model,status; 		//机器型号,售货机状态
+	model = c('machine_home_head_table_model')[0].name; 		//机器型号
+	status = c('machine_home_head_table_status')[0].name;		//售货机状态
+
+	loading();
+
 	pagemarkArr[0] = LISTGROUP.length;
 	pageMark.setAttribute('data-length',JSON.stringify(pagemarkArr));
-	WmPageMark();
-
 	let LISTGROUPArr = [];
 	for(let i = 0; i < count; i++){
 		if(LISTGROUP[(num-1)*count+i]){
 			LISTGROUPArr.push(LISTGROUP[(num-1)*count+i]);
 		}
 	}
-
-	let model,status; 		//机器型号,售货机状态
-	model = c('machine_home_head_table_model')[0].name; 		//机器型号
-	status = c('machine_home_head_table_status')[0].name;		//售货机状态
-
 	console.log(LISTGROUPArr);
-	//请求售货机列表
+
 	$.ajax({
 		type: 'post',
 		url: URLS + '/status/getTotalStatus.json',
@@ -267,15 +286,18 @@ function WmPageMarkStart(num,type){
 			machType: model, 
 			status: status,
 		},
+		async: false,
 		//dataType: 'json',
 		success: function(data){
 			console.log(data);
 			OBJECT = data;
-			tableObj();
 			loadingClear();
 		}
 	})
-}
+
+	WmPageMark();
+	tableObj();
+}*/
 
 //渲染表格样式
 function tableStyle(){
@@ -286,16 +308,17 @@ function tableStyle(){
 	}
 
 	var fbody = c('machine_home_foot_body')[0];
-	fbody.style.height = window.innerHeight - (header.offsetTop + header.clientHeight + 64) + 'px';
+	fbody.style.height = window.innerHeight - (header.offsetTop + header.clientHeight + 12) + 'px';
 }
+//表格内容渲染
 function tableObj(){
 	var ftable = c('machine_home_foot_body_table')[0];
 	ftable.innerHTML = '';
 	//渲染列表数据
-	d('machine_home_foot_total').innerHTML = LISTGROUP.length;
+	d('machine_home_foot_total').innerHTML = OBJECT.length;
 	for(var i = 0; i < OBJECT.length; i++){
 		var div = creat('div');
-		div.className = 'machine_home_foot_body_table_list'
+		div.className = 'machine_home_foot_body_table_list';
 		for(var j = 0; j < OBJECT[i].length;j++){
 			if(j == 0){
 				var divs = creat('div');
@@ -399,8 +422,6 @@ function tableObj(){
 			var show = null;
 			div[q].onclick = function(){
 				//请求机器内容
-				console.log(OBJECT[q][1][0]);
-				console.log(OBJECT[q][2][2]);
 				$.ajax({
 					type: 'post',
 					url: URLS + '/status/getAlone.json',
@@ -410,7 +431,6 @@ function tableObj(){
 					},
 					async: false,
 					success: function(data){
-						console.log(data);
 						OBJECTITEM = data;
 					}
 				})
@@ -476,7 +496,7 @@ window.onresize = function(){
 	var header = c('machine_home_foot_header')[0];
 	var headerItem = c('machine_home_foot_header_item');
 	var fbody = c('machine_home_foot_body')[0];
-	fbody.style.height = window.innerHeight - (header.offsetTop + header.clientHeight + 64) + 'px';
+	fbody.style.height = window.innerHeight - (header.offsetTop + header.clientHeight + 12) + 'px';
 }
 start();
 submit();
