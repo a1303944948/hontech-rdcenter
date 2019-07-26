@@ -802,7 +802,6 @@ function rendering(empcode,that){
 	};
 	var ulz = creat('ul');
 	ulz.className = "user_body_right_foot_item_panel_ul";
-	console.log(USERWE);
 	var userweobject = [];
 	var userweobjects = [];
 	for(var i = 0; i < USERWE.length; i++){
@@ -811,7 +810,6 @@ function rendering(empcode,that){
 			userweobject.push(USERWE[i]);
 		}
 	}
-	console.log(userweobject);
 	for(var o = 0; o < userweobject.length; o++){
 		function sonsTree(arr,id){
 		    var temp = [],lev=0;
@@ -832,14 +830,15 @@ function rendering(empcode,that){
 		}
 		var tree = sonsTree(USERWE,userweobject[o].menuid);
 	}
-	console.log(userweobjects);
 	for(var i = 0; i < userweobjects.length; i++){
 		for(var j = 0; j < userweobjects[i].length; j++){
-			var li = creat('li');
-			li.className = 'items' + userweobjects[i][j].lev;
-			li.setAttribute('data-value',userweobjects[i][j].perent);
-			li.innerHTML = '<input type="checkbox" data-textEn="'+userweobjects[i][j].textEn+'" value="'+userweobjects[i][j].menuid+'"/>' + userweobjects[i][j].text;
-			ulz.appendChild(li);
+			if(userweobjects[i][j].value == '1'){
+				var li = creat('li');
+				li.className = 'items' + userweobjects[i][j].lev;
+				li.setAttribute('data-value',userweobjects[i][j].perent);
+				li.innerHTML = '<input type="checkbox" data-textEn="'+userweobjects[i][j].textEn+'" value="'+userweobjects[i][j].menuid+'"/>' + userweobjects[i][j].text;
+				ulz.appendChild(li);
+			}
 		}
 		/*if(nav[i][0].value == 1){
 			li.innerHTML = '<input type="checkbox" checked="checked"/><img src ="'+nav[i][0].icon+'"/>' + nav[i][0].text;
@@ -902,7 +901,7 @@ function rendering(empcode,that){
 			}
 			//初始被选中的标签
 			for(var j = 0; j < USEROTHER.length; j++){
-				if(panelUl.children[i].children[0].value == USEROTHER[j].menuid){
+				if(panelUl.children[i].children[0].value == USEROTHER[j].menuid&&USEROTHER[j].value == '1'){
 					panelUl.children[i].children[0].checked = 'checked';
 				}
 			}
@@ -1104,8 +1103,20 @@ function submit(){
 				itemPanelUlObject.menuid = itemPanelUl.children[i].children[0].value;
 				itemPanelUlObject.text = itemPanelUl.children[i].innerText;
 				itemPanelUlObject.textEn = itemPanelUl.children[i].children[0].dataset.texten;
-				console.dir(itemPanelUl.children[i].children[0]);
 				itemPanelUlObject.value = 1;
+				itemPanelUlObject.emplCode = USEREMPCODE;
+				itemPanelUlArray.push(itemPanelUlObject);
+			}else{
+				var itemPanelUlObject = new Object();
+				if(itemPanelUl.children[i].dataset.value != 'undefined'){
+					itemPanelUlObject.perent = itemPanelUl.children[i].dataset.value;
+				}else{
+					itemPanelUlObject.perent = "";
+				};
+				itemPanelUlObject.menuid = itemPanelUl.children[i].children[0].value;
+				itemPanelUlObject.textEn = itemPanelUl.children[i].innerText;
+				itemPanelUlObject.value = 0;
+				itemPanelUlObject.text = itemPanelUl.children[i].children[0].dataset.text;
 				itemPanelUlObject.emplCode = USEREMPCODE;
 				itemPanelUlArray.push(itemPanelUlObject);
 			}

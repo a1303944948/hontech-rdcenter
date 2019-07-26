@@ -56,7 +56,6 @@ $.ajax({
 	async: false,
 	success: function(data){
 		canvas(data);
-		c('index_fixed_loading')[0].style.display = 'none';
 		sessionStorage.setItem("fixedCount", 1);
 	}
 })

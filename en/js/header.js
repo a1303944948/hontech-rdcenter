@@ -341,10 +341,10 @@ exitLogin.onclick = function(){
 
 //请求头部面包屑导航及权限控制数据
 $.ajax({
-	url: URLZ + '/jf/bg/basic/cfc/searchClassifiMenu.json',
+	url: URLZ + '/jf/bg/basic/sac/searchSubAthor.json',
 	type: 'post',
 	data: {
-		empcode: loginUserName.empcode,
+		emplCode: loginUserName.empcode,
 	},
 	dataType: 'json',
 	success: function(data){
@@ -368,7 +368,7 @@ $.ajax({
 				for(var i = 0; i <　objects.length; i++){
 					　for(var j = 0; j < obj.length; j++){
 						if(objects[i].menuid == obj[j].menuid){
-							objects[i].value = 1;
+							objects[i].value = obj[j].value;
 						}
 					}
 				}
@@ -653,7 +653,7 @@ function Authority(user){
 			USERHEAD = [];
 			DATAHEAD = [];
 			for(var i = 0; i < data.obj.length; i++){
-				if(menuid == data.obj[i].perent){
+				if(menuid == data.obj[i].perent&&data.obj[i].value == '1'){
 					MACHHEAD.push(data.obj[i]);
 					KITHEAD.push(data.obj[i]);
 					USERHEAD.push(data.obj[i]);
@@ -723,8 +723,6 @@ function passFixed(){
 			alern('Password Is Null！');
 			return false;
 		}
-		console.log(loginUserName.empcode);
-		console.log(comifPass.value);
 		$.ajax({
 			type: 'post',
 			url: URLZ + '/jf/bg/basic/new/updatePWD.json',

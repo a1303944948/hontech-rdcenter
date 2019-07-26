@@ -167,6 +167,7 @@ var URLX = 'https://api.hontech-rdcenter.com:8443/bg-uc';
 var URLZ = 'https://api.hontech-rdcenter.com:8443/bg-uc';
 var URLY = 'https://api.hontech-rdcenter.com:8443/bg-uc';
 var OSSURL = 'https://hf-web.oss-cn-shanghai.aliyuncs.com/';
+
 /*var URLS = 'http://7daqrw.natappfree.cc/bg-uc';
 var URLX = 'http://7daqrw.natappfree.cc/bg-uc';
 var URLZ = 'http://7daqrw.natappfree.cc/bg-uc';
