@@ -10,6 +10,7 @@ function byStart(machCODE){
 		data: {
 			machCode: machCODE,
 		},
+		async: false,
 		dataType: 'json',
 		success: function(data){
 			MACHCOMMOD = data;
@@ -50,6 +51,7 @@ function byStart(machCODE){
 					commodityaTbodyIntaClose[q].onclick = function(){
 						commodityaTbodyInta[q].value = "";
 						commodityaTbodyInta[q].setAttribute('data-value','');
+						commodityaTbodyIntb[q].value = "";
 					}
 					commodityaTbodyInta[q].onfocus = function(){
 						var that = this;

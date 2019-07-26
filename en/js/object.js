@@ -168,13 +168,13 @@ var OSSURL = 'https://hf-web.oss-cn-shanghai.aliyuncs.com/';
 var URLX = 'http://10.1.8.36:8080/bg-uc';
 var URLZ = 'http://10.1.8.36:8080/bg-uc';
 var URLY = 'http://10.1.8.36:8080/bg-uc';
-var OSSURL = 'http://hf-web.oss-cn-shanghai.aliyuncs.com/';
+var OSSURL = 'http://hf-web.oss-cn-shanghai.aliyuncs.com/';*/
 /*var URLS = 'http://10.1.8.34:8080/bg-uc';
 var URLX = 'http://10.1.8.34:8080/bg-uc';
 var URLZ = 'http://10.1.8.34:8080/bg-uc';
 var URLY = 'http://10.1.8.34:8080/bg-uc';
-var OSSURL = 'http://hf-web.oss-cn-shanghai.aliyuncs.com/';
-*/
+var OSSURL = 'http://hf-web.oss-cn-shanghai.aliyuncs.com/';*/
+
 //销售分析页面数据
 var LIST = [
 	['By Value','By Sales'],

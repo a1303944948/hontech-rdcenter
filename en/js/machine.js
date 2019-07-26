@@ -2313,6 +2313,11 @@ function renderingRoad(machCODE){
 				}
 			}
 			byStart(machCODE);
+			if(MACHROAD.type != 'a'){
+				for(let i = 0; i <　c('user_body_right_foot_item_commoditya_tbody_intb').length; i++){
+					c('user_body_right_foot_item_commoditya_tbody_intb')[i].disabled = 'disabled';
+				}
+			}
 		},
 	})
 	//保存货道配置

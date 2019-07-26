@@ -39,9 +39,9 @@ document.writeln("	<div class=\'header\'></div>");
 
 //系统公告通知
 function noticed(){
-	let headerNotice = c('header_notice')[0];
-	let headerNoticeList = c('header_notice_list')[0];
-	let timor,clearTimor;
+	var headerNotice = c('header_notice')[0];
+	var headerNoticeList = c('header_notice_list')[0];
+	var timor,clearTimor;
 
 	//系统公告的头部展开收起效果
 	headerNotice.onmouseenter = function(){
@@ -70,11 +70,11 @@ function noticed(){
 			clearTimeout(clearTimor);
 			clearTimor = undefined;
 		},300)
-	}
+	};
 
-	let headerNoticeB = c('header_notice_b')[0];	//未查看消息条数统计
+	var headerNoticeB = c('header_notice_b')[0];	//未查看消息条数统计
 	//系统公告的主要内容渲染
-	let alertNoticeArr = [];		//弹窗消息汇总
+	var alertNoticeArr = [];		//弹窗消息汇总
 	$.ajax({
 		type: 'post',
 		url: URLX + '/jf/announcement/search.json',
@@ -84,18 +84,18 @@ function noticed(){
 			usercode: loginUserName.empcode,
 		},
 		success: function(data){
-			let headerNoticeListUl = c('header_notice_list_ul')[0];
+			var headerNoticeListUl = c('header_notice_list_ul')[0];
 			headerNoticeListUl.innerHTML = '';
 			if(data.objs === undefined||data.objs.length === 0){
-				let li = creat('li');
+				var li = creat('li');
 				li.innerHTML = 'Notice Is Null!';
 				headerNoticeListUl.appendChild(li);
 				headerNoticeB.style.opacity = '0';
 				return false;
 			}
-			let headerNoticeBCount = 0;	//未查看消息条数统计
-			for(let i = 0; i < data.objs.length; i++){
-				let li = creat('li');
+			var headerNoticeBCount = 0;	//未查看消息条数统计
+			for(var i = 0; i < data.objs.length; i++){
+				var li = creat('li');
 				li.setAttribute('data-value',JSON.stringify(data.objs[i]));
 				if(!data.objs[i].usercode){
 					if(data.objs[i].type === 1){
@@ -103,11 +103,11 @@ function noticed(){
 						li.innerHTML = data.objs[i].title + '<b></b>';
 					}else if(data.objs[i].type === 2){
 						li.innerHTML = data.objs[i].title;
-						let alertNoticeObj = {};
+						var alertNoticeObj = {};
 						alertNoticeObj.title = data.objs[i].title;
 						alertNoticeObj.content = data.objs[i].content;
 						alertNoticeArr.push(alertNoticeObj);
-						let headerNoticeListUlLiObj = {};
+						var headerNoticeListUlLiObj = {};
 						headerNoticeListUlLiObj.id = data.objs[i].id;
 						headerNoticeListUlLiObj.usercode = loginUserName.empcode;
 						$.ajax({
@@ -121,8 +121,8 @@ function noticed(){
 						})
 					}
 				}else{
-					let isNull = 1;
-					for(let j in data.objs[i].usercode.split(',')){
+					var isNull = 1;
+					for(var j in data.objs[i].usercode.split(',')){
 						if(data.objs[i].usercode.split(',')[j] === loginUserName.empcode){
 							isNull = 2;
 						}
@@ -136,11 +136,11 @@ function noticed(){
 						}
 					}else if(data.objs[i].type === 2){
 						if(isNull === 1){
-							let alertNoticeObj = {};
+							var alertNoticeObj = {};
 							alertNoticeObj.title = data.objs[i].title;
 							alertNoticeObj.content = data.objs[i].content;
 							alertNoticeArr.push(alertNoticeObj);
-							let headerNoticeListUlLiObj = {};
+							var headerNoticeListUlLiObj = {};
 							headerNoticeListUlLiObj.id = data.objs[i].id;
 							headerNoticeListUlLiObj.usercode = loginUserName.empcode;
 							$.ajax({
@@ -158,7 +158,7 @@ function noticed(){
 				}
 
 				li.onclick = function(){
-					let headerNoticeListUlLiObj = {};
+					var headerNoticeListUlLiObj = {};
 					headerNoticeListUlLiObj.id = JSON.parse(this.dataset.value).id;
 					headerNoticeListUlLiObj.usercode = loginUserName.empcode;
 					alern(JSON.parse(this.dataset.value).content,JSON.parse(this.dataset.value).title);
@@ -185,8 +185,8 @@ function noticed(){
 
 			//弹窗消息应用
 			if(alertNoticeArr.length > 0){
-				let alertNoticeString = '';
-				for(let i = 0; i < alertNoticeArr.length; i++){
+				var alertNoticeString = '';
+				for(var i = 0; i < alertNoticeArr.length; i++){
 					alertNoticeString += alertNoticeArr[i].title + ':<br/><br/>';
 					alertNoticeString += alertNoticeArr[i].content + '<br/><hr color="#f0f0f0" style="height: 1px; border: none; margin-top: 10px; margin-bottom: 10px;"/><br/>';
 				}

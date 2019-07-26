@@ -261,14 +261,14 @@ function ajax(type,url,data,succ,error,json,async){
 
 //js中批量给元素添加innerHTML方法封装
 function setHTML(domArr,objArr){	//domArr为dom数组集合 objArr为被添加的字符串组成的数组
-	for(let i = 0; i < domArr.length; i++){
+	for(var i = 0; i < domArr.length; i++){
 		domArr[i].innerHTML = objArr[i];
 	}
 }
 
 //js中批量修改样式的方法封装
 function setStyle(dom,json){	//dom为元素 json为要更改的样式键值对
-	for(let i in json){
+	for(var i in json){
 		if(!json.hasOwnProperty(i)) continue;
 		dom.style[i] = json[i];
 	}
@@ -276,23 +276,23 @@ function setStyle(dom,json){	//dom为元素 json为要更改的样式键值对
 
 //js中批量设置className方法封装
 function setClass(domArr,objArr){
-	for(let i = 0; i < domArr.length; i++){
+	for(var i = 0; i < domArr.length; i++){
 		domArr[i].className = objArr[i];
 	}
 }
 
 //批量append目标
 function setAppend(dom,arr){
-	for(let i = 0; i < arr.length; i++){
+	for(var i = 0; i < arr.length; i++){
 		dom.appendChild(arr[i]);
 	}
 }
 
 //js中批量修改样式的方法封装(主要用于页面准备样式添加)
 function setStyleX(text){
-	let wmHead = n('head')[0];
+	var wmHead = n('head')[0];
 	if(c('wmStyle')[0] === undefined){
-		let wmStyle = creat('style');
+		var wmStyle = creat('style');
 		wmStyle.type = 'text/css';
 		wmStyle.className = 'wmStyle';
 		wmHead.appendChild(wmStyle);
@@ -305,22 +305,22 @@ setStyleX('/*分页样式渲染*/.wm_pagemark{border: 1px #e5e5e5 solid;border-r
 
 //分页实现
 function WmPageMark(){
-	let wmPageMark = c('wm_pagemark');
+	var wmPageMark = c('wm_pagemark');
 	if(c('wm_pagemark_body').length > 0){
-		for(let i = c('wm_pagemark_body').length;i > 0; i--){
+		for(var i = c('wm_pagemark_body').length;i > 0; i--){
 			c('wm_pagemark_body')[i-1].parentNode.removeChild(c('wm_pagemark_body')[i-1]);
 		}
 	}
-	for(let i = 0; i < wmPageMark.length; i++){
-		let datasetLength = JSON.parse(wmPageMark[i].dataset.length);
-		let datasetType = Number(wmPageMark[i].dataset.pagetype);
-		let Width,Height;
+	for(var i = 0; i < wmPageMark.length; i++){
+		var datasetLength = JSON.parse(wmPageMark[i].dataset.length);
+		var datasetType = Number(wmPageMark[i].dataset.pagetype);
+		var Width,Height;
 		!wmPageMark[i].dataset.width?Width = 530:Width = wmPageMark[i].dataset.width;
 		!wmPageMark[i].dataset.height?Height = 40:Height = wmPageMark[i].dataset.height;
 		wmPageMark[i].style.height = Height + 'px';
 		wmPageMark[i].style.width = Width + 'px';
 		wmPageMark[i].style.opacity = 1;
-		let wmPageMarkBody = creat('div');
+		var wmPageMarkBody = creat('div');
 		setClass([wmPageMarkBody],['wm_pagemark_body']);
 		setHTML([wmPageMarkBody],['<button onclick="WmPageMarkItem(this,1,'+datasetType+')" style="margin-top:'+(Height-30)/2+'px;">First</button><button onclick="WmPageMarkItem(this,2,'+datasetType+')" style="margin-top:'+(Height-30)/2+'px;">Prev</button><span>'+Math.ceil(datasetLength[0]/datasetLength[2])+' pages in total，Go to page<input type="number" style="margin-top:'+(Height-30)/2+'px;" value="'+datasetLength[1]+'"/></span><button onclick="WmPageMarkItem(this,3,'+datasetType+')" style="margin-top:'+(Height-30)/2+'px;">Go</button><button onclick="WmPageMarkItem(this,4,'+datasetType+')" style="margin-top:'+(Height-30)/2+'px;">Next</button><button onclick="WmPageMarkItem(this,5,'+datasetType+')" style="margin-top:'+(Height-30)/2+'px;">Final</button>']);
 		setAppend(wmPageMark[i],[wmPageMarkBody]);
@@ -328,7 +328,7 @@ function WmPageMark(){
 }
 //分页的按钮触发事件
 function WmPageMarkItem(that,num,type){
-	let datasetLength = JSON.parse(that.parentNode.parentNode.dataset.length);
+	var datasetLength = JSON.parse(that.parentNode.parentNode.dataset.length);
 	switch(num){
 		case 1:
 			if(Number(that.parentNode.children[2].children[0].value) !== 1){

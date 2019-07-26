@@ -10,9 +10,9 @@ function byStart(machCODE){
 		data: {
 			machCode: machCODE,
 		},
+		async: false,
 		dataType: 'json',
 		success: function(data){
-			console.log(data);
 			MACHCOMMOD = data;
 			var commodityaTbody = c('user_body_right_foot_item_commoditya_tbody')[0];
 			commodityaTbody.innerHTML = "";
@@ -51,6 +51,7 @@ function byStart(machCODE){
 					commodityaTbodyIntaClose[q].onclick = function(){
 						commodityaTbodyInta[q].value = "";
 						commodityaTbodyInta[q].setAttribute('data-value','');
+						commodityaTbodyIntb[q].value = "";
 					}
 					commodityaTbodyInta[q].onfocus = function(){
 						var that = this;

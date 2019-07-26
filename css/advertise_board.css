@@ -173,7 +173,8 @@ html,body{
 	padding: 3px 5px;
 	border-radius: 3px;
 	background-color: #ffffff;
-	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 .user_head_ul>li>a:hover{
 	background-color: #e5e5e5;
@@ -206,7 +207,8 @@ html,body{
 .user_head_ul_show>li>a{
 	padding: 3px 5px;
 	border-radius: 3px;
-	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 .user_head_ul_show>li>a:hover{
 	background-color: #e5e5e5;
@@ -639,7 +641,8 @@ html,body{
 	color: #ffffff;
 	border-radius: 3px;
 	cursor: pointer;
-	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 .startTimeDick_bottom:hover{
 	background-color: #0E72BE;
@@ -786,7 +789,8 @@ html,body{
 	color: #ffffff;
 	border-radius: 3px;
 	cursor: pointer;
-	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 .endTimeDick_bottom:hover{
 	background-color: #0E72BE;
@@ -896,7 +900,8 @@ html,body{
 	right: 5px;
 	top: 5px;
 	cursor: pointer;
-	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 	transition: 1s;
 }
 .advertise_board_fixed_body_clear:hover{
@@ -947,7 +952,8 @@ html,body{
 .advertise_board_fixed_body_home_ul>li>a{
 	padding: 3px 5px;
 	border-radius: 3px;
-	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 .advertise_board_upload_fixed{
 	display: none;
@@ -989,7 +995,8 @@ html,body{
 	right: 5px;
 	top: 5px;
 	cursor: pointer;
-	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 	transition: 1s;
 }
 .advertise_board_upload_fixed_body_clear:hover{

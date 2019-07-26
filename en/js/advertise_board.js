@@ -177,7 +177,7 @@ userHeadSubmit.onclick = function(){
 		data: {
 			id: userHeadGroup,
 			by: "",
-			stop: "",
+			stop: "1",
 		},
 		success: function(data){
 			console.log(data);
@@ -305,7 +305,7 @@ function rest(){
 	//select下拉框渲染
 	var footFixedTbodyType = c('user_body_right_foot_fixed_tbody_type');
 	var footFixedTbodySelect = c('advertise_board_position');
-	let footFixedTbodyAddr = c('user_body_right_foot_fixed_tbody_addr');
+	var footFixedTbodyAddr = c('user_body_right_foot_fixed_tbody_addr');
 	for(var i = 0; i < footFixedTbodyType.length; i++){
 		//类型渲染
 		var ul = creat('ul');
@@ -605,7 +605,7 @@ function rest(){
 
 //选择资源下拉框
 function ResourceSelect(that){
-	let footFixedTbodyAddrArr = [];
+	var footFixedTbodyAddrArr = [];
 	$.ajax({
 		type: 'post',
 		url: URLS + '/oss/upload/getUrls.json',
@@ -619,11 +619,11 @@ function ResourceSelect(that){
 				that.parentNode.removeChild(that.parentNode.children[2]);
 			}
 			footFixedTbodyAddrArr = data.result;
-			let ulx = creat('ul');
+			var ulx = creat('ul');
 			ulx.className = 'user_body_right_foot_fixed_tbody_addr_ul';
 			ulx.style.width = that.clientWidth + 'px';
-			for(let i = 0; i < footFixedTbodyAddrArr.length; i++){
-				let lix = creat('li');
+			for(var i = 0; i < footFixedTbodyAddrArr.length; i++){
+				var lix = creat('li');
 				lix.innerHTML = footFixedTbodyAddrArr[i].remark;
 				lix.setAttribute('data-value',footFixedTbodyAddrArr[i].url);
 				lix.onmousedown = function(){
@@ -657,9 +657,9 @@ c('user_body_right_foot_foot_add')[0].onclick = function(){
 
 
 //上传资源功能实现
-let advertiseBoardUploadFixed = c('advertise_board_upload_fixed')[0];
+var advertiseBoardUploadFixed = c('advertise_board_upload_fixed')[0];
 c('user_body_right_foot_foot_upload')[0].onclick = function(){
-	let advertiseUploadError = "";
+	var advertiseUploadError = "";
 
 	if(advertiseUploadError !== ""){
 		alern(advertiseUploadError);
@@ -667,8 +667,8 @@ c('user_body_right_foot_foot_upload')[0].onclick = function(){
 	}
 	advertiseBoardUploadFixed.style.display = 'block';
 
-	let advertiseBoardUploadFixedBody = c('advertise_board_upload_fixed_body')[0];
-	let advertiseBoardUploadFixedBodyHome = c('advertise_board_upload_fixed_body_home')[0];
+	var advertiseBoardUploadFixedBody = c('advertise_board_upload_fixed_body')[0];
+	var advertiseBoardUploadFixedBodyHome = c('advertise_board_upload_fixed_body_home')[0];
 	advertiseBoardUploadFixedBody.style.maxHeight = window.innerHeight - 160 + 'px';
 	advertiseBoardUploadFixedBodyHome.style.maxHeight = parseInt(advertiseBoardUploadFixedBody.style.maxHeight) - 80 + 'px';
 	advertiseBoardUploadFixedBody.style.marginTop = -(advertiseBoardUploadFixedBody.clientHeight/2 -50) + 'px';
@@ -681,7 +681,7 @@ c('advertise_board_upload_fixed_body_clear')[0].onclick = function(){
 //添加一条资源
 c('advertise_board_upload_fixed_body_home_add')[0].onclick = function() {
 	c('advertise_board_upload_fixed_body_home_tableS')[0].style.display = "table";
-	let tbodyS = c('advertise_board_upload_fixed_body_home_tbodyS')[0],
+	var tbodyS = c('advertise_board_upload_fixed_body_home_tbodyS')[0],
 		tr = creat('tr'),
 		tda = creat('td'),
 		tdb = creat('td'),
@@ -698,8 +698,8 @@ c('advertise_board_upload_fixed_body_home_add')[0].onclick = function() {
 	tbodyS.appendChild(tr);
 	UploadOss(c('advertise_board_upload_fixed_body_home_tbodyS_file').length-1);
 
-	let advertiseBoardUploadFixedBody = c('advertise_board_upload_fixed_body')[0];
-	let advertiseBoardUploadFixedBodyHome = c('advertise_board_upload_fixed_body_home')[0];
+	var advertiseBoardUploadFixedBody = c('advertise_board_upload_fixed_body')[0];
+	var advertiseBoardUploadFixedBodyHome = c('advertise_board_upload_fixed_body_home')[0];
 	advertiseBoardUploadFixedBody.style.maxHeight = window.innerHeight - 160 + 'px';
 	advertiseBoardUploadFixedBodyHome.style.maxHeight = parseInt(advertiseBoardUploadFixedBody.style.maxHeight) - 80 + 'px';
 	advertiseBoardUploadFixedBody.style.marginTop = -(advertiseBoardUploadFixedBody.clientHeight/2 -50) + 'px';
@@ -746,9 +746,9 @@ function tbodySValue(that){
 	that.parentNode.parentNode.children[0].children[0].setAttribute('data-name',that.value);
 }
 
-let count = 0;
-let tbodyFileArray = [];
-let tbodyFileObject = {};
+var count = 0;
+var tbodyFileArray = [];
+var tbodyFileObject = {};
 //OSS文件上传事件
 function UploadOss(num){
 	var uploader = new plupload.Uploader({
@@ -783,7 +783,7 @@ function UploadOss(num){
 						return false;
 					}
 
-					let advertiseBoardUploadFixedBodyHomeTbodySFile = c('advertise_board_upload_fixed_body_home_tbodyS_file'),
+					var advertiseBoardUploadFixedBodyHomeTbodySFile = c('advertise_board_upload_fixed_body_home_tbodyS_file'),
 						tbodyFileError = '';
 					tbodyFileArray = [];
 					if(advertiseBoardUploadFixedBodyHomeTbodySFile.length === 0){
@@ -838,7 +838,7 @@ function UploadOss(num){
 				if (info.status == 200)
 				{
 					c('advertise_board_upload_fixed_body_home_tbodyS_file')[num].setAttribute('data-url',host + '/' + new_multipart_params.key);
-					let advertiseBoardUploadFixedBodyHomeTbodyS = c('advertise_board_upload_fixed_body_home_tbodyS')[0],
+					var advertiseBoardUploadFixedBodyHomeTbodyS = c('advertise_board_upload_fixed_body_home_tbodyS')[0],
 						advertiseBoardUploadFixedBodyHomeTbodySFile = c('advertise_board_upload_fixed_body_home_tbodyS_file');
 					console.log(JSON.stringify(tbodyFileArray));
 					tbodyFileObject.url = advertiseBoardUploadFixedBodyHomeTbodySFile[num].dataset.url;
@@ -911,7 +911,7 @@ function UploadOss(num){
 
 //获取广告列表
 function boardListGet(){
-	let advertiseBoardUploadFixedBodyHomeTbody = c('advertise_board_upload_fixed_body_home_tbody')[0];
+	var advertiseBoardUploadFixedBodyHomeTbody = c('advertise_board_upload_fixed_body_home_tbody')[0];
 	advertiseBoardUploadFixedBodyHomeTbody.innerHTML = "";
 	c('advertise_board_upload_fixed_body_home_table')[0].style.display = 'table';
 	$.ajax({
@@ -926,13 +926,13 @@ function boardListGet(){
 			if(data.result.length <= 0){
 				c('advertise_board_upload_fixed_body_home_table')[0].style.display = 'none';
 			}
-			for(let i = 0; i < data.result.length; i++){
-				let tr = creat('tr');
+			for(var i = 0; i < data.result.length; i++){
+				var tr = creat('tr');
 				tr.setAttribute('data-value',JSON.stringify(data.result[i]));
-				let tda = creat('td');
-				let tdb = creat('td');
-				let tdc = creat('td');
-				let tdd = creat('td');
+				var tda = creat('td');
+				var tdb = creat('td');
+				var tdc = creat('td');
+				var tdd = creat('td');
 				tda.innerHTML = '<input readonly="readonly" type="text" value="'+data.result[i].url+'" />';
 				tdb.innerHTML = data.result[i].type;
 				tdc.innerHTML = data.result[i].remark;				
@@ -947,15 +947,15 @@ function boardListGet(){
 	})
 }
 //预览事件
-let advertiseBoardViewFixed = c('advertise_board_view_fixed')[0];
+var advertiseBoardViewFixed = c('advertise_board_view_fixed')[0];
 function viewBoard(that){
 	console.log(that.dataset.url);
-	let thisSplit = that.dataset.url.split('.');
+	var thisSplit = that.dataset.url.split('.');
 	if(that.dataset.url){
 		if(thisSplit[thisSplit.length-1] == 'mp4'||thisSplit[thisSplit.length-1] == '3gp'||thisSplit[thisSplit.length-1] == 'avi'){
 			loading('加载资源');
 			advertiseBoardViewFixed.innerHTML = '';
-			let video = creat('video');
+			var video = creat('video');
 			video.autoplay = 'autoplay';
 			video.controls = 'controls';
 			video.src = that.dataset.url;
@@ -981,7 +981,7 @@ function viewBoard(that){
 			loading('加载资源');
 			advertiseBoardViewFixed.style.display = 'block';
 			advertiseBoardViewFixed.innerHTML = '';
-			let img = creat('img');
+			var img = creat('img');
 			img.src = that.dataset.url;
 			advertiseBoardViewFixed.appendChild(img);
 			advertiseBoardViewFixed.children[0].onload = function(){
@@ -1141,7 +1141,6 @@ function submit(){
 		var startTime = c('startTime');									//开始时间
 		var endTime = c('endTime');										//结束时间
 		var advertiseBoardPosition = c('advertise_board_position');		//广告位
-		var advertiseBoardLabel = c('advertise_board_label');			//广告标签
 		var advertiseArray = [];
 		var advertiseError = "";
 
@@ -1177,7 +1176,7 @@ function submit(){
 			advertiseObject.startTime = startTime[i].value;
 			advertiseObject.endTime = endTime[i].value;
 			advertiseObject.advertPosition = advertiseBoardPosition[i].value;
-			advertiseObject.content = advertiseBoardLabel[i].value;
+			advertiseObject.content = advertiseBoardAddr[i].value;
 			advertiseArray.push(advertiseObject);
 		}
 		if(advertiseError != ""){
@@ -1210,7 +1209,6 @@ function submit(){
 		var startTime = c('startTime');									//开始时间
 		var endTime = c('endTime');										//结束时间
 		var advertiseBoardPosition = c('advertise_board_position');		//广告位
-		var advertiseBoardLabel = c('advertise_board_label');			//广告标签
 		var advertiseArr = [];		//获取设备编号集合
 		for(var i = 0; i < adviertisementFixedInt.length; i++){
 			if(adviertisementFixedInt[i].checked){
@@ -1223,8 +1221,7 @@ function submit(){
 					advertiseObject.duration = advertiseBoardTime[j].value;
 					advertiseObject.startTime = startTime[j].value;
 					advertiseObject.endTime = endTime[j].value;
-					advertiseObject.advertPosition = advertiseBoardPosition[j].value;
-					advertiseObject.content = advertiseBoardLabel[j].value;*/
+					advertiseObject.advertPosition = advertiseBoardPosition[j].value;*/
 				//}
 				//advertiseArray.push(advertiseArr);
 			}
@@ -1238,7 +1235,7 @@ function submit(){
 			advertiseObject.startTime = startTime[j].value;
 			advertiseObject.endTime = endTime[j].value;
 			advertiseObject.advertPosition = advertiseBoardPosition[j].value;
-			advertiseObject.content = advertiseBoardLabel[j].value;
+			advertiseObject.content = advertiseBoardAddr[j].value;
 			advertiseArray.push(advertiseObject);
 		}
 		loading();
