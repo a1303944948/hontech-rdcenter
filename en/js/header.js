@@ -22,13 +22,13 @@ document.writeln("						<span id='edit_pass'><img src=\'image/zhgl.png\'>Passwor
 document.writeln("						<span id='exit_login'><img src=\'image/tc.png\'>Safety Exit</span>");
 document.writeln("					</div>");
 document.writeln("				</div>");
-document.writeln("				<div class=\'header_notice\'>");
+/*document.writeln("				<div class=\'header_notice\'>");
 document.writeln("					<img src=\'image/xxtz.png\' title=\'Notice\'/><b class=\'header_notice_b\'></b>");
 document.writeln("					<div class=\'header_notice_list\'>");
 document.writeln("						<div class=\'header_notice_list_top\'></div><div class=\'clear\'></div>");
 document.writeln("						<ul class=\'header_notice_list_ul\'></ul>");
 document.writeln("					</div>");
-document.writeln("				</div>");
+document.writeln("				</div>");*/
 document.writeln("				<div class=\'clear\'></div>");
 document.writeln("			</div>");
 document.writeln("			<div class=\'clear\'></div>");
@@ -184,7 +184,9 @@ function noticed(){
 			}
 
 			//弹窗消息应用
-			if(alertNoticeArr.length > 0){
+			if(alertNoticeArr.length > 0&&alertNoticeArr.length === 1){
+				alern(alertNoticeArr[i].content,alertNoticeArr[i].title);
+			}else if(alertNoticeArr.length > 0&&alertNoticeArr.length !== 1){
 				var alertNoticeString = '';
 				for(var i = 0; i < alertNoticeArr.length; i++){
 					alertNoticeString += alertNoticeArr[i].title + ':<br/><br/>';
@@ -195,7 +197,7 @@ function noticed(){
 		}
 	})
 }
-noticed();
+/*noticed();*/
 
 //顶部渲染
 function head(obj){

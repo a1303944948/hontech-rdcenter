@@ -183,7 +183,9 @@ function noticed(){
 			}
 
 			//弹窗消息应用
-			if(alertNoticeArr.length > 0){
+			if(alertNoticeArr.length > 0&&alertNoticeArr.length === 1){
+				alern(alertNoticeArr[0].content,alertNoticeArr[0].title);
+			}else if(alertNoticeArr.length > 0&&alertNoticeArr.length !== 1){
 				var alertNoticeString = '';
 				for(var i = 0; i < alertNoticeArr.length; i++){
 					alertNoticeString += alertNoticeArr[i].title + ':<br/><br/>';

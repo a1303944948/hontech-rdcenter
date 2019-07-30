@@ -261,9 +261,9 @@ function adCreat(Arra,Arrb,Arrc,Arrd,Arre,Arrf,Arrg){
 	tda.innerHTML = count;
 	var Arrarr = "";
 	if(Arra == "image"){
-		Arrarr = "图片/image";
+		Arrarr = "图片";
 	}else if(Arra == "video"){
-		Arrarr = "视频/video";
+		Arrarr = "视频";
 	}
 	tdb.innerHTML = '<input class="user_body_right_foot_fixed_tbody_type advertise_board_type" style="cursor: pointer;" type="text" placeholder="请选择..." readonly="readonly" name="'+Arra+'" value="'+Arrarr+'" /><b></b>';
 	tdc.innerHTML = '<input class="user_body_right_foot_fixed_tbody_addr advertise_board_addr" style="cursor: pointer;" readonly="readonly" type="text" placeholder="请选择资源" data-type="'+Arra+'" data-value="'+Arrb+'" value="'+Arrg+'"/><b></b>';
@@ -313,9 +313,9 @@ function rest(){//select下拉框渲染
 		var lia = creat('li');
 		var lib = creat('li');
 		lia.setAttribute('data-value','image');
-		lia.innerHTML = "图片/image";
+		lia.innerHTML = "图片";
 		lib.setAttribute('data-value','video');
-		lib.innerHTML = "视频/video";
+		lib.innerHTML = "视频";
 		ul.appendChild(lia);
 		ul.appendChild(lib);
 		if(footFixedTbodyType[i].parentNode.children[2] != undefined){
@@ -688,7 +688,7 @@ c('advertise_board_upload_fixed_body_home_add')[0].onclick = function() {
 		tdc = creat('td'),
 		tdd = creat('td');
 	tda.innerHTML = '<div class="advertise_board_upload_fixed_body_home_tbodyS_file" data-type="image" data-name="" data-url="">请选择文件上传...</div><!--<input class="advertise_board_upload_fixed_body_home_tbodyS_file" onchange="tbodyS(this)" type="file" data-value="1" accept=".jpg,.jpeg,.png,.gif,.bmp"/>-->';
-	tdb.innerHTML = '<select onchange="tbodySelect(this)"><option value="image">图片/image</option><option value="video">视频/video</option></select>';
+	tdb.innerHTML = '<select onchange="tbodySelect(this)"><option value="image">图片</option><option value="video">视频</option></select>';
 	tdc.innerHTML = '<input type="text" oninput="tbodySValue(this);" placeholder="输入广告名称..."/>';
 	tdd.innerHTML = '<button class="advertise_board_upload_fixed_body_home_tbodyS_btn">上传</button><button onclick="deleteBoardList(this);">删除</button>';
 	tr.appendChild(tda);
@@ -934,7 +934,11 @@ function boardListGet(){
 				var tdc = creat('td');
 				var tdd = creat('td');
 				tda.innerHTML = '<input readonly="readonly" type="text" value="'+data.result[i].url+'" />';
-				tdb.innerHTML = data.result[i].type;
+				if(data.result[i].type == 'video'){
+					tdb.innerHTML = '视频';
+				}else{
+					tdb.innerHTML = '图片';
+				}
 				tdc.innerHTML = data.result[i].remark;
 				tdd.innerHTML = '<button style="margin-right: 5px;" data-url=\''+data.result[i].url+'\' onclick="viewBoard(this)">预览</button><button data-value=\''+JSON.stringify(data.result[i])+'\' onclick="deleteBoard(this)">删除</button>';
 				tr.appendChild(tda);
@@ -1191,12 +1195,18 @@ function submit(){
 				adDate: JSON.stringify(advertiseArray)
 			},
 			success: function(data){
-				console.log(data);
-				if(data.a||data.a == undefined){
-					alern('保存成功');
+				if(data.code === 10001){
+					alern(data.msg);
+				}else if(data.code === 10002){
+					alern(data.msg);
+				}else if(data.code === 10003){
+					alern(data.msg);
 				}else{
-					alern('保存失败');
-				};
+					alern('未知错误！');
+				}
+			},
+			error: function(){
+				alern('未知错误！');
 			}
 		})
 	}
@@ -1248,15 +1258,22 @@ function submit(){
 				machCodeData: JSON.stringify(advertiseArr),
 			},
 			success: function(data){
-				console.log(data);
-				if(data.a){
+				if(data.code === 10001){
 					loadingClear();
-					alern('应用成功!');
+					alern('应用成功');
 					advertiseBoardFixed.style.display = 'none';
-				}else{
+				}else if(data.code === 10002){
 					loadingClear();
-					alern('应用失败!');
-				};
+					alern('应用失败');
+				}else if(data.code === 10003){
+					loadingClear();
+					alern('数据异常');
+				}else{
+					alern('未知错误！');
+				}
+			},
+			error: function(){
+				alern('未知错误');
 			}
 		})
 	}

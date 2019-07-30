@@ -261,17 +261,17 @@ function adCreat(Arra,Arrb,Arrc,Arrd,Arre,Arrf,Arrg){
 	tda.innerHTML = count;
 	var Arrarr = "";
 	if(Arra == "image"){
-		Arrarr = "图片/image";
+		Arrarr = "image";
 	}else if(Arra == "video"){
-		Arrarr = "视频/video";
+		Arrarr = "video";
 	}
-	tdb.innerHTML = '<input class="user_body_right_foot_fixed_tbody_type advertise_board_type" style="cursor: pointer;" type="text" placeholder="请选择..." readonly="readonly" name="'+Arra+'" value="'+Arrarr+'" /><b></b>';
-	tdc.innerHTML = '<input class="user_body_right_foot_fixed_tbody_addr advertise_board_addr" style="cursor: pointer;" readonly="readonly" type="text" placeholder="请选择资源" data-type="'+Arra+'" data-value="'+Arrb+'" value="'+Arrg+'"/><b></b>';
+	tdb.innerHTML = '<input class="user_body_right_foot_fixed_tbody_type advertise_board_type" style="cursor: pointer;" type="text" placeholder="select..." readonly="readonly" name="'+Arra+'" value="'+Arrarr+'" /><b></b>';
+	tdc.innerHTML = '<input class="user_body_right_foot_fixed_tbody_addr advertise_board_addr" style="cursor: pointer;" readonly="readonly" type="text" placeholder="select..." data-type="'+Arra+'" data-value="'+Arrb+'" value="'+Arrg+'"/><b></b>';
 	tdd.innerHTML = '<input class="advertise_board_time" type="number" placeholder="Enter..." value="'+Arrc+'"/>';
-	tde.innerHTML = '<input class="startTime" type="text" readonly="readonly" style="cursor: pointer;" value="'+Arrd+'"/><div class="startTimeDick"><div class="startTimeDick_left"><div class="startTimeDick_left_top"><b></b></div><div class="startTimeDick_left_center"><input type="number" value="00"/>:</div><div class="startTimeDick_left_bottom"><b></b></div></div><div class="startTimeDick_right"><div class="startTimeDick_right_top"><b></b></div><div class="startTimeDick_right_center"><input type="number" value="00"/></div><div class="startTimeDick_right_bottom"><b></b></div></div><div class="clear"></div><div class="startTimeDick_bottom">确认<div></div>';
-	tdf.innerHTML = '<input class="endTime" type="text" readonly="readonly" style="cursor: pointer;" value="'+Arre+'"/><div class="endTimeDick"><div class="endTimeDick_left"><div class="endTimeDick_left_top"><b></b></div><div class="endTimeDick_left_center"><input type="number" value="00"/>:</div><div class="endTimeDick_left_bottom"><b></b></div></div><div class="endTimeDick_right"><div class="endTimeDick_right_top"><b></b></div><div class="endTimeDick_right_center"><input type="number" value="00"/></div><div class="endTimeDick_right_bottom"><b></b></div></div><div class="clear"></div><div class="endTimeDick_bottom">确认<div></div>';
+	tde.innerHTML = '<input class="startTime" type="text" readonly="readonly" style="cursor: pointer;" value="'+Arrd+'"/><div class="startTimeDick"><div class="startTimeDick_left"><div class="startTimeDick_left_top"><b></b></div><div class="startTimeDick_left_center"><input type="number" value="00"/>:</div><div class="startTimeDick_left_bottom"><b></b></div></div><div class="startTimeDick_right"><div class="startTimeDick_right_top"><b></b></div><div class="startTimeDick_right_center"><input type="number" value="00"/></div><div class="startTimeDick_right_bottom"><b></b></div></div><div class="clear"></div><div class="startTimeDick_bottom">Confirm<div></div>';
+	tdf.innerHTML = '<input class="endTime" type="text" readonly="readonly" style="cursor: pointer;" value="'+Arre+'"/><div class="endTimeDick"><div class="endTimeDick_left"><div class="endTimeDick_left_top"><b></b></div><div class="endTimeDick_left_center"><input type="number" value="00"/>:</div><div class="endTimeDick_left_bottom"><b></b></div></div><div class="endTimeDick_right"><div class="endTimeDick_right_top"><b></b></div><div class="endTimeDick_right_center"><input type="number" value="00"/></div><div class="endTimeDick_right_bottom"><b></b></div></div><div class="clear"></div><div class="endTimeDick_bottom">Confirm<div></div>';
 	tdg.innerHTML = '<input class="user_body_right_foot_fixed_tbody_select advertise_board_position" style="cursor: pointer;" type="text" placeholder="Select..." readonly="readonly" value="'+Arrf+'"/><b></b>';
-	tdh.innerHTML = '<button class="user_body_right_foot_fixed_tbody_delete"><img src="image/sc.png"/>删除</button>';
+	tdh.innerHTML = '<button class="user_body_right_foot_fixed_tbody_delete"><img src="image/sc.png"/>Delete</button>';
 	tr.appendChild(tda);
 	tr.appendChild(tdb);
 	tr.appendChild(tdc);
@@ -314,9 +314,9 @@ function rest(){
 		var lia = creat('li');
 		var lib = creat('li');
 		lia.setAttribute('data-value','image');
-		lia.innerHTML = "图片/image";
+		lia.innerHTML = "image";
 		lib.setAttribute('data-value','video');
-		lib.innerHTML = "视频/video";
+		lib.innerHTML = "video";
 		ul.appendChild(lia);
 		ul.appendChild(lib);
 		if(footFixedTbodyType[i].parentNode.children[2] != undefined){
@@ -687,10 +687,10 @@ c('advertise_board_upload_fixed_body_home_add')[0].onclick = function() {
 		tdb = creat('td'),
 		tdc = creat('td'),
 		tdd = creat('td');
-	tda.innerHTML = '<div class="advertise_board_upload_fixed_body_home_tbodyS_file" data-type="image" data-name="" data-url="">请选择文件上传...</div><!--<input class="advertise_board_upload_fixed_body_home_tbodyS_file" onchange="tbodyS(this)" type="file" data-value="1" accept=".jpg,.jpeg,.png,.gif,.bmp"/>-->';
-	tdb.innerHTML = '<select onchange="tbodySelect(this)"><option value="image">图片/image</option><option value="video">视频/video</option></select>';
-	tdc.innerHTML = '<input type="text" oninput="tbodySValue(this);" placeholder="输入广告名称..."/>';
-	tdd.innerHTML = '<button class="advertise_board_upload_fixed_body_home_tbodyS_btn">上传</button><button onclick="deleteBoardList(this);">删除</button>';
+	tda.innerHTML = '<div class="advertise_board_upload_fixed_body_home_tbodyS_file" data-type="image" data-name="" data-url="">Select File...</div><!--<input class="advertise_board_upload_fixed_body_home_tbodyS_file" onchange="tbodyS(this)" type="file" data-value="1" accept=".jpg,.jpeg,.png,.gif,.bmp"/>-->';
+	tdb.innerHTML = '<select onchange="tbodySelect(this)"><option value="image">image</option><option value="video">video</option></select>';
+	tdc.innerHTML = '<input type="text" oninput="tbodySValue(this);" placeholder="Enter Ad name..."/>';
+	tdd.innerHTML = '<button class="advertise_board_upload_fixed_body_home_tbodyS_btn">Upload</button><button onclick="deleteBoardList(this);">Delete</button>';
 	tr.appendChild(tda);
 	tr.appendChild(tdb);
 	tr.appendChild(tdc);
@@ -772,14 +772,14 @@ function UploadOss(num){
 		},
 		init: {
 			PostInit: function(up) {
-				c('advertise_board_upload_fixed_body_home_tbodyS_file')[num].innerHTML = '请选择文件...';
+				c('advertise_board_upload_fixed_body_home_tbodyS_file')[num].innerHTML = 'Select File...';
 				document.querySelectorAll('.advertise_board_upload_fixed_body_home_tbodyS_btn')[num].onclick = function(){
 					if(count === 1){
-						alern('请等待上一个文件上传完毕再上传！');
+						alern('Please wait for the previous file to be uploaded before uploading!');
 						return false;
 					}
 					if(c('advertise_board_upload_fixed_body_home_tbody')[0].children.length >= 40){
-						alern('广告资源最多不能超过40条！');
+						alern('Up to 40 items in stock!');
 						return false;
 					}
 
@@ -787,18 +787,18 @@ function UploadOss(num){
 						tbodyFileError = '';
 					tbodyFileArray = [];
 					if(advertiseBoardUploadFixedBodyHomeTbodySFile.length === 0){
-						alern('请添加资源后在保存！');
+						alern('Please save the resource after adding it!');
 						return false;
 					}
 					tbodyFileObject = {};
 					if(advertiseBoardUploadFixedBodyHomeTbodySFile[num].dataset.name === ""){
-						tbodyFileError += '广告名不能为空！<br/>';
+						tbodyFileError += 'Ad name cannot be empty!<br/>';
 					}else{
 						tbodyFileObject.remark = advertiseBoardUploadFixedBodyHomeTbodySFile[num].dataset.name;
 					}
 					tbodyFileObject.type = advertiseBoardUploadFixedBodyHomeTbodySFile[num].dataset.type;
 					if(up.files.length === 0){
-						tbodyFileError += '资源文件不能为空！<br/>';
+						tbodyFileError += 'The resource file cannot be empty!<br/>';
 					}
 					if(tbodyFileError !== ""){
 						alern(tbodyFileError);
@@ -856,15 +856,15 @@ function UploadOss(num){
 								boardListGet();
 								renderingS(ADMACHCODE);
 								advertiseBoardUploadFixedBodyHomeTbodySFile[num].parentNode.parentNode.style.display='none';
-								alern('保存成功！');
+								alern('Success!');
 							}else if(data.result === 0){
-								alern('保存失败！');
+								alern('Failure!');
 							}else{
-								alern('未知错误！');
+								alern('Unknown Mistake!');
 							}
 						},
 						error: function(){
-							alern('保存失败！');
+							alern('Failure!');
 						}
 					});
 					console.log('upload to oss success, object name:' + get_uploaded_object_name() + ' 回调服务器返回的内容是:' + info.response);
@@ -872,7 +872,7 @@ function UploadOss(num){
 				}
 				else if (info.status == 203)
 				{
-					alern('上传失败！');
+					alern('Failure!');
 					console.log('上传到OSS成功，但是oss访问用户设置的上传回调服务器失败，失败原因是:' + info.response);
 					//document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '上传到OSS成功，但是oss访问用户设置的上传回调服务器失败，失败原因是:' + info.response;
 				}
@@ -886,20 +886,20 @@ function UploadOss(num){
 			Error: function(up, err) {
 				count = 0;
 				if (err.code == -600) {
-					alern("选择的文件太大了，请选择200M以内的文件上传！");
+					alern("The selected file is too large, please select a file upload within 200M!");
 					//document.getElementById('console').appendChild(document.createTextNode("\n选择的文件太大了,可以根据应用情况，在upload.js 设置一下上传的最大大小"));
 				}
 				else if (err.code == -601) {
-					alern("选择的文件后缀不对，目前仅支持图片类型：jpg,jpeg,gif,png；视频类型：mp4,3gp,avi。");
+					alern("The selected file suffix is incorrect. Currently only image types are supported: jpg, jpeg, gif, png; video type: mp4, 3gp, avi.");
 					//document.getElementById('console').appendChild(document.createTextNode("\n选择的文件后缀不对,可以根据应用情况，在upload.js进行设置可允许的上传文件类型"));
 				}
 				else if (err.code == -602) {
-					alern("这个文件已经上传过一遍了");
+					alern("Please do not upload the same file repeatedly!");
 					//document.getElementById('console').appendChild(document.createTextNode("\n这个文件已经上传过一遍了"));
 				}
 				else
 				{
-					alern('出现一个未知错误！');
+					alern('Unknown Mistake!');
 					console.log("Error xml:" + err.response);
 					//document.getElementById('console').appendChild(document.createTextNode("\nError xml:" + err.response));
 				}
@@ -936,7 +936,7 @@ function boardListGet(){
 				tda.innerHTML = '<input readonly="readonly" type="text" value="'+data.result[i].url+'" />';
 				tdb.innerHTML = data.result[i].type;
 				tdc.innerHTML = data.result[i].remark;				
-				tdd.innerHTML = '<button style="margin-right: 5px;" data-url=\''+data.result[i].url+'\' onclick="viewBoard(this)">预览</button><button data-value=\''+JSON.stringify(data.result[i])+'\' onclick="deleteBoard(this)">删除</button>';
+				tdd.innerHTML = '<button style="margin-right: 5px;" data-url=\''+data.result[i].url+'\' onclick="viewBoard(this)">Preview</button><button data-value=\''+JSON.stringify(data.result[i])+'\' onclick="deleteBoard(this)">Delete</button>';
 				tr.appendChild(tda);
 				tr.appendChild(tdb);
 				tr.appendChild(tdc);
@@ -953,7 +953,7 @@ function viewBoard(that){
 	var thisSplit = that.dataset.url.split('.');
 	if(that.dataset.url){
 		if(thisSplit[thisSplit.length-1] == 'mp4'||thisSplit[thisSplit.length-1] == '3gp'||thisSplit[thisSplit.length-1] == 'avi'){
-			loading('加载资源');
+			loading('Loading resources!');
 			advertiseBoardViewFixed.innerHTML = '';
 			var video = creat('video');
 			video.autoplay = 'autoplay';
@@ -974,11 +974,11 @@ function viewBoard(that){
 				advertiseBoardViewFixed.children[0].style.marginTop = (advertiseBoardViewFixed.clientHeight - advertiseBoardViewFixed.children[0].clientHeight)/2 + 'px';
 			}
 			advertiseBoardViewFixed.children[0].onerror = function(){
-				alern('发生错误或是该资源不存在！');
+				alern('An error occurred or the resource does not exist!');
 				loadingClear();
 			}
 		}else{
-			loading('加载资源');
+			loading('Loading resources!');
 			advertiseBoardViewFixed.style.display = 'block';
 			advertiseBoardViewFixed.innerHTML = '';
 			var img = creat('img');
@@ -997,12 +997,12 @@ function viewBoard(that){
 				advertiseBoardViewFixed.children[0].style.marginTop = (advertiseBoardViewFixed.clientHeight - advertiseBoardViewFixed.children[0].clientHeight)/2 + 'px';
 			}
 			advertiseBoardViewFixed.children[0].onerror = function(){
-				alern('发生错误或是该资源不存在！');
+				alern('An error occurred or the resource does not exist!');
 				loadingClear();
 			}
 		}
 	}else{
-		alern('未检测到资源');
+		alern('No resources detected!');
 	}
 }
 advertiseBoardViewFixed.onclick = function(){
@@ -1020,17 +1020,17 @@ function deleteBoard(that){
 		success: function(data){
 			console.log(data);
 			if(data.result === 1){
-				alern('删除成功！');
+				alern('Success!');
 			}else if(data.result === 0){
-				alern('删除失败！');
+				alern('Failure!');
 			}else{
-				alern('未知错误！');
+				alern('unknown mistake!');
 			}
 			boardListGet();
 			renderingS(ADMACHCODE);
 		},
 		error: function(){
-			alern('删除失败！');
+			alern('Failure!');
 			boardListGet();
 			renderingS(ADMACHCODE);
 		}
@@ -1171,7 +1171,7 @@ function submit(){
 				advertiseError += 'No.'+(i+1)+' Billboard Is Null!<br/>';
 			}
 			advertiseObject.machCode = ADMACHCODE;
-			advertiseObject.picOrvidUrl = advertiseBoardAddr[i].value;
+			advertiseObject.picOrvidUrl = advertiseBoardAddr[i].dataset.value;
 			advertiseObject.type = advertiseBoardType[i].name;
 			advertiseObject.startTime = startTime[i].value;
 			advertiseObject.endTime = endTime[i].value;
@@ -1193,11 +1193,18 @@ function submit(){
 				adDate: JSON.stringify(advertiseArray)
 			},
 			success: function(data){
-				if(data.a){
-					alern('Success');
+				if(data.code === 10001){
+					alern('Success!');
+				}else if(data.code === 10002){
+					alern('Failure!');
+				}else if(data.code === 10003){
+					alern('Failure!');
 				}else{
-					alern('Failure');
-				};
+					alern('Failure!');
+				}
+			},
+			error: function(){
+				alern('Failure!');
 			}
 		})
 	}
@@ -1229,7 +1236,7 @@ function submit(){
 		var advertiseArray = [];	//获取广告信息
 		for(var j = 0; j < advertiseBoardType.length; j++){
 			var advertiseObject = new Object();
-			advertiseObject.picOrvidUrl = advertiseBoardAddr[j].value;
+			advertiseObject.picOrvidUrl = advertiseBoardAddr[j].dataset.value;
 			advertiseObject.type = advertiseBoardType[j].name;
 			advertiseObject.duration = advertiseBoardTime[j].value;
 			advertiseObject.startTime = startTime[j].value;
@@ -1247,14 +1254,24 @@ function submit(){
 				machCodeData: JSON.stringify(advertiseArr),
 			},
 			success: function(data){
-				if(data.a){
+				if(data.code === 10001){
 					loadingClear();
 					alern('Success!');
 					advertiseBoardFixed.style.display = 'none';
+				}else if(data.code === 10002){
+					loadingClear();
+					alern('Failure!');
+				}else if(data.code === 10003){
+					loadingClear();
+					alern('Failure!');
 				}else{
 					loadingClear();
 					alern('Failure!');
-				};
+				}
+			},
+			error: function(){
+				loadingClear();
+				alern('Failure!');
 			}
 		})
 	}
