@@ -16,7 +16,7 @@ document.writeln("				</div>");
 document.writeln("				<div class=\'header_user\'>");
 document.writeln("					Hello , "+loginUserName.name+"<b></b>");
 document.writeln("					<div class=\'header_user_slip\'>");
-document.writeln("						<span id='pay_ment'><img src=\'image/czjf.png\'>Recharge</span>");
+//document.writeln("						<span id='pay_ment'><img src=\'image/czjf.png\'>Recharge</span>");
 document.writeln("						<span id='edit_pass'><img src=\'image/zhgl.png\'>Password</span>");
 //document.writeln("						<span><img src=\'image/qh.png\'>切换账号</span>");
 document.writeln("						<span id='exit_login'><img src=\'image/tc.png\'>Safety Exit</span>");
@@ -324,7 +324,7 @@ function head(obj){
 }
 
 //充值缴费
-if(sessionStorage.menuidPayMent != undefined){
+/*if(sessionStorage.menuidPayMent != undefined){
 	if(sessionStorage.menuidPayMent == GetQueryString('menuid')){
 		d('pay_ment').style.backgroundColor = '#323F52';
 	}
@@ -332,7 +332,7 @@ if(sessionStorage.menuidPayMent != undefined){
 d('pay_ment').onclick = function(){
 	sessionStorage.menuidPayMent = 'payMent';
 	window.location.href = 'pay_ment.html?menuid=' + sessionStorage.menuidPayMent;
-}
+}*/
 
 //退出登录
 var exitLogin = d('exit_login');

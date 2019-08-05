@@ -978,6 +978,12 @@ function submit(){
 		for(var i = 0; i < userHeadUlShow.children.length; i++){
 			userHeadUlShow.children[i].children[1].style.backgroundColor = "rgba(0,0,0,0)";
 		}
+		
+		//点击创建按钮时清空权限分配
+		var userBodyRightFootItemPanelUl = c('user_body_right_foot_item_panel_ul')[0];
+		for(var i = 0; i < userBodyRightFootItemPanelUl.children.length; i++){
+			userBodyRightFootItemPanelUl.children[i].children[0].checked = false;
+		}
 	}
 
 	//保存按钮
