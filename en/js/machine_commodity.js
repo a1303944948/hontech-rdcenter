@@ -1103,6 +1103,7 @@ function zsStart(machCODE){
 			//库存渲染
 			function stockList(){
 				stockTbody.innerHTML = "";
+				console.log(data);
 				if(data.dataStock.length != 0){
 					for(var i = 0; i < data.dataStock.length; i++){
 						var tr = creat('tr');
@@ -1111,16 +1112,25 @@ function zsStart(machCODE){
 						var tdc = creat('td');
 						var tdd = creat('td');
 						var tde = creat('td');
+						var tdf = creat('td');
+						var tdg= creat('td');
 						tda.innerHTML = data.dataStock[i].cargoData;
 						tdb.innerHTML = data.dataStock[i].goodsName;
 						tdc.innerHTML = data.dataStock[i].goodsId;
 						tdd.innerHTML = data.dataStock[i].reenterDate;
 						tde.innerHTML = '<input class="user_body_right_foot_item_stock_tbody_int" type="text" name="'+data.dataStock[i].stateId+'" value="'+data.dataStock[i].isExist+'" />';
+						data.dataStock[i].isPastDue === 0?tdf.style.backgroundColor = 'rgba(0,0,0,0)':tdf.style.backgroundColor = 'red';
+						function tdgDate(timestamp){
+							timestamp = new Date(timestamp);
+							return timestamp.getFullYear() + '-' + (timestamp.getMonth()+1) + '-' + timestamp.getDate() + ' ' + timestamp.getHours() + ':' + timestamp.getMinutes() + ':' + timestamp.getSeconds();
+						}
+						tdf.innerHTML = tdgDate(data.dataStock[i].pastDueDate);
 						tr.appendChild(tda);
 						tr.appendChild(tdb);
 						tr.appendChild(tdc);
 						tr.appendChild(tdd);
 						tr.appendChild(tde);
+						tr.appendChild(tdf);
 						stockTbody.appendChild(tr);
 					}
 				}else{
@@ -1129,7 +1139,7 @@ function zsStart(machCODE){
 					td.innerHTML = "Null...";
 					td.style.backgroundColor = "#ffffff";
 					td.style.color = '#999999';
-					td.colSpan = 5;
+					td.colSpan = 7;
 					tr.appendChild(td);
 					stockTbody.appendChild(tr);
 				}

@@ -1353,8 +1353,9 @@ html,body{
 	text-align: center;
 	background-color: rgba(0,0,0,0);
 }
+/*库存管理*/
 .user_body_right_foot_item_stock{
-	width: 450px;
+	width: 550px;
 	overflow-y: auto;
 	overflow-x: hidden;
 	border: 1px #e5e5e5 solid;
