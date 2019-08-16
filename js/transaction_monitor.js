@@ -13,7 +13,6 @@ function start(){
   var selects = c('sales_head_selects');  //第一种类input下拉框(不携带value值的下拉框)
   var selects_ul = c('sales_head_selects_ul');
 
-
   group();
   groupanalysis(KIT,"",['0','1','2','4']);
 
@@ -47,7 +46,6 @@ function start(){
     headUlz[0].style.display = "none";
   }
 
-  console.log(headUlz[0].children);
   for(var j = 0; j < headUlz[0].children.length; j++){
     headUlz[0].children[j].children[1].onmousedown = function(){
       Groupingz.value = this.innerHTML;
@@ -58,7 +56,6 @@ function start(){
       for(var i = 0; i < KITASSIGN.length; i++){
         LISTGROUP.push(KITASSIGN[i].devicecode);
       }
-      console.log(LISTGROUP);
     }
   }
 
@@ -134,7 +131,6 @@ function start(){
     async: false,
     dataType: 'json',
     success: function(data){
-      console.log(data);
       if(data.dealtypeJson.length != undefined){
         LISTS.unshift(data.dealtypeJson);
       }else{
@@ -150,7 +146,6 @@ function start(){
     var ul = creat('ul');
     ul.className = 'sales_head_selects_ulz';
     ul.setAttribute('data-list',i);
-    console.log(LISTS);
     for(var j = 0; j < LISTS[i].length; j++){
       var li = creat('li');
       var br = creat('br');
@@ -225,11 +220,10 @@ function start(){
     }
   }*/
 
-  var dateController = c('sales_head_date_controller');
-  console.log(dateController[0]);
-    dateController[0].oninput = function(){
-        console.log(123);
-    }
+  /*var dateController = c('sales_head_date_controller');
+  dateController[0].oninput = function(){
+      console.log(123);
+  }*/
   /*for(var i = 0; i < dateController.length; i++){
     (function(q){
     })(i)
@@ -257,8 +251,8 @@ function datepicke(){
   startDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
   endDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate() + 1);
 
-  var zhou = date.getUTCDay();
-  if(date.getUTCDay() == 0){
+  var zhou = date.getDay();
+  if(date.getDay() == 0){
     zhou = 7;
   }
   var hao = date.getDate()-1;
@@ -974,9 +968,9 @@ function selesForm(){
       alern('开始日期不能大于结束日期');
       return false;
     };
-
-    var dateDiffS = new Date(Start + ' 00:00:00');
-    var dateDiffE = new Date(End + ' 00:00:00');
+    var currentDate = new Date();
+    var dateDiffS = new Date(Start + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
+    var dateDiffE = new Date(End + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
     if((dateDiffE.getTime() - dateDiffS.getTime())/1000/86400 > 31.5){
       alern('选择的日期间隔不能大于31天');
       return false;
@@ -990,13 +984,9 @@ function selesForm(){
       alern('结束时间不能为空');
       return false;
     }
+    Start = worldDate(dateDiffS.getTime());
+    End = worldDate(dateDiffE.getTime());
     salesBody.style.display = 'block';
-    console.log(JSON.stringify(LISTGROUP));
-    console.log(mehtod.name);
-    console.log(mehtodz);
-    console.log(unitz);
-    console.log(Start);
-    console.log(End);
     loading();
     $.ajax({
       type: 'post',
@@ -1012,7 +1002,6 @@ function selesForm(){
       dataType: 'json',
       success: function(data){
         loadingClear();
-        console.log(data);
         tableRendering(data.dealMonitor,mehtodz);
       }
     })
@@ -1067,7 +1056,7 @@ function tableRendering(allDate,type){
         td7.innerHTML = allDate[i].mark;
         td8.innerHTML = allDate[i].total_amount;
         td9.innerHTML = allDate[i].openid;
-        td10.innerHTML = allDate[i].paymentDate;
+        td10.innerHTML = worldDateTime(new Date(allDate[i].paymentDate).getTime());
         td11.innerHTML = allDate[i].free;
         tr.appendChild(td1);
         tr.appendChild(td2);
@@ -1110,7 +1099,7 @@ function tableRendering(allDate,type){
         td6.innerHTML = allDate[i].mark;
         td7.innerHTML = allDate[i].total_amount;
         td8.innerHTML = allDate[i].openid;
-        td9.innerHTML = allDate[i].paymentDate;
+        td9.innerHTML = worldDateTime(new Date(allDate[i].paymentDate).getTime());
         td10.innerHTML = allDate[i].free;
         td11.innerHTML = allDate[i].operator;
         td12.innerHTML = '<button style="padding: 3px 5px; border-radius: 4px; border: 1px #e5e5e5 solid; background-color: #ffffff;" onmouseover="this.style.backgroundColor = \'#f0f0f0\';" onmouseout="this.style.backgroundColor = \'#ffffff\';" onclick="alern(\''+allDate[i].refund_remark+'\',\'退款说明\')">说明</button>';

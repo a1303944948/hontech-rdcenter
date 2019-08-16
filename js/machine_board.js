@@ -1011,6 +1011,7 @@ function rendering(devicecode,that){
 
 			if(data.obj.cooperationMode == '购买'){
 				boardBuys.style.display = 'table-row';
+				data.obj.buyTime = worldDateTime(new Date(data.obj.buyTime).getTime());
 				boardBuy.value = data.obj.buyTime.split(" ")[0];
 				boardRentstarts.style.display = 'none';
 				boardRentends.style.display = 'none';
@@ -1019,6 +1020,8 @@ function rendering(devicecode,that){
 				boardBuys.style.display = 'none';
 				boardRentstarts.style.display = 'table-row';
 				boardRentends.style.display = 'table-row';
+				data.obj.leaseStartTime = worldDateTime(new Date(data.obj.leaseStartTime).getTime());
+				data.obj.leaseExpireTime = worldDateTime(new Date(data.obj.leaseExpireTime).getTime());
 				boardRentstart.value = data.obj.leaseStartTime.split(" ")[0];
 				boardRentend.value = data.obj.leaseExpireTime.split(" ")[0];
 				dateXuanran();
@@ -1159,13 +1162,13 @@ function submit(){
 		userObject.cooperationMode = boardConcur.value;
 		var date = new Date();
 		if(boardConcur.value == "购买"){
-			userObject.buyTime = boardBuy.value + " 00:00:00";
+			userObject.buyTime = worldDate(new Date(boardBuy.value + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()).getTime())+ " 00:00:00";
 			userObject.leaseStartTime = '2018-09-03 15:31:34';
 			userObject.leaseExpireTime = '2018-09-03 15:31:34';
 		}else{
 			userObject.buyTime = '2018-09-03 15:31:34';
-			userObject.leaseStartTime = boardRentstart.value + " 00:00:00";
-			userObject.leaseExpireTime = boardRentend.value + " 00:00:00";
+			userObject.leaseStartTime = worldDate(new Date(boardRentstart.value + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()).getTime()) + " 00:00:00";
+			userObject.leaseExpireTime =  worldDate(new Date(boardRentend.value + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()).getTime()) + " 00:00:00";
 		}
 		userObject.remark = boardMark.value;
 		userObject.dltflag = boardStops;
@@ -1181,8 +1184,6 @@ function submit(){
 		}
 
 		console.log(type);
-		console.log(JSON.stringify(userObject));
-		console.log(AllMach);
 		if(type == 0){
 			//创建事件
 			$.ajax({

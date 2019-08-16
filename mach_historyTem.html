@@ -281,15 +281,22 @@
 				alern('请选择时间后再查询!','温馨提醒','ok');
 				return false;
 			}
-			console.log(startTime);
-			console.log(endTime);
+			var Start = startTime;
+			var End = endTime;
+			var currentDate = new Date();
+		    var dateDiffS = new Date(Start + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
+		    var dateDiffE = new Date(End + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
+		    Start = worldDate(dateDiffS.getTime());
+		    End = worldDate(dateDiffE.getTime());
+			console.log(Start);
+			console.log(End);
 			$.ajax({
 				type: 'post',
 				url: URLS + '/status/getHistoryTem.json',
 				data: {
 					machCode: machCode,
-					startTime: startTime,
-					endTime: endTime,
+					startTime: Start,
+					endTime: End,
 				},
 				async: false,
 				success: function(data){

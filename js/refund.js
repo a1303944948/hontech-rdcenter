@@ -252,8 +252,8 @@ function datepicke(){
   startDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
   endDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate() + 1);
 
-  var zhou = date.getUTCDay();
-  if(date.getUTCDay() == 0){
+  var zhou = date.getDay();
+  if(date.getDay() == 0){
     zhou = 7;
   }
   var hao = date.getDate()-1;
@@ -955,6 +955,15 @@ function selesForm(){
       alern('结束时间不能为空');
       return false;
     }
+
+    
+    var currentDate = new Date();
+    var dateDiffS = new Date(Start + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
+    var dateDiffE = new Date(End + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
+
+    Start = worldDate(dateDiffS.getTime());
+    End = worldDate(dateDiffE.getTime());
+
     salesBody.style.display = 'block';
     loading();
     $.ajax({
@@ -1026,7 +1035,7 @@ function tableRendering(allDate){
     td7.innerHTML = allDate[i].mark;
     td8.innerHTML = allDate[i].total_amount;
     td9.innerHTML = allDate[i].openid;
-    td10.innerHTML = allDate[i].paymentDate;
+    td10.innerHTML = worldDateTime(new Date(allDate[i].paymentDate).getTime());
     td11.innerHTML = allDate[i].free;
     td12.innerHTML = '<button class="sales_body_table_tbody_btn" name="'+allDate[i].out_trade_no+'">退款</button>';
     tr.appendChild(td1);

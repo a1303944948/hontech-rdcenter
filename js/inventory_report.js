@@ -321,7 +321,7 @@ function tableRendering(allDate){
     td6.innerHTML = allDate[i].waresId;
     td7.innerHTML = allDate[i].number;
     td8.innerHTML = allDate[i].waresPrice;
-    td9.innerHTML = allDate[i].addTime;
+    td9.innerHTML = worldDateTime(new Date(allDate[i].addTime).getTime());
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);

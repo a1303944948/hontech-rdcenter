@@ -216,8 +216,8 @@ function datepicke(){
 	startDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
 	endDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate() + 1);
 
-	var zhou = date.getUTCDay();
-	if(date.getUTCDay() == 0){
+	var zhou = date.getDay();
+	if(date.getDay() == 0){
 		zhou = 7;
 	}
 	var hao = date.getDate()-1;
@@ -917,10 +917,14 @@ function selesForm(){
 			methods = 1;
 		}
 		salesBody.style.display = 'block';
-		console.log(JSON.stringify(LISTGROUP));
-		console.log(methods);
-		console.log(Start);
-		console.log(End);
+
+		var currentDate = new Date();
+		var dateDiffS = new Date(Start + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
+		var dateDiffE = new Date(End + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
+
+		Start = worldDate(dateDiffS.getTime());
+		End = worldDate(dateDiffE.getTime());
+
 		$.ajax({
 			type: 'post',
 			url: URLX + '/jf/com/report/forms/report.json',

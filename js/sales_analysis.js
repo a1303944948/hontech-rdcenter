@@ -229,8 +229,8 @@ function datepicke(){
 	startDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
 	endDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate() + 1);
 
-	var zhou = date.getUTCDay();
-	if(date.getUTCDay() == 0){
+	var zhou = date.getDay();
+	if(date.getDay() == 0){
 		zhou = 7;
 	}
 	var hao = date.getDate()-1;
@@ -929,6 +929,13 @@ function selesForm(){
 			return false;
 		}
 
+		var currentDate = new Date();
+		var dateDiffS = new Date(Start + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
+		var dateDiffE = new Date(End + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
+
+		Start = worldDate(dateDiffS.getTime());
+		End = worldDate(dateDiffE.getTime());
+
 		chartHead.innerHTML = unitText;
 		salesBody.style.display = 'block';
 		console.log(JSON.stringify(LISTGROUP));
@@ -1163,6 +1170,7 @@ function chartStart(allDate){
 	//图表右上方柱子渲染
 	var Head = c('sales_body_chart_right_head')[0];
 	Head.innerHTML = '<canvas id="sales_body_chart_right_head_canvas" width="0" height="0"></canvas>';
+
 	for(var i = 0; i < objsTotal.length; i++){
 		var div = creat('div');
 		div.className = 'sales_body_chart_right_head_list';
@@ -1211,60 +1219,37 @@ function chartStart(allDate){
 	clear.className = 'clear';
 	Head.appendChild(clear);
 
-	//图标右下边刻度渲染
+	//图表右下边刻度渲染
 	var Foot = c('sales_body_chart_right_foot')[0];
 	Foot.innerHTML = '';
+	console.log(allDate);
 	for(var i = 0; i < allDate.x_Time.length; i++){
+		var list = creat('div');
+		var listTop = creat('div');
+		var listBottom = creat('div');
+		list.className = 'sales_body_chart_right_foot_list';
+		listTop.className = 'sales_body_chart_right_foot_list_top';
+		listBottom.className = 'sales_body_chart_right_foot_list_bottom';
+		list.style.width = 100 / allDate.x_Time.length + '%';
+		list.style.height = '60px';
+		list.style.float = 'left';
+		listTop.style.width = '100%';
+		listTop.style.height = '5px';
+		listTop.style.boxSizing = 'border-box';
+		listTop.style.border = '1px #8e8e8e solid';
+		listTop.style.borderBottom = 'none';
 		if(i != allDate.x_Time.length - 1){
-			var list = creat('div');
-			var listTop = creat('div');
-			var listBottom = creat('div');
-			list.className = 'sales_body_chart_right_foot_list';
-			listTop.className = 'sales_body_chart_right_foot_list_top';
-			listBottom.className = 'sales_body_chart_right_foot_list_bottom';
-			list.style.width = 100 / allDate.x_Time.length + '%';
-			list.style.height = '60px';
-			list.style.float = 'left';
-			listTop.style.width = '100%';
-			listTop.style.height = '5px';
-			listTop.style.boxSizing = 'border-box';
-			listTop.style.border = '1px #8e8e8e solid';
-			listTop.style.borderBottom = 'none';
 			listTop.style.borderRight = 'none';
-			listBottom.style.width = '100%';
-			listBottom.style.height = '55px';
-			listBottom.style.lineHeight = '55px';
-			listBottom.style.textAlign = 'center';
-			listBottom.style.fontSize = '14px';
-			listBottom.innerHTML = allDate.x_Time[i];
-			list.appendChild(listTop);
-			list.appendChild(listBottom);
-			Foot.appendChild(list);
-		}else{
-			var list = creat('div');
-			var listTop = creat('div');
-			var listBottom = creat('div');
-			list.className = 'sales_body_chart_right_foot_list';
-			listTop.className = 'sales_body_chart_right_foot_list_top';
-			listBottom.className = 'sales_body_chart_right_foot_list_bottom';
-			list.style.width = 100 / allDate.x_Time.length + '%';
-			list.style.height = '60px';
-			list.style.float = 'left';
-			listTop.style.width = '100%';
-			listTop.style.height = '5px';
-			listTop.style.boxSizing = 'border-box';
-			listTop.style.border = '1px #8e8e8e solid';
-			listTop.style.borderBottom = 'none';
-			listBottom.style.width = '100%';
-			listBottom.style.height = '55px';
-			listBottom.style.lineHeight = '55px';
-			listBottom.style.textAlign = 'center';
-			listBottom.style.fontSize = '14px';
-			listBottom.innerHTML = allDate.x_Time[i];
-			list.appendChild(listTop);
-			list.appendChild(listBottom);
-			Foot.appendChild(list);
 		}
+		listBottom.style.width = '100%';
+		listBottom.style.height = '55px';
+		listBottom.style.lineHeight = '55px';
+		listBottom.style.textAlign = 'center';
+		listBottom.style.fontSize = '14px';
+		listBottom.innerHTML = allDate.x_Time[i];
+		list.appendChild(listTop);
+		list.appendChild(listBottom);
+		Foot.appendChild(list);
 	}
 	var Clear = creat('div');
 	Clear.className = 'clear';
