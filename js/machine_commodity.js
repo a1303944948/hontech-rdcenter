@@ -737,6 +737,7 @@ function hdStart(machCODE){
 				tr.appendChild(tdd);
 				tonicHeadTable.appendChild(tr);
 			}
+			data.timeBR?data.timeBR = worldDateTime(new Date(data.timeBR)):data.timeBR=data.timeBR;
 			buhuoqingdan('设备编号:',data.machCode,'设备名称:',data.machName);
 			buhuoqingdan('运营方:',data.operator,'创建时间:',data.timeBR);
 			buhuoqingdan('机型:',data.model,'设备地址:',data.useAddr);

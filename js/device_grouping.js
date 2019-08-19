@@ -24,9 +24,9 @@ function start(){
 	function sonsTree(arr,id){
 	    var temp = [],lev=0;
 	    var forFn = function(arr, id,lev){
-	        for (var i = 0; i < arr.length; i++) {
+	        for(var i = 0; i < arr.length; i++){
 	            var item = arr[i];
-	            if (item.parent_id==id) {
+	            if(item.parent_id==id){
 	                item.lev=lev;
 	                temp.push(item);
 	                forFn(arr,item.id,lev+1);
