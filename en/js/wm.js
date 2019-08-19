@@ -371,3 +371,42 @@ function WmPageMarkItem(that,num,type){
 		}
 	}
 }
+
+//日期国际化且全部转换为北京时间作为参考进行转换
+//将北京时间转换为任意时区时间（展示时使用）
+function worldDateTime(dateTime){	//传入一个13位时间戳
+    var num = new Date().getTimezoneOffset();
+    num = (num + 480) * 60;
+    dateTime = new Date(dateTime - num * 1000);
+    var nian = dateTime.getFullYear();
+    var yue = (dateTime.getMonth()+1)<10?'0'+(dateTime.getMonth()+1):(dateTime.getMonth()+1);
+    var ri = dateTime.getDate()<10?'0'+dateTime.getDate():dateTime.getDate();
+    var shi = dateTime.getHours()<10?'0'+dateTime.getHours():dateTime.getHours();
+    var fen = dateTime.getMinutes()<10?'0'+dateTime.getMinutes():dateTime.getMinutes();
+    var miao = dateTime.getSeconds()<10?'0'+dateTime.getSeconds():dateTime.getSeconds();
+    return nian +'-'+ yue +'-'+ ri +' '+ shi +':'+ fen +':'+ miao;
+}
+
+//将任意时区时间转换为北京时间（搜索与保存时使用）
+function worldDate(dateTime){	//传入一个13位时间戳
+    var num = new Date().getTimezoneOffset();
+    num = (num + 480) * 60;
+    dateTime = new Date(dateTime + num * 1000);
+    var nian = dateTime.getFullYear();
+    var yue = (dateTime.getMonth()+1)<10?'0'+(dateTime.getMonth()+1):(dateTime.getMonth()+1);
+    var ri = dateTime.getDate()<10?'0'+dateTime.getDate():dateTime.getDate();
+    return nian +'-'+ yue +'-'+ ri;
+}
+//将任意时区时间转换为北京时间（搜索与保存时使用）	该方法为上面方法的复刻版本，主要提供给需要精确到时分秒的地方使用
+function worldDates(dateTime){	//传入一个13位时间戳
+    var num = new Date().getTimezoneOffset();
+    num = (num + 480) * 60;
+    dateTime = new Date(dateTime + num * 1000);
+    var nian = dateTime.getFullYear();
+    var yue = (dateTime.getMonth()+1)<10?'0'+(dateTime.getMonth()+1):(dateTime.getMonth()+1);
+    var ri = dateTime.getDate()<10?'0'+dateTime.getDate():dateTime.getDate();
+    var shi = dateTime.getHours()<10?'0'+dateTime.getHours():dateTime.getHours();
+    var fen = dateTime.getMinutes()<10?'0'+dateTime.getMinutes():dateTime.getMinutes();
+    var miao = dateTime.getSeconds()<10?'0'+dateTime.getSeconds():dateTime.getSeconds();
+    return nian +'-'+ yue +'-'+ ri +' '+ shi +':'+ fen +':'+ miao;
+}

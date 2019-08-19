@@ -225,11 +225,11 @@ function start(){
     }
   }*/
 
-  var dateController = c('sales_head_date_controller');
+  /*var dateController = c('sales_head_date_controller');
   console.log(dateController[0]);
-    dateController[0].oninput = function(){
-        console.log(123);
-    }
+  dateController[0].oninput = function(){
+      console.log(123);
+  }*/
   /*for(var i = 0; i < dateController.length; i++){
     (function(q){
     })(i)
@@ -257,8 +257,8 @@ function datepicke(){
   startDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
   endDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate() + 1);
 
-  var zhou = date.getUTCDay();
-  if(date.getUTCDay() == 0){
+  var zhou = date.getDay();
+  if(date.getDay() == 0){
     zhou = 7;
   }
   var hao = date.getDate()-1;
@@ -979,8 +979,10 @@ function selesForm(){
       return false;
     };
 
-    var dateDiffS = new Date(Start + ' 00:00:00');
-    var dateDiffE = new Date(End + ' 00:00:00');
+    var currentDate = new Date();
+    var dateDiffS = new Date(Start + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
+    var dateDiffE = new Date(End + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
+
     if((dateDiffE.getTime() - dateDiffS.getTime())/1000/86400 > 31.5){
       alern('The selected date interval cannot be greater than 31 days');
       return false;
@@ -994,13 +996,9 @@ function selesForm(){
       alern('End Time Cannot Null');
       return false;
     }
+    Start = worldDate(dateDiffS.getTime());
+    End = worldDate(dateDiffE.getTime());
     salesBody.style.display = 'block';
-    console.log(JSON.stringify(LISTGROUP));
-    console.log(mehtod.name);
-    console.log(mehtodz);
-    console.log(unitz);
-    console.log(Start);
-    console.log(End);
     loading();
     $.ajax({
       type: 'post',
@@ -1085,7 +1083,7 @@ function tableRendering(allDate,type){
         td7.innerHTML = allDate[i].mark;
         td8.innerHTML = allDate[i].total_amount;
         td9.innerHTML = allDate[i].openid;
-        td10.innerHTML = allDate[i].paymentDate;
+        td10.innerHTML = worldDateTime(new Date(allDate[i].paymentDate).getTime());
         td11.innerHTML = allDate[i].free;
         tr.appendChild(td1);
         tr.appendChild(td2);
@@ -1128,7 +1126,7 @@ function tableRendering(allDate,type){
         td6.innerHTML = allDate[i].mark;
         td7.innerHTML = allDate[i].total_amount;
         td8.innerHTML = allDate[i].openid;
-        td9.innerHTML = allDate[i].paymentDate;
+        td9.innerHTML = worldDateTime(new Date(allDate[i].paymentDate).getTime());
         td10.innerHTML = allDate[i].free;
         td11.innerHTML = allDate[i].operator;
         td12.innerHTML = '<button style="padding: 3px 5px; border-radius: 4px; border: 1px #e5e5e5 solid; background-color: #ffffff;" onmouseover="this.style.backgroundColor = \'#f0f0f0\';" onmouseout="this.style.backgroundColor = \'#ffffff\';" onclick="alern(\''+allDate[i].refund_remark+'\',\'Note\')">Note</button>';

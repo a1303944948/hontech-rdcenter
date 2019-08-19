@@ -738,6 +738,7 @@ function hdStart(machCODE){
 				tr.appendChild(tdd);
 				tonicHeadTable.appendChild(tr);
 			}
+			data.timeBR?data.timeBR = worldDateTime(new Date(data.timeBR)):data.timeBR=data.timeBR;
 			buhuoqingdan('Machine ID:',data.machCode,'Machine Name:',data.machName);
 			buhuoqingdan('Operator:',data.operator,'Create Time:',data.timeBR);
 			buhuoqingdan('Machine Type:',data.model,'Address:',data.useAddr);
@@ -882,6 +883,7 @@ function hdStart(machCODE){
 						tr.appendChild(tdd);
 						tonicHeadTable.appendChild(tr);
 					}
+					data.timeBR?data.timeBR = worldDateTime(new Date(data.timeBR)):data.timeBR=data.timeBR;
 					buhuoqingdan('Machine ID:',data.machCode,'Machine Name:',data.machName);
 					buhuoqingdan('Operator:',data.operator,'Create Time:',data.timeBR);
 					buhuoqingdan('Machine Type:',data.model,'Address:',data.useAddr);
@@ -1117,7 +1119,7 @@ function zsStart(machCODE){
 						tda.innerHTML = data.dataStock[i].cargoData;
 						tdb.innerHTML = data.dataStock[i].goodsName;
 						tdc.innerHTML = data.dataStock[i].goodsId;
-						tdd.innerHTML = data.dataStock[i].reenterDate;
+						tdd.innerHTML = worldDateTime(new Date(data.dataStock[i].reenterDate).getTime());
 						tde.innerHTML = '<input class="user_body_right_foot_item_stock_tbody_int" type="text" name="'+data.dataStock[i].stateId+'" value="'+data.dataStock[i].isExist+'" />';
 						data.dataStock[i].isPastDue === 0?tdf.style.backgroundColor = 'rgba(0,0,0,0)':tdf.style.backgroundColor = 'red';
 						function tdgDate(timestamp){
