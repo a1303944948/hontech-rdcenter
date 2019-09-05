@@ -18,6 +18,13 @@ function creat(object){
 	return document.createElement(object);
 }
 
+//添加事件触发器
+function Add(dom,even,method){	//dom为要绑定事件的元素 even为事件名称 emthod为传入一个方法function(){}
+	dom.addEventListener(even,function(e){
+		method(this,e)
+	});
+}
+
 //弹窗
 function alern(text,name,btn,btns){
 	if(text == undefined){
@@ -157,6 +164,21 @@ function alern(text,name,btn,btns){
 		}
 	}
 }
+
+//js中批量修改样式的方法封装(主要用于页面准备样式添加)
+function setStyleX(text){
+	var wmHead = n('head')[0];
+	if(c('wmStyle')[0] === undefined){
+		var wmStyle = creat('style');
+		wmStyle.type = 'text/css';
+		wmStyle.className = 'wmStyle';
+		wmHead.appendChild(wmStyle);
+	}
+	c('wmStyle')[0].innerHTML = c('wmStyle')[0].innerHTML + text;
+}
+
+//添加页面需要的样式
+setStyleX('/*加载动画Class*/.body_load_div_image{animation: loadDiv 0.8s linear 0s infinite;}@keyframes loadDiv{0%{transform: rotate(0deg)}100%{transform: rotate(360deg)}}/*下拉框样式渲染*/.wm_select_mark{width: 0px;height: 0px;border: 5px rgba(0,0,0,0) solid;border-top: 5px #666666 solid;pointer-events: none;position: absolute;}.wm_select_item{height: auto;position: absolute;border: 1px #e5e5e5 solid;background-color: #ffffff;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;display: none;z-index: 999;overflow-y: auto;}.wm_select_item_list{width: 100%;height: auto;padding: 8px 5px;box-sizing: border-box;font-size: 14px;cursor: pointer;user-select: none;}/*复选下拉框样式渲染*/.wm_check_mark{width: 0px;height: 0px;border: 5px rgba(0,0,0,0) solid;border-top: 5px #666666 solid;pointer-events: none;position: absolute;}.wm_check_item{height: auto;position: absolute;border: 1px #e5e5e5 solid;background-color: #ffffff;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;display: none;z-index: 999;overflow-y: auto;}.wm_check_item_list{width: 100%;height: auto;padding: 8px 5px;box-sizing: border-box;font-size: 14px;cursor: pointer;user-select: none;}/*日期（时间）选择器样式渲染*/.wm_datapicker{outline: none;}.ui_datapicker{width: 210px;height: auto;position: absolute;border: 1px #e5e5e5 solid;background-color: #ffffff;border-radius: 4px;padding: 3px;}.wm_datapicker_mark{width: 0px;height: 0px;border: 5px rgba(0,0,0,0) solid;border-top: 5px #666666 solid;pointer-events: none;position: absolute;}.ui_datapicker_table{width: 100%;height: 40px;border-collapse:collapse;font-family: "Microsoft YaHei,Segoe UI,Lucida Grande,Helvetica, Arial,sans-serif";background-color: "#e5e5e5";}.ui_datapicker_table tr>th,.ui_datapicker_table tr>td{width: 30px;height: 30px;border-radius: 4px;padding: 5px; box-sizing: border-box;border: none;cursor: pointer;color: #333333;font-size: 14px;}.ui_datapicker_table tr>td:hover{background-color: #e5e5e5;}.ui_datapicker_table_edit{outline: none;}/*分页样式渲染*/.wm_pagemark{border: 1px #e5e5e5 solid;border-radius: 5px;background-color: #ffffff;margin-left: auto;margin-right: auto; position: relative;opacity: 0;}.wm_pagemark_body{width: 100%;height: 100%;text-align: center;}.wm_pagemark_body>button{height: 30px; line-height:30px; background-color: #3498Db;color: #ffffff;border: none; border-radius: 5px; padding-left: 10px; padding-right: 10px; margin-right: 15px;}.wm_pagemark_body>button:hover{background-color: #258BCF;}.wm_pagemark_body>button:active{background-color: #3498DB;}.wm_pagemark_body>button:last-child{margin-right: 0;}.wm_pagemark_body>span>input{width: 34px; height: 30px; text-align: center; margin-left:5px; margin-right: 5px;border: 1px #e5e5e5 solid; padding: 5px; box-sizing: border-box; border-radius: 3px; background-color: #ffffff;}.wm_pagemark_body>span{font-size: 12px;display: inline-block;vertical-align: bottom;text-align: center;padding-right: 15px;color: #a4a4a4;}');
 
 
 //如果引用该加载效果需先在全局css文件中加入以下样式
@@ -417,4 +439,96 @@ function worldDates(dateTime){	//传入一个13位时间戳
     var fen = dateTime.getMinutes()<10?'0'+dateTime.getMinutes():dateTime.getMinutes();
     var miao = dateTime.getSeconds()<10?'0'+dateTime.getSeconds():dateTime.getSeconds();
     return nian +'-'+ yue +'-'+ ri +' '+ shi +':'+ fen +':'+ miao;
+}
+
+//基础下拉框
+function WmStartSelect(){
+	var wmSelect = c('wm_select');
+	if(c('wm_select_item').length > 0){
+		for(var i = c('wm_select_item').length-1; i >= 0; i--){
+			c('wm_select_item')[i].parentNode.removeChild(c('wm_select_item')[i]);
+		}
+	}
+	if(c('wm_select_mark').length > 0){
+		for(var i = c('wm_select_mark').length-1; i >= 0; i--){
+			c('wm_select_mark')[i].parentNode.removeChild(c('wm_select_mark')[i]);
+		}
+	}
+	for(var i = 0; i < wmSelect.length; i++){
+		wmSelect[i].style.cursor = 'pointer';
+		wmSelect[i].style.userSelect = 'none';
+		wmSelect[i].readOnly = false;
+		//添加下拉倒三角标记
+		var mark = creat('div');
+		mark.className = 'wm_select_mark';
+		mark.style.top = wmSelect[i].offsetTop + wmSelect[i].clientHeight/2 - 1 + 'px';
+		mark.style.left = wmSelect[i].offsetLeft + wmSelect[i].clientWidth - 15 + 'px';
+		wmSelect[i].parentNode.appendChild(mark);
+
+		wmSelect[i].readOnly = true;
+		var wmSelectArr;
+		if(wmSelect[i].dataset.select !== undefined){
+			wmSelectArr = wmSelect[i].dataset.select;
+		}else{
+			wmSelectArr = [];
+		}
+		wmSelectArr = eval(wmSelectArr);
+		var wmSelectArray = [],
+			wmSelectObj = {};
+		wmSelectObj.index = i;
+		wmSelectObj.name = '请选择...';
+		wmSelectObj.value = '';
+		wmSelectArray.push(wmSelectObj);
+		for(var j = 0; j < wmSelectArr.length; j++){
+			var wmSelectObj = {};
+			wmSelectObj.index = i;
+			wmSelectObj.name = wmSelectArr[j].name;
+			wmSelectObj.value = wmSelectArr[j].value;
+			wmSelectArray.push(wmSelectObj);
+		}
+		var div = creat('div');
+		div.className = 'wm_select_item';
+		div.style.minWidth = wmSelect[i].clientWidth + 'px';
+		div.style.maxHeight =window.innerHeight - wmSelect[i].offsetTop - wmSelect[i].offsetHeight - 200 + 'px';
+		div.style.top = wmSelect[i].offsetTop + wmSelect[i].clientHeight + 2 + 'px';
+		div.style.left = wmSelect[i].offsetLeft + 'px';
+		for(var j = 0; j < wmSelectArray.length; j++){
+			var list = creat('div');
+			list.className = 'wm_select_item_list';
+			list.innerHTML = wmSelectArray[j].name;
+			if(wmSelectArray[j].value === '请选择...'){
+				list.style.color = '#666666';
+			}
+			list.setAttribute('data-index',wmSelectArray[j].index);
+			list.setAttribute('data-value',wmSelectArray[j].value);
+			list.onmouseover = function(){
+				this.style.backgroundColor = '#e5e5e5';
+			};
+			list.onmouseout = function(){
+				this.style.backgroundColor = '#ffffff';
+			};
+			list.onmousedown = function(){
+				if(this.dataset.value === ''){
+					wmSelect[this.dataset.index].value = "";
+					wmSelect[this.dataset.index].setAttribute('data-value',this.dataset.value);
+				}else{
+					wmSelect[this.dataset.index].value = this.innerText;
+					wmSelect[this.dataset.index].setAttribute('data-value',this.dataset.value);
+				}
+			};
+			div.appendChild(list);
+		}
+		if(wmSelect[i].parentNode.style.position == ''||wmSelect[i].parentNode.style.position == undefined){
+			wmSelect[i].parentNode.style.position = 'relative';
+		}
+		wmSelect[i].parentNode.appendChild(div);
+		(function(q){
+			Add(wmSelect[q],'focus',function(){
+				c('wm_select_item')[q].style.display = 'block';
+			});
+			Add(wmSelect[q],'blur',function(){
+				c('wm_select_item')[q].style.display = 'none';
+			});
+		})(i);
+	}
 }
