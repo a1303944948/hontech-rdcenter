@@ -746,7 +746,7 @@ function onclicks(yue){
               nianSelected[q] = nianNode[q];
               yueSelected[q] = yueNode[q];
               riSelected[q] = parseInt(this.innerHTML);
-              dateController[q].value = String(nianNode[q]) + '-' + String(yueNode[q]) + '-' + String(this.innerHTML) + ' ' + '00:00:00';
+              dateController[q].value = String(nianNode[q]) + '-' + String(yueNode[q]) + '-' + String(this.innerHTML);
               controllers(nianSelected[q],yueSelected[q],riSelected[q],q);
               if(nianSelected[0] != ""){
                 startDate = String(nianSelected[0]) + '-' +String(yueSelected[0]) + '-' + String(riSelected[0]);
