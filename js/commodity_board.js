@@ -380,6 +380,7 @@ function startbodyleft(commmodityLeft){
 				var commodityCode = d('commodity_code');									//条码编号
 				var detailedOperatorSparephone = d('commodity_Infrared');					//红外加热
 				var detailedOperatorEmail = d('commodity_microwave');						//微波加热
+				var commodityCooling = d('commodity_cooling');								//散热时间
 				var commodityCooking = d('commodity_cooking');								//烹饪温度
 				var commoditySupplier = d('commodity_supplier');							//供应商
 				var detailedOperatorPickimg = c('detailed_operator_pickimg')[0];			//选餐图片
@@ -417,6 +418,7 @@ function startbodyleft(commmodityLeft){
 				commodityCode.value = commmodityLeft[q].barCodeNo;
 				detailedOperatorSparephone.value = commmodityLeft[q].infraredheating;
 				detailedOperatorEmail.value = commmodityLeft[q].microwaveheating;
+				commodityCooling.value = commmodityLeft[q].heatDissipationTime;
 				commodityCooking.value = commmodityLeft[q].cooking;
 				commoditySupplier.value = commmodityLeft[q].supplier;
 				detailedOperatorPickimg.innerHTML = commmodityLeft[q].waresImage1;
@@ -1177,6 +1179,7 @@ function submit(){
 		var commodityCode = d('commodity_code').value;					//条形编码
 		var commodityInfrared = d('commodity_Infrared').value;			//红外加热
 		var commodityMicrowave = d('commodity_microwave').value;		//微博加热
+		var commodityCooling = d('commodity_cooling').value;			//散热时间
 		var commodityCooking = d('commodity_cooking').value;			//烹饪温度
 		var commoditySupplier = d('commodity_supplier').value;			//供应商
 		OperatorPickimgBase = d('detailed_operator_pickimg').dataset.url;			//创建选餐图片
@@ -1244,6 +1247,7 @@ function submit(){
 				commodityobj.barCodeNo = commodityCode;
 				commodityobj.infraredheating = commodityInfrared;
 				commodityobj.microwaveheating = commodityMicrowave;
+				commodityobj.heatDissipationTime = commodityCooling;
 				commodityobj.cooking = commodityCooking;
 				commodityobj.supplier = commoditySupplier;
 				commodityobj.remark = commodityRemark;
