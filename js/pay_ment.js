@@ -594,7 +594,6 @@ function submit(){
 		c('advertise_board_fixed_body_home')[0].style.display = 'none';
 		c('advertise_board_fixed_body_home_ewm')[0].style.display = 'block';
 		c('advertise_board_fixed_body')[0].style.marginTop = -(c('advertise_board_fixed_body')[0].clientHeight / 2) + 50 + 'px';
-		console.log(submitArray);
 		c('advertise_board_fixed_body_home_ewm')[0].innerHTML = '<div class="advertise_board_fixed_body_home_ewm_loading"></div>';
 		$.ajax({
 			type: 'post',

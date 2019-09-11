@@ -103,7 +103,7 @@
 								</tr>
 								<tr>
 									<td>散热时间(S)：</td>
-									<td><input id="commodity_cooling" type="number"/></td>
+									<td><input id="commodity_cooling" oninput="this.value == ''?this.value = 0:this.value = this.value;" type="number"/></td>
 								</tr>
 								<tr>
 									<td>烹饪温度(℃)：</td>

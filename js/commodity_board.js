@@ -1062,8 +1062,9 @@ function submit(){
 		}
 		operatorStars = 0;
 		d('commodity_code').value = "";										//条形编码
-		d('commodity_Infrared').value = "0";									//红外加热
+		d('commodity_Infrared').value = "0";								//红外加热
 		d('commodity_microwave').value = "0";								//微博加热
+		d('commodity_cooling').value = "15";								//散热时间
 		d('commodity_cooking').value = "0";									//烹饪温度
 		d('commodity_supplier').value = "";									//供应商
 		c('detailed_operator_pickimg')[0].innerHTML = "";					//选餐图片
