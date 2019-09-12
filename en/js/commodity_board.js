@@ -882,6 +882,7 @@ function submit(){
 			alern('Can`t exceed 10000 and can only keep two decimals');
 			this.value = 10000;
 		}
+		this.value<0.01?this.value=0.01:this.value=this.value;
 		if(this.value.toString().split(".")[1] != undefined){
 			if(this.value.toString().split(".")[1].length > 2){
 				alern('Can`t exceed 10000 and can only keep two decimals');

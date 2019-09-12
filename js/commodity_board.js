@@ -868,6 +868,7 @@ function submit(){
 			alern('不能超过10000并且只能保留两位小数');
 			this.value = 10000;
 		}
+		this.value<0.01?this.value=0.01:this.value=this.value;
 		if(this.value.toString().split(".")[1] != undefined){
 			if(this.value.toString().split(".")[1].length > 2){
 				alern('只能保留两位小数并且不能超过10000');
