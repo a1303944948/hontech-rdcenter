@@ -156,8 +156,10 @@ function byStart(machCODE){
 											}
 										}
 										commodityaTbodyIntZ[0].onblur = function(){
-											if(that.name != "Aries"&&that.name != "Spring"&&that.value != ""){
+											if(that.name != "Aries"&&that.name != "Spring"&&commodityaTbodyInta[q].name != "CapsuleCoffee"&&that.value != ""){
 												commodityaTbodyIntb[q].value = 1;
+											}else if(commodityaTbodyInta[q].name == "CapsuleCoffee"){
+												commodityaTbodyIntb[q].value = 7;
 											}
 											commodityaTbodyUla[0].parentNode.removeChild(commodityaTbodyUla[0].parentNode.children[2]);
 										}
@@ -182,8 +184,10 @@ function byStart(machCODE){
 						})
 					}
 					commodityaTbodyInta[q].onblur = function(){
-						if(commodityaTbodyInta[q].name != "Aries"&&commodityaTbodyInta[q].name != "Spring"&&commodityaTbodyInta[q].value != ""){
+						if(commodityaTbodyInta[q].name != "Aries"&&commodityaTbodyInta[q].name != "Spring"&&commodityaTbodyInta[q].name != "CapsuleCoffee"&&commodityaTbodyInta[q].value != ""){
 							commodityaTbodyIntb[q].value = 1;
+						}else if(commodityaTbodyInta[q].name == "CapsuleCoffee"){
+							commodityaTbodyIntb[q].value = 7;
 						}
 						this.parentNode.removeChild(this.parentNode.children[2]);
 					}
@@ -718,7 +722,7 @@ function hdStart(machCODE){
 		data: {
 			machCode: machCODE,
 		},
-		success:(data) =>{
+		success: function(data){
 			console.log(data);
 			//补货清单详情
 			tonicHeadTable.innerHTML = "";

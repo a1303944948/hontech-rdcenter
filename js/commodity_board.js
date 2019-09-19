@@ -59,7 +59,6 @@ function start(){
 		data: {},
 		async: false,
 		success: function(data){
-			console.log(data);
 			for(var i = 0; i < data.length; i++){
 				var div = creat('div');
 				var input = creat('input');
@@ -179,7 +178,6 @@ function start(){
 		operatorSelect.onblur = function(){
 			operatorSelectUl.style.display = "none";
 		}
-		console.log(operatorSelectUl);
 		operatorSelect.value = operatorSelectUl.children[0].innerHTML;
 		operatorSelect.name = operatorSelectUl.children[0].dataset.value;
 		for(var i = 0; i < operatorSelectUl.children.length; i++){
@@ -199,7 +197,6 @@ function start(){
 				operatorID: loginUserName.operatorID,
 			},
 			success: function(data){
-				console.log(data);
 
 				var ul = creat('ul');
 				ul.className = "operator_select_uls";
@@ -216,7 +213,6 @@ function start(){
 				operatorSelect.onblur = function(){
 					operatorSelectUl.style.display = "none";
 				}
-				console.log(operatorSelectUl);
 				operatorSelect.value = operatorSelectUl.children[0].innerHTML;
 				operatorSelect.name = operatorSelectUl.children[0].dataset.value;
 				for(var i = 0; i < operatorSelectUl.children.length; i++){
@@ -231,7 +227,6 @@ function start(){
 }
 
 function startbody(){
-	console.log(loginUserName);
 	//获取运营方下拉框数据
 	DATALEFT = groupitem(1);
 	//获取商品数据
@@ -245,7 +240,6 @@ function startbody(){
 			status: commodityStatus.name,
 		},
 		success: function(data){
-			console.log(data.obj);
 			startbodyleft(data.obj);
 		}
 	});
@@ -340,7 +334,6 @@ function startbodyleft(commmodityLeft){
 							operatorID: loginUserName.operatorID,
 						},
 						success: function(data){
-							console.log(data);
 
 							var ul = creat('ul');
 							ul.className = "operator_select_ul";
@@ -357,7 +350,6 @@ function startbodyleft(commmodityLeft){
 							operatorSelect.onblur = function(){
 								operatorSelectUl.style.display = "none";
 							}
-							console.log(operatorSelectUl);
 							operatorSelect.value = operatorSelectUl.children[0].innerHTML;
 							operatorSelect.name = operatorSelectUl.children[0].dataset.value;
 							for(var i = 0; i < operatorSelectUl.children.length; i++){
@@ -382,13 +374,13 @@ function startbodyleft(commmodityLeft){
 				var detailedOperatorEmail = d('commodity_microwave');						//微波加热
 				var commodityCooling = d('commodity_cooling');								//散热时间
 				var commodityCooking = d('commodity_cooking');								//烹饪温度
+				var commodityType = d('commodity_type');									//工艺类型
 				var commoditySupplier = d('commodity_supplier');							//供应商
 				var detailedOperatorPickimg = c('detailed_operator_pickimg')[0];			//选餐图片
 				var detailedOperatorOrderimg = c('detailed_operator_orderimg')[0];			//下单图片
 				var detailedOperatorIngredientimg = c('detailed_operator_ingredientimg')[0];//商品介绍
 				var commodityRemark = d('commodity_remark');								//备注
 				var detailedOperatorStop = d('detailed_operator_stop');						//停用
-				console.log(commmodityLeft[q]);
 				detailedOperatorId.value = commmodityLeft[q].operParty;
 				detailedOperatorId.name = commmodityLeft[q].operatorID;
 				detailedOperatorNumbering.value = commmodityLeft[q].waresId;
@@ -398,7 +390,6 @@ function startbodyleft(commmodityLeft){
 				//detailedOperatorPrincipal.value = commmodityLeft[q].principal;
 				//detailedOperatorPhone.value = commmodityLeft[q].phone1;
 				var theGoodsModel = commmodityLeft[q].theGoodsModel.split(',');
-				console.log(theGoodsModel);
 				for(var j = 0; j < detailedOperatorPrincipal.length; j++){
 					detailedOperatorPrincipal[j].children[0].checked = false;
 				}
@@ -421,6 +412,8 @@ function startbodyleft(commmodityLeft){
 				commodityCooling.value = commmodityLeft[q].heatDissipationTime;
 				commodityCooking.value = commmodityLeft[q].cooking;
 				commoditySupplier.value = commmodityLeft[q].supplier;
+				commodityType.value = commmodityLeft[q].workmanshipName;
+				commodityType.setAttribute('data-value',commmodityLeft[q].workmanshipId);
 				detailedOperatorPickimg.innerHTML = commmodityLeft[q].waresImage1;
 				d('detailed_operator_pickimg').setAttribute('data-url',commmodityLeft[q].waresImage1);
 				detailedOperatorOrderimg.innerHTML = commmodityLeft[q].waresImage2;
@@ -438,6 +431,7 @@ function startbodyleft(commmodityLeft){
 				}else{
 					detailedOperatorStop.checked = false;
 				}
+				WmStartSelect();
 			}
 		})(i)
 	}
@@ -451,8 +445,6 @@ c('operator_home_head_submit')[0].onclick = function(){
 	}
 	var commodityOperators = d('commodity_operators');
 	var commodityStatus = d('commodity_status');
-	console.log(commodityOperators.name);
-	console.log(commodityStatus.name);
 	$.ajax({
 		type: 'post',
 		url: URLZ + '/jf/bg/basic/gdsm/searchObjParam.json',
@@ -461,7 +453,6 @@ c('operator_home_head_submit')[0].onclick = function(){
 			status: commodityStatus.name,
 		},
 		success: function(data){
-			console.log(data.obj);
 			startbodyleft(data.obj);
 		}
 	})
@@ -479,7 +470,6 @@ let deleteUrl = ['',''];
 let deleteUrls = [''];
 
 for(let i = 0; i < c('detailed_operator_int').length; i++){
-	console.log(i);
 	UploadOss(i);
 }
 //OSS文件上传事件(不包含商品介绍)
@@ -543,7 +533,6 @@ function UploadOss(num){
 					up.splice(0,1);
 				}
 				deleteUrl[num] = c('detailed_operator_img')[num].innerHTML;
-				console.log(deleteUrl);
 				c('detailed_operator_img')[num].innerHTML = '';
 				plupload.each(files, function(file)
 				{
@@ -570,7 +559,6 @@ function UploadOss(num){
 				if (info.status == 200)
 				{
 					let detailedOperatorInt = c('detailed_operator_int');
-					console.log(host + '/' + new_multipart_params.key);
 					detailedOperatorInt[num].setAttribute('data-url',host + '/' + new_multipart_params.key);
 					c('detailed_operator_img')[num].innerHTML = OSSURL + get_uploaded_object_name();
 					c('detailed_operator_img')[num].setAttribute('data-url',deleteUrl[num]);
@@ -685,7 +673,6 @@ function UploadOssS(){
 					up.splice(0,1);
 				}
 				deleteUrls = c('detailed_operator_imgs')[0].innerHTML;
-				console.log(deleteUrls);
 				c('detailed_operator_imgs')[0].innerHTML = '';
 				plupload.each(files, function(file)
 				{
@@ -712,7 +699,6 @@ function UploadOssS(){
 				if (info.status == 200)
 				{
 					let detailedOperatorIngredientimg = d('detailed_operator_ingredientimg');
-					console.log(host + '/' + new_multipart_params.key);
 					detailedOperatorIngredientimg.setAttribute('data-url',host + '/' + new_multipart_params.key);
 					c('detailed_operator_imgs')[0].innerHTML = OSSURL + get_uploaded_object_name();
 					c('detailed_operator_imgs')[0].setAttribute('data-url',deleteUrls);
@@ -873,8 +859,6 @@ function submit(){
 			if(this.value.toString().split(".")[1].length > 2){
 				alern('只能保留两位小数并且不能超过10000');
 				var that = "";
-				console.log(this.value.toString().length);
-				console.log(this.value.toString());
 				for(var i = 0; i < this.value.toString().length - this.value.toString().split(".")[1].length + 1; i++){
 					that += this.value.toString()[i];
 				}
@@ -1128,7 +1112,6 @@ function submit(){
 					operatorID: loginUserName.operatorID,
 				},
 				success: function(data){
-					console.log(data);
 
 					var ul = creat('ul');
 					ul.className = "operator_select_ul";
@@ -1145,7 +1128,6 @@ function submit(){
 					operatorSelect.onblur = function(){
 						operatorSelectUl.style.display = "none";
 					}
-					console.log(operatorSelectUl);
 					operatorSelect.value = operatorSelectUl.children[0].innerHTML;
 					operatorSelect.name = operatorSelectUl.children[0].dataset.value;
 					for(var i = 0; i < operatorSelectUl.children.length; i++){
@@ -1175,15 +1157,15 @@ function submit(){
 		var modelMultipleDivs = "";
 		for(var i = 0; i < modelMultipleDiv.length-1; i++){
 			modelMultipleDivs += modelMultipleDiv[i];
-		}
-		console.log(modelMultipleDivs);
-		console.log(operatorStars);										//推荐星值
+		}								//推荐星值
 		var commodityCode = d('commodity_code').value;					//条形编码
 		var commodityInfrared = d('commodity_Infrared').value;			//红外加热
 		var commodityMicrowave = d('commodity_microwave').value;		//微博加热
 		var commodityCooling = d('commodity_cooling').value;			//散热时间
 		var commodityCooking = d('commodity_cooking').value;			//烹饪温度
 		var commoditySupplier = d('commodity_supplier').value;			//供应商
+		var commodityType = d('commodity_type').dataset.value;			//工艺类型(编号)
+		var commodityTypeName = d('commodity_type').value;				//工艺类型(名称)
 		OperatorPickimgBase = d('detailed_operator_pickimg').dataset.url;			//创建选餐图片
 		OperatorOrderimgBase = d('detailed_operator_orderimg').dataset.url;			//创建下单图片
 		OperatorIngredientimgBase = d('detailed_operator_ingredientimg').dataset.url;	//创建商品介绍
@@ -1218,6 +1200,7 @@ function submit(){
 			return false;
 		}
 		loading();
+		//检测条码是否重复
 		$.ajax({
 			type: 'post',
 			url: URLZ + '/jf/bg/basic/gdsm/check.json',
@@ -1227,7 +1210,6 @@ function submit(){
 			},
 			async: false,
 			success: function(data){
-				console.log(data);
 				if(data.obj != 0){
 					if(data.obj.waresId != commodityNum){
 						alern('条码与'+data.obj.waresName+'重复!');
@@ -1252,10 +1234,11 @@ function submit(){
 				commodityobj.heatDissipationTime = commodityCooling;
 				commodityobj.cooking = commodityCooking;
 				commodityobj.supplier = commoditySupplier;
+				commodityobj.workmanshipId = commodityType;
+				commodityobj.workmanshipName = commodityTypeName;
 				commodityobj.remark = commodityRemark;
 				commodityobj.dltflag = detailedOperatorStop;
 				commodityobj.updateBy = loginUserName.empcode;
-				console.log(JSON.stringify(commodityobj));
 				if(type == 1){
 					$.ajax({
 						type: 'post',

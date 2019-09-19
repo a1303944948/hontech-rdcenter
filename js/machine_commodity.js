@@ -63,7 +63,6 @@ function byStart(machCODE){
 								recarsType: that.name,
 							},
 							success: function(msg){
-								console.log(msg);
 								var intaMsg = msg;
 								var ul = creat('ul');
 								ul.className = 'user_body_right_foot_item_commoditya_tbody_ula';
@@ -131,7 +130,6 @@ function byStart(machCODE){
 											}
 											for(var j = 0; j < intaMsg.length; j++){
 												if(patt1.test(intaMsg[j].goods)){
-													console.log(intaMsg[j].goods);
 													var li = creat('li');
 													li.innerHTML = intaMsg[j].goods;
 													li.className = "user_body_right_foot_item_commoditya_tbody_ula_li";
@@ -155,8 +153,10 @@ function byStart(machCODE){
 											}
 										}
 										commodityaTbodyIntZ[0].onblur = function(){
-											if(that.name != "Aries"&&that.name != "Spring"&&that.value != ""){
+											if(that.name != "Aries"&&that.name != "Spring"&&commodityaTbodyInta[q].name != "CapsuleCoffee"&&that.value != ""){
 												commodityaTbodyIntb[q].value = 1;
+											}else if(commodityaTbodyInta[q].name == "CapsuleCoffee"){
+												commodityaTbodyIntb[q].value = 7;
 											}
 											commodityaTbodyUla[0].parentNode.removeChild(commodityaTbodyUla[0].parentNode.children[2]);
 										}
@@ -181,8 +181,10 @@ function byStart(machCODE){
 						})
 					}
 					commodityaTbodyInta[q].onblur = function(){
-						if(commodityaTbodyInta[q].name != "Aries"&&commodityaTbodyInta[q].name != "Spring"&&commodityaTbodyInta[q].value != ""){
+						if(commodityaTbodyInta[q].name != "Aries"&&commodityaTbodyInta[q].name != "Spring"&&commodityaTbodyInta[q].name != "CapsuleCoffee"&&commodityaTbodyInta[q].value != ""){
 							commodityaTbodyIntb[q].value = 1;
+						}else if(commodityaTbodyInta[q].name == "CapsuleCoffee"){
+							commodityaTbodyIntb[q].value = 7;
 						}
 						this.parentNode.removeChild(this.parentNode.children[2]);
 					}
@@ -283,7 +285,6 @@ function byStart(machCODE){
 			alern(objObject.join(''));
 			return false;
 		}
-		console.log(JSON.stringify(objTbody));
 		$.ajax({
 			type: 'post',
 			url: URLS + '/rocars/updateRecars.json',
@@ -359,7 +360,6 @@ function byStart(machCODE){
 		warningObj.stockparam = itemCommoditybInt.value;
 		warningObj.machCode = machCODE;
 		warningObj.knowpeople = warningArr;
-		console.log(JSON.stringify(warningObj));
 		$.ajax({
 			type: 'post',
 			url: URLX + '/jf/com/inventorywarning/add.json',
@@ -717,8 +717,7 @@ function hdStart(machCODE){
 		data: {
 			machCode: machCODE,
 		},
-		success:(data) =>{
-			console.log(data);
+		success: function(data){
 			//补货清单详情
 			tonicHeadTable.innerHTML = "";
 			function buhuoqingdan(a,b,c,d){
@@ -1118,7 +1117,6 @@ function zsStart(machCODE){
 						var tdc = creat('td');
 						var tdd = creat('td');
 						var tde = creat('td');
-						console.log(data.dataStock[i].reenterDate);
 						tda.innerHTML = data.dataStock[i].cargoData;
 						tdb.innerHTML = data.dataStock[i].goodsName;
 						tdc.innerHTML = data.dataStock[i].goodsId;
@@ -1192,9 +1190,6 @@ function zsStart(machCODE){
 			alern('没有数据!');
 			return false;
 		};
-		console.log(machCODE);
-		console.log(JSON.stringify(priceObj));
-		console.log(JSON.stringify(stockObj));
 		$.ajax({
 			type: 'post',
 			url: URLX + '/jf/com/besale/priceandstock/update.json',
@@ -1315,7 +1310,6 @@ function ycStart(machCODE,mobleId){
 						status: remoteScrollStatus,
 					},
 					success: function(data){
-						console.log(data);
 						alern(data.msg);
 						if(data.msg != "操作成功！<br> SUCCESS!"){
 							if(remoteScrollStatus == 1){
@@ -1387,7 +1381,6 @@ function ycStart(machCODE,mobleId){
 					name: loginUserName.name,
 				},
 				success: function(data){
-					console.log(data);
 					if(data.msg == undefined){
 						alern('操作超时!');
 						displaya = 0;
@@ -1435,7 +1428,6 @@ function ycStart(machCODE,mobleId){
 					name: loginUserName.name,
 				},
 				success: function(data){
-					console.log(data);
 					if(data.msg == undefined){
 						alern('操作超时!');
 						displayb = 0;
@@ -1483,7 +1475,6 @@ function ycStart(machCODE,mobleId){
 					name: loginUserName.name,
 				},
 				success: function(data){
-					console.log(data);
 					if(data.msg == undefined){
 						alern('操作超时!');
 						displayc = 0;
@@ -1535,7 +1526,6 @@ function ycStart(machCODE,mobleId){
 					QWM: remoteSelectb.value,
 				},
 				success: function(data){
-					console.log(data);
 					if(data.msg == undefined){
 						alern('操作超时!');
 						displayd = 0;
@@ -1583,7 +1573,6 @@ function ycStart(machCODE,mobleId){
 					name: loginUserName.name,
 				},
 				success: function(data){
-					console.log(data);
 					if(data.msg == undefined){
 						alern('操作超时!');
 						displaye = 0;
@@ -1635,7 +1624,6 @@ function ycStart(machCODE,mobleId){
 					out_trade_no: remoteShipmentInt.value,
 				},
 				success: function(data){
-					console.log(data);
 					if(data.msg == undefined){
 						alern('操作超时!');
 						displayf = 0;
@@ -1962,7 +1950,6 @@ function ycStart(machCODE,mobleId){
 						if(Number(bottomRemote[q].value) > Number(topRemote[q].value)||(topRemote[q].value - bottomRemote[q].value) < 5){
 							bottomRemote[q].value = "";
 							alern('上限必须比下限多5℃以上!');
-							console.log(123);
 						}
 					}
 				}

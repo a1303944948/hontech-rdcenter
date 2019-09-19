@@ -114,25 +114,25 @@ if(sessionStorage.loginUserName != undefined){
 var loginTimeOut = 0;
 var Timoers = setInterval(function(){
 	loginTimeOut += 1;
-	if(loginTimeOut >= 120){
+	if(loginTimeOut >= 12){
 		sessionStorage.removeItem("loginUserName");
 		alert('please login!');
 		clearInterval(Timoers);
 		window.location.href = 'login.html';
 	}
-},5000);
+},50000);
 window.onmousemove = function(){
 	loginTimeOut = 0;
 	clearInterval(Timoers);
 	Timoers = setInterval(function(){
 		loginTimeOut += 1;
-		if(loginTimeOut >= 120){
+		if(loginTimeOut >= 12){
 			sessionStorage.removeItem("loginUserName");
 			alert('please login!');
 			clearInterval(Timoers);
 			window.location.href = 'login.html';
 		}
-	},5000);
+	},50000);
 }
 
 var KIT;		//数据结构

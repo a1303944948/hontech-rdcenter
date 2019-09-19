@@ -382,13 +382,13 @@ function startbodyleft(commmodityLeft){
 				var detailedOperatorEmail = d('commodity_microwave');						//微波加热
 				var commodityCooling = d('commodity_cooling');								//散热时间
 				var commodityCooking = d('commodity_cooking');								//烹饪温度
+				var commodityType = d('commodity_type');									//工艺类型
 				var commoditySupplier = d('commodity_supplier');							//供应商
 				var detailedOperatorPickimg = c('detailed_operator_pickimg')[0];			//选餐图片
 				var detailedOperatorOrderimg = c('detailed_operator_orderimg')[0];			//下单图片
 				var detailedOperatorIngredientimg = c('detailed_operator_ingredientimg')[0];//商品介绍
 				var commodityRemark = d('commodity_remark');								//备注
 				var detailedOperatorStop = d('detailed_operator_stop');						//停用
-				console.log(commmodityLeft[q]);
 				detailedOperatorId.value = commmodityLeft[q].operParty;
 				detailedOperatorId.name = commmodityLeft[q].operatorID;
 				detailedOperatorNumbering.value = commmodityLeft[q].waresId;
@@ -421,6 +421,8 @@ function startbodyleft(commmodityLeft){
 				commodityCooling.value = commmodityLeft[q].heatDissipationTime;
 				commodityCooking.value = commmodityLeft[q].cooking;
 				commoditySupplier.value = commmodityLeft[q].supplier;
+				commodityType.value = commmodityLeft[q].workmanshipName;
+				commodityType.setAttribute('data-value',commmodityLeft[q].workmanshipId);
 				detailedOperatorPickimg.innerHTML = commmodityLeft[q].waresImage1;
 				d('detailed_operator_pickimg').setAttribute('data-url',commmodityLeft[q].waresImage1);
 				detailedOperatorOrderimg.innerHTML = commmodityLeft[q].waresImage2;
@@ -438,6 +440,7 @@ function startbodyleft(commmodityLeft){
 				}else{
 					detailedOperatorStop.checked = false;
 				}
+				WmStartSelect();
 			}
 		})(i)
 	}
@@ -1199,6 +1202,8 @@ function submit(){
 		var commodityCooling = d('commodity_cooling').value;			//散热时间
 		var commodityCooking = d('commodity_cooking').value;			//烹饪温度
 		var commoditySupplier = d('commodity_supplier').value;			//供应商
+		var commodityType = d('commodity_type').dataset.value;			//工艺类型(编号)
+		var commodityTypeName = d('commodity_type').value;				//工艺类型(名称)
 		OperatorPickimgBase = d('detailed_operator_pickimg').dataset.url;			//创建选餐图片
 		OperatorOrderimgBase = d('detailed_operator_orderimg').dataset.url;			//创建下单图片
 		OperatorIngredientimgBase = d('detailed_operator_ingredientimg').dataset.url;	//创建商品介绍
@@ -1268,6 +1273,8 @@ function submit(){
 				commodityobj.heatDissipationTime = commodityCooling;
 				commodityobj.cooking = commodityCooking;
 				commodityobj.supplier = commoditySupplier;
+				commodityobj.workmanshipId = commodityType;
+				commodityobj.workmanshipName = commodityTypeName;
 				commodityobj.remark = commodityRemark;
 				commodityobj.dltflag = detailedOperatorStop;
 				commodityobj.updateBy = loginUserName.empcode;

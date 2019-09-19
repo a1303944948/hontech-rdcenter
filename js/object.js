@@ -113,25 +113,25 @@ if(sessionStorage.loginUserName != undefined){
 var loginTimeOut = 0;
 var Timoers = setInterval(function(){
 	loginTimeOut += 1;
-	if(loginTimeOut >= 120){
+	if(loginTimeOut >= 12){
 		sessionStorage.removeItem("loginUserName");
 		alert('用户长时间未操作,请重新登录!');
 		clearInterval(Timoers);
 		window.location.href = 'login.html';
 	}
-},5000);
+},50000);
 window.onmousemove = function(){
 	loginTimeOut = 0;
 	clearInterval(Timoers);
 	Timoers = setInterval(function(){
 		loginTimeOut += 1;
-		if(loginTimeOut >= 120){
+		if(loginTimeOut >= 12){
 			sessionStorage.removeItem("loginUserName");
 			alert('用户长时间未操作,请重新登录!');
 			clearInterval(Timoers);
 			window.location.href = 'login.html';
 		}
-	},5000);
+	},50000);
 }
 
 var KIT;		//数据结构
@@ -183,6 +183,7 @@ var URLX = 'http://9n2sjp.natappfree.cc/bg-uc';
 var URLZ = 'http://9n2sjp.natappfree.cc/bg-uc';
 var URLY = 'http://9n2sjp.natappfree.cc/bg-uc';
 var OSSURL = 'http://hf-web.oss-cn-shanghai.aliyuncs.com/';*/
+var URLTEST = 'http://10.1.8.34:8080/bg-uc';
 //禁用页面log,要恢复调试请注释
 //console.log = ()=>{};
 

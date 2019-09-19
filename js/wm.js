@@ -390,7 +390,6 @@ function WmPageMarkItem(that,num,type){
 		if(Number(that.parentNode.children[2].children[0].value) <= Math.ceil(datasetLength[0]/datasetLength[2])&&Number(that.parentNode.children[2].children[0].value)>0){
 			datasetLength[1] = Number(that.parentNode.children[2].children[0].value);
 			that.parentNode.parentNode.setAttribute('data-length',JSON.stringify(datasetLength));
-			console.log(JSON.parse(that.parentNode.parentNode.dataset.length)[1],type);
 			WmPageMarkStart(JSON.parse(that.parentNode.parentNode.dataset.length)[1],type);
 		}else{
 			if(Number(that.parentNode.children[2].children[0].value)>0){

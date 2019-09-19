@@ -495,3 +495,6 @@ html,body{
 .headUl>li{
 	cursor: pointer;
 }
+.commodity_select{
+	width: calc(100% - 80px) !important;
+}

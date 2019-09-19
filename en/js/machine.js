@@ -648,6 +648,8 @@ function startfoot(machCODE){
 		var roadbTableInt = c('user_body_right_foot_item_roadb_table_int');
 		var roadcTable = c('user_body_right_foot_item_roadc_table')[0];
 		var roadcTableInt = c('user_body_right_foot_item_roadc_table_int');
+		var roaddTable = c('user_body_right_foot_item_roadd_table')[0];
+		var roaddTableInt = c('user_body_right_foot_item_roadd_table_int');
 		var itemCommodityaTbody = c('user_body_right_foot_item_commoditya_tbody')[0];
 		var roadaObj = [];
 		for(var i = 0; i < MACHCOMMOD.length; i++){
@@ -2311,11 +2313,38 @@ function renderingRoad(machCODE){
 						}
 					}
 				}
+			}else if(MACHROAD.type == 'd'){
+				c('user_body_right_foot_item_roadd')[0].style.display = 'block';
+				var userBodyRightFootItemRoaddTbody = c('user_body_right_foot_item_roadd_tbody')[0];
+				userBodyRightFootItemRoaddTbody.innerHTML = "";
+				for(var i = 0; i < 27; i++){
+					var tr = creat('tr');
+					var tda = creat('td');
+					var tdb = creat('td');
+					var tdc = creat('td');
+					tda.innerHTML = i+1;
+					tdb.innerHTML = '<input class="user_body_right_foot_item_roadd_table_int" type="text" style="cursor: pointer" readonly="readonly" value="'+MACHROAD.value[0]+'"/>';
+					tdc.innerHTML = '7';
+					tr.appendChild(tda);
+					tr.appendChild(tdb);
+					tr.appendChild(tdc);
+					userBodyRightFootItemRoaddTbody.appendChild(tr);
+				}
 			}
 			byStart(machCODE);
-			if(MACHROAD.type != 'a'){
+			if(MACHROAD.type == 'b'||MACHROAD.type == 'c'){
 				for(let i = 0; i <　c('user_body_right_foot_item_commoditya_tbody_intb').length; i++){
 					c('user_body_right_foot_item_commoditya_tbody_intb')[i].disabled = 'disabled';
+				}
+			}else if(MACHROAD.type == 'd'){
+				for(let i = 0; i <　c('user_body_right_foot_item_commoditya_tbody_intb').length; i++){
+					c('user_body_right_foot_item_commoditya_tbody_intb')[i].oninput = function(){
+						if(this.value > 7){
+							this.value = 7
+						}else if(this.value < 0){
+							this.value = 0
+						}
+					}
 				}
 			}
 		},
@@ -2351,6 +2380,8 @@ function renderingRoad(machCODE){
 		var roadbTableInt = c('user_body_right_foot_item_roadb_table_int');
 		var roadcTable = c('user_body_right_foot_item_roadc_table')[0];
 		var roadcTableInt = c('user_body_right_foot_item_roadc_table_int');
+		var roaddTable = c('user_body_right_foot_item_roadd_table')[0];
+		var roaddTableInt = c('user_body_right_foot_item_roadd_table_int');
 		var itemCommodityaTbody = c('user_body_right_foot_item_commoditya_tbody')[0];
 		var roadaObj = [];
 		/*if(MACHCOMMOD.length != 0){
@@ -2479,6 +2510,26 @@ function renderingRoad(machCODE){
 					roadaList.push("");						//货道ID
 					roadaObj.push(roadaList);
 				}
+			};
+		}else if(MACHROAD.type == 'd'){
+			var itemRoadcTbody = c('user_body_right_foot_item_roadc_tbody')[3];
+			for(var i = 0; i < roaddTableInt.length; i++){
+				if(roaddTableInt[i].value == ""){
+					alern('货道类型不能为空！');
+					return false;
+				}
+			}
+			for(var i = 0; i < roaddTableInt.length; i++){
+				var roadaList = [];
+				roadaList.push(itemRoadcTbody.children[i].children[0].innerHTML);					//货道
+				roadaList.push(itemRoadcTbody.children[i].children[1].children[0].value);			//货道类型
+				roadaList.push(machCODE);
+				roadaList.push("");						//商品名称
+				roadaList.push("");						//商品ID
+				roadaList.push("");						//商品数量
+				roadaList.push("");						//价格系数
+				roadaList.push("");						//货道ID
+				roadaObj.push(roadaList);
 			};
 		}
 		return roadaObj;

@@ -415,6 +415,31 @@ function startbody(l){
 						new OnChange('icbc_pay');
 					}
 				})
+				//开票资料内容渲染
+				$.ajax({
+					type: 'post',
+					url: URLS + '/invoice/getInvoice.json',
+					data: {
+						operatorID: thatName,
+					},
+					success: function(data){
+						if(data.code == 10001){
+							d('operator_name').value = data.data.company;				//公司名称
+							d('operator_number').value = data.data.taxRegistrationNum;	//税务登记号
+							d('operator_addr').value = data.data.location;				//公司地址
+							d('operator_phone').value = data.data.phone;				//联系电话
+							d('operator_bank').value = data.data.bank;					//开户银行
+							d('operator_account').value = data.data.bankAccount;		//银行账号
+						}else{
+							d('operator_name').value = "";		//公司名称
+							d('operator_number').value = "";	//税务登记号
+							d('operator_addr').value = "";		//公司地址
+							d('operator_phone').value = "";		//联系电话
+							d('operator_bank').value = "";		//开户银行
+							d('operator_account').value = "";	//银行账号
+						}
+					}
+				})
 			}
 		})(i)
 	}
@@ -540,6 +565,14 @@ function submit(){
 		new OnChange('alipay_pay');
 		new OnChange('silver_pay');
 		new OnChange('icbc_pay');
+
+		//清空开票资料
+		d('operator_name').value = "";
+		d('operator_number').value = "";
+		d('operator_addr').value = "";
+		d('operator_phone').value = "";
+		d('operator_bank').value = "";
+		d('detailed_account').value = "";
 	};
 	bodySubmit.onclick = function(){
 		var count = 0;
@@ -782,6 +815,33 @@ function submit(){
 					c('operator_home_head_submit')[0].click();
 					location.reload();
 				}
+			}
+		})
+
+		//开票资料上传
+		var operatorName = d('operator_name').value;		//公司名称
+		var operatorNumber = d('operator_number').value;	//税务登记号
+		var operatorAddr = d('operator_addr').value;		//公司地址
+		var operatorPhone = d('operator_phone').value;		//联系电话
+		var operatorBank = d('operator_bank').value;		//开户银行
+		var operatorAccount = d('operator_account').value;	//银行账号
+		var operatorObject = {};
+		operatorObject.operatorID = detailedOperatorId;
+		operatorObject.company = operatorName;
+		operatorObject.taxRegistrationNum = operatorNumber;
+		operatorObject.location = operatorAddr;
+		operatorObject.phone = operatorPhone;
+		operatorObject.bank = operatorBank;
+		operatorObject.bankAccount = operatorAccount;
+
+		$.ajax({
+			type: 'post',
+			url: URLS + '/invoice/saveInvoice.json',
+			data: {
+				Data: JSON.stringify(operatorObject),
+			},
+			success: function(data){
+				console.log(data);
 			}
 		})
 	}
