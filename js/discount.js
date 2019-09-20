@@ -41,7 +41,7 @@ function start(num){
 		li.appendChild(a);
 		discountLeftUl.appendChild(li);
 
-		//初始化是禁用已被操作过的设备
+		//初始化时禁用已被操作过的设备
 		for(let j = 0; j < selectMachcode.length; j++){
 			if(KITASSIGN[i].devicecode === selectMachcode[j]){
 				input.disabled = 'true';
