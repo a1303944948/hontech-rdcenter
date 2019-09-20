@@ -436,6 +436,8 @@ function rest(){
 					endTimeDick[j].style.display = "none";
 				}
 				startTimeDick[q].style.display = "block";
+				startTimeDickLeftCenter[q].children[0].value = startTime[q].value.split(':')[0];
+				startTimeDickRightCenter[q].children[0].value = startTime[q].value.split(':')[1];
 				var count = parseInt(startTimeDickLeftCenter[q].children[0].value);
 				var counts = parseInt(startTimeDickRightCenter[q].children[0].value);
 				startTimeDickLeftTop[q].onclick = function(){
@@ -520,6 +522,8 @@ function rest(){
 					endTimeDick[j].style.display = "none";
 				}
 				endTimeDick[q].style.display = "block";
+				endTimeDickLeftCenter[q].children[0].value = endTime[q].value.split(':')[0];
+				endTimeDickRightCenter[q].children[0].value = endTime[q].value.split(':')[1];
 				var count = parseInt(endTimeDickLeftCenter[q].children[0].value);
 				var counts = parseInt(endTimeDickRightCenter[q].children[0].value);
 				endTimeDickLeftTop[q].onclick = function(){
