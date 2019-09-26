@@ -1730,8 +1730,8 @@ function ycStart(machCODE,mobleId){
 		tdf.className = 'user_body_right_foot_item_remote_tbodysc_six';
 		tda.innerHTML = 'Start：<input class="startTime" type="text" readonly="readonly" style="cursor: pointer" value="'+Arra+'"/><div class="startTimeDick"><div class="startTimeDick_left"><div class="startTimeDick_left_top"><b></b></div><div class="startTimeDick_left_center"><input type="number" value="00"/>:</div><div class="startTimeDick_left_bottom"><b></b></div></div><div class="startTimeDick_right"><div class="startTimeDick_right_top"><b></b></div><div class="startTimeDick_right_center"><input type="number" value="00"/></div><div class="startTimeDick_right_bottom"><b></b></div></div><div class="clear"></div><div class="startTimeDick_bottom">OK<div></div>';
 		tdb.innerHTML = 'End：<input class="endTime" type="text" readonly="readonly" style="cursor: pointer" value="'+Arrb+'"/><div class="endTimeDick"><div class="endTimeDick_left"><div class="endTimeDick_left_top"><b></b></div><div class="endTimeDick_left_center"><input type="number" value="00"/>:</div><div class="endTimeDick_left_bottom"><b></b></div></div><div class="endTimeDick_right"><div class="endTimeDick_right_top"><b></b></div><div class="endTimeDick_right_center"><input type="number" value="00"/></div><div class="endTimeDick_right_bottom"><b></b></div></div><div class="clear"></div><div class="endTimeDick_bottom">OK<div></div>';
-		tdc.innerHTML = 'Upper Limit(℃)：<input class="topRemote" type="number" value="'+Arrc+'"/>';
-		tdd.innerHTML = 'Lower Limit(℃)：<input class="bottomRemote" type="number" value="'+Arrd+'"/>';
+		tdc.innerHTML = 'Upper Limit(℉)：<input class="topRemote" type="number" value="'+Math.round(Arrc*1.8+32)+'"/>';
+		tdd.innerHTML = 'Lower Limit(℉)：<input class="bottomRemote" type="number" value="'+Math.round(Arrd*1.8+32)+'"/>';
 		tde.innerHTML = 'heating time out(min)：<input class="remoteTimeOut" type="number" value="'+Arre+'"/>';
 		tdf.innerHTML = '<button class="user_body_right_foot_item_remote_tbodysc_btn"><img src="image/sc.png"/>Delete</button>';
 		tr.appendChild(tda);
@@ -2021,8 +2021,8 @@ function ycStart(machCODE,mobleId){
 			}
 			remoteObj.startTime = startTime[i].value;
 			remoteObj.endTime = endTime[i].value;
-			remoteObj.start = topRemote[i].value;
-			remoteObj.end = bottomRemote[i].value;
+			remoteObj.start = (topRemote[i].value-32)/1.8;
+			remoteObj.end = (bottomRemote[i].value-32)/1.8;
 			remoteObj.more = remoteTimeOut[i].value;
 			remoteObj.machCode = machCODE;
 			remoteArr.push(remoteObj);

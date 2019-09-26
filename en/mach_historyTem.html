@@ -9,6 +9,9 @@
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="js/wm.js"></script>
 	<script type="text/javascript" src="js/object.js"></script>
+	<script type="text/javascript" src="js/xlsxx.js"></script>
+	<script type="text/javascript" src="js/xlsx.js"></script>
+	<script type="text/javascript" src="js/xlsxs.js"></script>
 	<style type="text/css">
 		html,body{
 			overflow: hidden;
@@ -146,6 +149,34 @@
 			box-sizing: border-box;
 			border-bottom: none;
 		}
+		.tem_btn{
+		    width: 120px;
+		    height: 30px;
+		    line-height: 30px;
+		    margin-left: 3%;
+		    border: 1px #c3c3c3 solid;
+		    background-color: #ffffff;
+		    color: #000000;
+		    border-radius: 5px;
+		    user-select: none;
+		    outline: none;
+		    cursor: pointer;
+		    position: relative;
+		    top: -10px;
+		}
+		.tem_btn:hover{
+			background-color: #f0f0f0;
+		}
+		.tem_btn:active{
+			background-color: #ffffff;
+		}
+		.tem_btn>img {
+		    width: 20px;
+		    height: 20px;
+		    position: relative;
+		    top: 4px;
+		    margin-right: 4px;
+		}
 	</style>
 </head>
 <body>
@@ -163,9 +194,10 @@
 					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Machine Name : <span class="tem_head_hostname"></span></td>
 				</tr>
 			</table>
+			<button class="tem_btn"><img src="image/excelDwon.png"/>导出为Excel</button>
 		</div>
 		<div class="tem_fixed">
-			<table>
+			<table id="sales_body_table_head">
 				<tr>
 					<td>Temperature</td>
 					<td>Time</td>
@@ -175,7 +207,7 @@
 				</tr>
 			</table>
 		</div>
-		<div class="tem_body">
+		<div class="tem_body sales_body_table">
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -334,6 +366,39 @@
 			})
 	    }
 	    submit.click();
+
+	    var excelTableHead = d('sales_body_table_head');
+	    var excelTable = d('sales_body_table');
+		var temBtn = c('tem_btn')[0];
+		temBtn.onclick = function(){
+		  var tableArray = tableArr(excelTableHead);
+		  	  tableArray += tableArr(excelTable);
+		  tableArray.unshift(xlsxUtils.readDataHead(tableArray));
+		  var blob = xlsxUtils.export({"Sheet1": tableArray});
+
+		  var excelDate = new Date();
+		  var names = excelDate.getFullYear() + '-' + (excelDate.getMonth()+1) + '-' + excelDate.getDate();
+		  
+		  saveAs(URL.createObjectURL(blob), "Sales Report"+names+".xlsx");
+		}
+
+		function tableArr(that){
+		  console.log(that);
+		  var thatChild = that.children;
+		  var tableArray = [];
+		  var tableHeadArr = [];
+		  for(var i = 0; i < thatChild[0].children[0].children.length; i++){
+		    tableHeadArr.push(thatChild[0].children[0].children[i].innerText);
+		  }
+		  for(var j = 0; j < thatChild[1].children.length; j++){
+		    var tableObject = {};
+		    for(var k = 0; k < thatChild[1].children[j].children.length; k++){
+		      tableObject[tableHeadArr[k]] = thatChild[1].children[j].children[k].innerText;
+		    }
+		    tableArray.push(tableObject);
+		  }
+		  return tableArray;
+		}
 	</script>
 </body>
 </html>

@@ -419,7 +419,7 @@ function startbodyleft(commmodityLeft){
 				detailedOperatorSparephone.value = commmodityLeft[q].infraredheating;
 				detailedOperatorEmail.value = commmodityLeft[q].microwaveheating;
 				commodityCooling.value = commmodityLeft[q].heatDissipationTime;
-				commodityCooking.value = commmodityLeft[q].cooking;
+				commodityCooking.value = Math.round(commmodityLeft[q].cooking*1.8+32);
 				commoditySupplier.value = commmodityLeft[q].supplier;
 				commodityType.value = commmodityLeft[q].workmanshipName;
 				commodityType.setAttribute('data-value',commmodityLeft[q].workmanshipId);
@@ -1271,7 +1271,7 @@ function submit(){
 				commodityobj.infraredheating = commodityInfrared;
 				commodityobj.microwaveheating = commodityMicrowave;
 				commodityobj.heatDissipationTime = commodityCooling;
-				commodityobj.cooking = commodityCooking;
+				commodityobj.cooking = (commodityCooking-32)/1.8;
 				commodityobj.supplier = commoditySupplier;
 				commodityobj.workmanshipId = commodityType;
 				commodityobj.workmanshipName = commodityTypeName;
