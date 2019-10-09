@@ -207,7 +207,7 @@
 				</tr>
 			</table>
 		</div>
-		<div class="tem_body sales_body_table">
+		<div id="sales_body_table" class="tem_body sales_body_table">
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -371,8 +371,8 @@
 	    var excelTable = d('sales_body_table');
 		var temBtn = c('tem_btn')[0];
 		temBtn.onclick = function(){
-		  var tableArray = tableArr(excelTableHead);
-		  	  tableArray += tableArr(excelTable);
+		  var tableHead = tableArr(excelTableHead,1),
+		  	  tableArray = tableArr(excelTable,2,tableHead);
 		  tableArray.unshift(xlsxUtils.readDataHead(tableArray));
 		  var blob = xlsxUtils.export({"Sheet1": tableArray});
 
@@ -382,22 +382,29 @@
 		  saveAs(URL.createObjectURL(blob), "Sales Report"+names+".xlsx");
 		}
 
-		function tableArr(that){
+		function tableArr(that,num,arr){
+		  console.log(num);
 		  console.log(that);
-		  var thatChild = that.children;
-		  var tableArray = [];
-		  var tableHeadArr = [];
-		  for(var i = 0; i < thatChild[0].children[0].children.length; i++){
-		    tableHeadArr.push(thatChild[0].children[0].children[i].innerText);
-		  }
-		  for(var j = 0; j < thatChild[1].children.length; j++){
-		    var tableObject = {};
-		    for(var k = 0; k < thatChild[1].children[j].children.length; k++){
-		      tableObject[tableHeadArr[k]] = thatChild[1].children[j].children[k].innerText;
-		    }
-		    tableArray.push(tableObject);
-		  }
-		  return tableArray;
+		  if(num == 1){
+			  var thatChild = that.children;
+			  var tableHeadArr = [];
+			  for(var i = 0; i < thatChild[0].children[0].children.length; i++){
+			    tableHeadArr.push(thatChild[0].children[0].children[i].innerText);
+			  }
+			  return tableHeadArr;
+			}else{
+			  console.log(arr);
+			  console.log(that);
+			  var tableArray = [];
+			  for(var j = 0; j < that.children.length; j++){
+			    var tableObject = {};
+			    for(var k = 0; k < arr.length; k++){
+			      tableObject[arr[k]] = that.children[j].children[0].children[0].children[k].innerText;
+			    }
+			    tableArray.push(tableObject);
+			  }
+			  return tableArray;
+			}
 		}
 	</script>
 </body>
