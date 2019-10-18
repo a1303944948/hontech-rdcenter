@@ -452,7 +452,7 @@ function WmStartSelect(){
 		var wmSelectArray = [],
 			wmSelectObj = {};
 		wmSelectObj.index = i;
-		wmSelectObj.name = '请选择...';
+		wmSelectObj.name = 'Select...';
 		wmSelectObj.value = '';
 		wmSelectArray.push(wmSelectObj);
 		for(var j = 0; j < wmSelectArr.length; j++){
@@ -472,7 +472,7 @@ function WmStartSelect(){
 			var list = creat('div');
 			list.className = 'wm_select_item_list';
 			list.innerHTML = wmSelectArray[j].name;
-			if(wmSelectArray[j].value === '请选择...'){
+			if(wmSelectArray[j].value === 'Select...'){
 				list.style.color = '#666666';
 			}
 			list.setAttribute('data-index',wmSelectArray[j].index);

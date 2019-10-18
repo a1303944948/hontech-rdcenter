@@ -795,7 +795,7 @@ function selesForm(){
           salesBody.style.display = 'block';
           tableRendering(data.data);
         }else{
-          alern('查询失败！');
+          alern(data.msg);
         }
       }
     })

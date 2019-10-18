@@ -116,8 +116,8 @@ function start(){
 		dataType: 'json',
 		success: function(data){
 			console.log(data);
-			if(data.dealtypeJson.length != undefined){
-				LISTS.unshift(data.dealtypeJson);
+			if(data.paymentTypes.length != undefined){
+				LISTS.unshift(data.paymentTypes);
 			}else{
 				LISTS.unshift('');
 			}
@@ -135,8 +135,13 @@ function start(){
 		for(var j = 0; j < LISTS[i].length; j++){
 			var li = creat('li');
 			var br = creat('br');
-			li.setAttribute("data-value", LISTS[i][j].value)
-			li.innerHTML = LISTS[i][j].text;
+			if(i == 0){
+				li.setAttribute("data-value", LISTS[i][j].payWay);
+				li.innerHTML = LISTS[i][j].payTextEN;
+			}else if(i == 1){
+				li.setAttribute("data-value", LISTS[i][j].value);
+				li.innerHTML = LISTS[i][j].text;
+			};
 			ul.appendChild(li);
 			ul.appendChild(br);
 		}

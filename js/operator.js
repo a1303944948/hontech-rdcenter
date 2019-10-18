@@ -450,6 +450,7 @@ window.onresize = function(){
 	var Head = c('operator_head')[0];
 	var obody = c('operator_body')[0];
 	obody.style.height = window.innerHeight - Head.clientHeight - 119 + 'px';
+	c('advertise_board_fixed_body')[0].style.marginTop = -(c('advertise_board_fixed_body')[0].clientHeight / 2) + 50 + 'px';
 };
 
 //搜索按钮
@@ -483,6 +484,128 @@ d('detailed_operator_id').onchange = function(){
 		}
 	}
 }
+
+/*支付测试事件（提供给运营方进行便捷检测支付配置是否完善所用）*/
+//微信支付测试
+d('wechatTest').onclick = function(){
+	var ErrorString = "";
+	var wechatObject = {};
+	var detailedOperatorId = d('detailed_operator_id').value;	//运营方ID
+	var wechatPass = d('wechat_pass').value;					//微信密钥
+	var wechatId = d('wechat_id').value;						//微信公众号id
+	var wechatSecret = d('wechat_secret').value;				//微信公众号secret
+	var wecahtShanghu = d('wecaht_shanghu').value;				//微信商户号
+	var wecahtFileValue = d('wecahtFile_value');				//检测p12文件是否存在
+	wechatObject.operatorID = detailedOperatorId;
+	wechatObject.pass = wechatPass;
+	wechatObject.user = wechatId;
+	wechatObject.wxAPPSecret = wechatSecret;
+	wechatObject.mch_id = wecahtShanghu;
+	if(detailedOperatorId === ''){
+		ErrorString += "运营方ID不能为空<br/>";
+	}
+	if(wechatPass === ''){
+		ErrorString += "微信API密钥不能为空<br/>";
+	}
+	if(wechatId === ''){
+		ErrorString += "微信公众号id不能为空</br>";
+	}
+	if(wechatSecret === ''){
+		ErrorString += "微信APPSecret不能为空</br>";
+	}
+	if(wecahtShanghu === ''){
+		ErrorString += "微信商户号不能为空</br>";
+	}
+	if(wecahtFileValue === ''){
+		ErrorString += "微信Pcks12证书不能为空</br>";
+	}
+	if(ErrorString !== ""){
+		alern(ErrorString);
+		return false;
+	}
+	$.ajax({
+		type: 'post',
+		url: 'http://10.1.8.36:8080/bg-uc/paycenter/test/wechat/qrcode.json',
+		data: {
+			obj: JSON.stringify(wechatObject),
+		},
+		success: function(data){
+			if(data.code == 10001){
+				c("advertise_board_fixed_body_home_ewm")[0].innerHTML = "";
+				var qrcode = new QRCode(c("advertise_board_fixed_body_home_ewm")[0], {
+		            width : 220,//设置宽高
+		            height : 220,
+		        });
+	   			qrcode.makeCode(data.wechat);
+				c('advertise_board_fixed')[0].style.display = 'block';
+				c('advertise_board_fixed_body')[0].style.marginTop = -(c('advertise_board_fixed_body')[0].clientHeight / 2) + 50 + 'px';
+			}else{
+				alern(data.msg);
+			}
+		},
+		error: function(){
+			alern('未知错误');
+		}
+	})
+
+}
+//支付宝支付测试
+d('alipayTest').onclick = function(){
+	var ErrorString = "";
+	var alipayObject = {};
+	var detailedOperatorId = d('detailed_operator_id').value;	//运营方ID
+	var alipayId = d('alipay_id').value;						//支付宝应用id
+	var alipayPrivpay = d('alipay_privpay').value;				//支付宝私钥
+	var alipayPublicpay = d('alipay_publicpay').value;			//支付宝公钥
+	alipayObject.operatorID = detailedOperatorId;
+	alipayObject.appid = alipayId;
+	alipayObject.sdkpass = alipayPrivpay;
+	alipayObject.sdkuser = alipayPublicpay;
+	if(detailedOperatorId === ''){
+		ErrorString += "运营方ID不能为空<br/>";
+	}
+	if(alipayId === ''){
+		ErrorString += "支付宝APPID不能为空<br/>";
+	}
+	if(alipayPrivpay === ''){
+		ErrorString += "支付宝私钥不能为空<br/>";
+	}
+	if(alipayPublicpay === ''){
+		ErrorString += "支付宝公钥不能为空<br/>";
+	}
+	if(ErrorString !== ""){
+		alern(ErrorString);
+		return false;
+	}
+	$.ajax({
+		type: 'post',
+		url: 'http://10.1.8.36:8080/bg-uc/paycenter/test/alipay/qrcode.json',
+		data: {
+			obj: JSON.stringify(alipayObject),
+		},
+		success: function(data){
+			if(data.code == 10001){
+				c("advertise_board_fixed_body_home_ewm")[0].innerHTML = "";
+				var qrcode = new QRCode(c("advertise_board_fixed_body_home_ewm")[0], {
+		            width : 220,//设置宽高
+		            height : 220,
+		        });
+	   			qrcode.makeCode(data.alipay);
+				c('advertise_board_fixed')[0].style.display = 'block';
+				c('advertise_board_fixed_body')[0].style.marginTop = -(c('advertise_board_fixed_body')[0].clientHeight / 2) + 50 + 'px';
+			}else{
+				alern(data.msg);
+			}
+		},
+		error: function(){
+			alern('未知错误');
+		}
+	})
+}
+
+c('advertise_board_fixed_body_clear')[0].onclick = function(){
+	c('advertise_board_fixed')[0].style.display = 'none';
+};
 
 function submit(){
 	var bodyCreat = d('body_creat');
@@ -680,7 +803,7 @@ function submit(){
 			}
 		}
 
-		var alipayObject = new Object();
+		var alipayObject = {};
 		var alipayPay = d('alipay_pay').checked;			//支付宝支付
 		if(alipayPay){
 			alipayPay = '1';
@@ -706,7 +829,7 @@ function submit(){
 			}
 		}
 
-		var silverObject = new Object();
+		var silverObject = {};
 		var silverPay = d('silver_pay').checked;			//银商支付
 		if(silverPay){
 			silverPay = '1';
@@ -747,7 +870,7 @@ function submit(){
 			}
 		}
 
-		var icbcObject = new Object();
+		var icbcObject = {};
 		var icbcPay = d('icbc_pay').checked;				//工行支付
 		if(icbcPay){
 			icbcPay = '1';

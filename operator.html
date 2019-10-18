@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css"/>
 	<link rel="stylesheet" type="text/css" href="css/operator.css"/>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="js/qrcode.min.js"></script>
 	<script type="text/javascript" src="js/wm.js"></script>
 	<script type="text/javascript" src="js/object.js"></script>
 </head>
@@ -122,6 +123,10 @@
 									<td>Pcks12证书：<span class="wechat_pay">*</span></td>
 									<td><input id="wecahtFile" type="file" accept=".p12"/><div id="wecahtFile_value">点击选择文件...</div></td>
 								</tr>
+								<tr>
+									<td>支付测试：</td>
+									<td><button id="wechatTest">微信码</button></td>
+								</tr>
 							</table>
 						</div>
 						<div class="operator_body_right_foot_item">
@@ -142,6 +147,10 @@
 								<tr>
 									<td>支付宝公钥：<span class="alipay_pay">*</span></td>
 									<td><input id="alipay_publicpay" type="password"/></td>
+								</tr>
+								<tr>
+									<td>支付测试：</td>
+									<td><button id="alipayTest">支付宝码</button></td>
 								</tr>
 							</table>
 						</div>
@@ -244,6 +253,12 @@
 				</div>
 			</div>
 			<div class="clear"></div>
+		</div>
+		<div class="advertise_board_fixed">
+			<div class="advertise_board_fixed_body">
+				<p><b class="advertise_board_fixed_body_b"></b><span class="advertise_board_fixed_body_clear">×</span></p>
+				<div class="advertise_board_fixed_body_home_ewm"></div>
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="js/operator.js"></script>

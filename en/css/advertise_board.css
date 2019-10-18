@@ -1,5 +1,5 @@
 .item0{
-	margin-left: 0px;
+	margin-left: 0;
 }
 .item1{
 	margin-left: 20px;
@@ -102,12 +102,12 @@ html,body{
 	height: 100%;
 	border-radius: 3px;
 	border: 1px #d4d4d4 solid;
-	padding: 0px 5px;
+	padding: 0 5px;
 	cursor: pointer;
 }
 .user_head>table tr td>b{
-	width: 0px;
-	height: 0px;
+	width: 0;
+	height: 0;
 	border-top: 5px #656565 solid;
 	border-left: 5px rgba(0,0,0,0) solid;
 	border-right: 5px rgba(0,0,0,0) solid;
@@ -534,8 +534,8 @@ html,body{
 }
 .startTimeDick_left_top>b{
 	display: inline-block;
-	width: 0px;
-	height: 0px;
+	width: 0;
+	height: 0;
 	border-bottom: 10px #888888 solid;
 	border-left: 10px  rgba(0,0,0,0) solid;
 	border-right: 10px rgba(0,0,0,0) solid;
@@ -566,8 +566,8 @@ html,body{
 }
 .startTimeDick_left_bottom>b{
 	display: inline-block;
-	width: 0px;
-	height: 0px;
+	width: 0;
+	height: 0;
 	border-top: 10px #888888 solid;
 	border-left: 10px  rgba(0,0,0,0) solid;
 	border-right: 10px rgba(0,0,0,0) solid;
@@ -590,8 +590,8 @@ html,body{
 }
 .startTimeDick_right_top>b{
 	display: inline-block;
-	width: 0px;
-	height: 0px;
+	width: 0;
+	height: 0;
 	border-bottom: 10px #888888 solid;
 	border-left: 10px  rgba(0,0,0,0) solid;
 	border-right: 10px rgba(0,0,0,0) solid;
@@ -622,8 +622,8 @@ html,body{
 }
 .startTimeDick_right_bottom>b{
 	display: inline-block;
-	width: 0px;
-	height: 0px;
+	width: 0;
+	height: 0;
 	border-top: 10px #888888 solid;
 	border-left: 10px  rgba(0,0,0,0) solid;
 	border-right: 10px rgba(0,0,0,0) solid;
@@ -682,8 +682,8 @@ html,body{
 }
 .endTimeDick_left_top>b{
 	display: inline-block;
-	width: 0px;
-	height: 0px;
+	width: 0;
+	height: 0;
 	border-bottom: 10px #888888 solid;
 	border-left: 10px  rgba(0,0,0,0) solid;
 	border-right: 10px rgba(0,0,0,0) solid;
@@ -714,8 +714,8 @@ html,body{
 }
 .endTimeDick_left_bottom>b{
 	display: inline-block;
-	width: 0px;
-	height: 0px;
+	width: 0;
+	height: 0;
 	border-top: 10px #888888 solid;
 	border-left: 10px  rgba(0,0,0,0) solid;
 	border-right: 10px rgba(0,0,0,0) solid;
@@ -738,8 +738,8 @@ html,body{
 }
 .endTimeDick_right_top>b{
 	display: inline-block;
-	width: 0px;
-	height: 0px;
+	width: 0;
+	height: 0;
 	border-bottom: 10px #888888 solid;
 	border-left: 10px  rgba(0,0,0,0) solid;
 	border-right: 10px rgba(0,0,0,0) solid;
@@ -770,8 +770,8 @@ html,body{
 }
 .endTimeDick_right_bottom>b{
 	display: inline-block;
-	width: 0px;
-	height: 0px;
+	width: 0;
+	height: 0;
 	border-top: 10px #888888 solid;
 	border-left: 10px  rgba(0,0,0,0) solid;
 	border-right: 10px rgba(0,0,0,0) solid;
@@ -865,8 +865,8 @@ html,body{
 	width: 100%;
 	height: 100%;
 	position: fixed;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	background-color: rgba(0,0,0,0.5);
 	z-index: 9999;
 }
@@ -1155,8 +1155,8 @@ html,body{
 	width: 100%;
 	height: 100%;
 	position: fixed;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	background-color: rgba(0,0,0,0.7);
 	text-align: center;
 	z-index: 9999999;

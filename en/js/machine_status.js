@@ -159,7 +159,7 @@ function start(){
 	})
 	//给下拉框添加请选择
 	for(var i = 0; i < OBJ.length; i++){
-		OBJ[i].unshift({'text': 'Select...',value: ''});
+		OBJ[i].unshift({'text': 'Select','textEn': 'Select...',value: ''});
 	}
 	var machineHead = c('machine_home_head')[0];
 	for(var i = 0; i < OBJ.length; i++){
@@ -168,7 +168,7 @@ function start(){
 		ul.setAttribute("data-list", i);
 		for(var j = 0; j < OBJ[i].length; j++){
 			var li = creat('li');
-			li.innerHTML = OBJ[i][j].text;
+			i == 0?li.innerHTML = OBJ[i][j].textEn:li.innerHTML = OBJ[i][j].text;
 			li.setAttribute("data-value", OBJ[i][j].value);
 			ul.appendChild(li);
 		}

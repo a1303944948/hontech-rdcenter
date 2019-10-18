@@ -135,8 +135,8 @@ function start(){
     dataType: 'json',
     success: function(data){
       console.log(data);
-      if(data.dealtypeJson.length != undefined){
-        LISTS.unshift(data.dealtypeJson);
+      if(data.paymentTypes.length != undefined){
+        LISTS.unshift(data.paymentTypes);
       }else{
         LISTS.unshift('');
       }
@@ -154,8 +154,8 @@ function start(){
     for(var j = 0; j < LISTS[i].length; j++){
       var li = creat('li');
       var br = creat('br');
-      li.setAttribute("data-value", LISTS[i][j].value)
-      li.innerHTML = LISTS[i][j].text;
+      li.setAttribute("data-value", LISTS[i][j].payWay)
+      li.innerHTML = LISTS[i][j].payTextEN;
       ul.appendChild(li);
       ul.appendChild(br);
     }
@@ -1084,7 +1084,7 @@ function tableRendering(allDate,type){
         td8.innerHTML = allDate[i].total_amount;
         td9.innerHTML = allDate[i].openid;
         td10.innerHTML = worldDateTime(new Date(allDate[i].paymentDate).getTime());
-        td11.innerHTML = allDate[i].free;
+        td11.innerHTML = allDate[i].fee_type;
         tr.appendChild(td1);
         tr.appendChild(td2);
         tr.appendChild(td3);

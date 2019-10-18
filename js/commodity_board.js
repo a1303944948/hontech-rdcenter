@@ -1242,7 +1242,7 @@ function submit(){
 				if(type == 1){
 					$.ajax({
 						type: 'post',
-						url: URLZ + '/jf/bg/basic/gdsm/add.json',
+						url: URLTEST + '/jf/bg/basic/gdsm/add.json',
 						data: {
 							obj: JSON.stringify(commodityobj),
 							picture1: OperatorPickimgBase,
@@ -1268,7 +1268,7 @@ function submit(){
 					}
 					$.ajax({
 						type: 'post',
-						url: URLZ + '/jf/bg/basic/gdsm/update.json',
+						url: URLTEST + '/jf/bg/basic/gdsm/update.json',
 						data: {
 							obj: JSON.stringify(commodityobj),
 							picture1: OperatorPickimgBases,

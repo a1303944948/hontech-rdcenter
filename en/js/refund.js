@@ -1039,7 +1039,7 @@ function tableRendering(allDate){
     td8.innerHTML = allDate[i].total_amount;
     td9.innerHTML = allDate[i].openid;
     td10.innerHTML = worldDateTime(new Date(allDate[i].paymentDate).getTime());
-    td11.innerHTML = allDate[i].free;
+    td11.innerHTML = allDate[i].fee_type;
     td12.innerHTML = '<button class="sales_body_table_tbody_btn" name="'+allDate[i].out_trade_no+'">Refund</button>';
     tr.appendChild(td1);
     tr.appendChild(td2);

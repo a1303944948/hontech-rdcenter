@@ -745,7 +745,7 @@ function hdStart(machCODE){
 			data.timeBR?data.timeBR = worldDateTime(new Date(data.timeBR)):data.timeBR=data.timeBR;
 			buhuoqingdan('Machine ID:',data.machCode,'Machine Name:',data.machName);
 			buhuoqingdan('Operator:',data.operator,'Create Time:',data.timeBR);
-			buhuoqingdan('Machine Type:',data.model,'Address:',data.useAddr);
+			buhuoqingdan('Machine Type:',data.modelEn,'Address:',data.useAddr);
 			//清出列表
 			function qingchuliebiao(){
 				tonicBodyaTbody.innerHTML = "";
@@ -890,7 +890,7 @@ function hdStart(machCODE){
 					data.timeBR?data.timeBR = worldDateTime(new Date(data.timeBR)):data.timeBR=data.timeBR;
 					buhuoqingdan('Machine ID:',data.machCode,'Machine Name:',data.machName);
 					buhuoqingdan('Operator:',data.operator,'Create Time:',data.timeBR);
-					buhuoqingdan('Machine Type:',data.model,'Address:',data.useAddr);
+					buhuoqingdan('Machine Type:',data.modelEn,'Address:',data.useAddr);
 					//清出列表
 					function qingchuliebiao(){
 						if(data.dataQC.length != 0){

@@ -590,7 +590,7 @@ function controllers(nian,yue,ri,num){
     var tbody = c('ui_datapicker_body');
     var table = creat('table');
     var obj = datepicker.getMonthDate(nian,parseInt(yue));
-    var objs = ['一','二','三','四','五','六','日']
+    var objs = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
     var count = -1;
 
     var table = creat('table');
@@ -610,6 +610,8 @@ function controllers(nian,yue,ri,num){
         th.style.textAlign = 'center';
         th.style.userSelect = 'none';
         th.style.borderRadius = '50%';
+        th.style.fontWeight = '500';
+        th.style.fontSize = '10px';
         tr.appendChild(th);
       }
       table.appendChild(tr);
@@ -775,11 +777,11 @@ function selesForm(){
     var salesBody = c('sales_body')[0];                         //底部渲染数据部分
 
     if(deviceHeadGroupingzMach.dataset.value == ""){
-      alern('设备不能为空！');
+      alern('Device cannot be empty!');
       return false;
     }
     if(deviceHeadGroupingzTime.value == ""){
-      alern('时间不能为空！');
+      alern('Time cannot be empty!');
       return false;
     }
     console.log(deviceHeadGroupingzMach.dataset.value,deviceHeadGroupingzTime.value);
@@ -797,7 +799,7 @@ function selesForm(){
           salesBody.style.display = 'block';
           tableRendering(data.data);
         }else{
-          alern('查询失败！');
+          alern(data.msg);
         }
       }
     })
@@ -861,7 +863,7 @@ function tableRendering(allDate){
         }else if(Type == "icbc"){
           
         }else{
-          alern('该交易类型不支持退款！');
+          alern('This transaction type does not support refunds!');
           return false;
         }
         d('refund_mark').value = "";

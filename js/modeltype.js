@@ -2,6 +2,7 @@
 //基本资料
 var modelNumber = d('model_number');				//机型编号
 var modelName = d('model_name');					//机型名称
+var modelNameEn = d('model_name_en');				//英文名称
 var modelPayment = d('model_payment');				//服务费用
 var modelMultiple = d('model_multiple');			//货道规格
 //规格参数
@@ -135,6 +136,7 @@ function start(){
 						type = 1;
 						modelNumber.value = data[q].modelNum;
 						modelNumber.disabled = "disabled";
+						modelNameEn.value = data[q].modelEn?data[q].modelEn:"";
 						modelName.value = data[q].model;
 						modelPayment.value = data[q].serviceFee;
 						modelWidth.value = data[q].width;
@@ -305,6 +307,7 @@ function submit(){
 		modelNumber.value = "";
 		modelNumber.disabled = false;
 		modelName.value = "";
+		modelNameEn.value = "";
 		modelPayment.value = "";
 		modelWidth.value = "";
 		modelHeight.value = "";
@@ -348,6 +351,9 @@ function submit(){
 		if(modelName.value == ""){
 			errorObj += '机型名称不能为空！</br>';
 		}
+		if(modelNameEn.value == ""){
+			errorObj += '英文名称不能为空！</br>';
+		}
 		if(modelPayment.value == ""){
 			errorObj += '服务费用不能为空！</br>';
 		}
@@ -377,6 +383,7 @@ function submit(){
 		var basicObj = new Object();
 		basicObj.number = modelNumber.value;
 		basicObj.name = modelName.value;
+		basicObj.modelEn = modelNameEn.value;
 		basicObj.serviceFee = modelPayment.value;
 		basicObj.multiple = modelmul;
 		//规格参数
