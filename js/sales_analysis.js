@@ -340,8 +340,8 @@ function datepicke(){
 					}
 					dates = new Date(new Date - tian*(result-1));
 					nian = dates.getFullYear();
-					yue = dates.getMonth(); //getMonth()是从0开始
-					ri = dates.getDate();
+					yue = 1; //getMonth()是从0开始
+					ri = 1;
 					startDate = String(nian) + '-' + String(yue) + '-' + String(ri);
 					nian = date.getFullYear();
 					yue = date.getMonth() + 1;
@@ -930,9 +930,12 @@ function selesForm(){
 		}
 
 		var currentDate = new Date();
+		console.log(Start + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
+		console.log(End + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
 		var dateDiffS = new Date(Start + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
 		var dateDiffE = new Date(End + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
 
+		console.dir(dateDiffS);
 		Start = worldDate(dateDiffS.getTime());
 		End = worldDate(dateDiffE.getTime());
 

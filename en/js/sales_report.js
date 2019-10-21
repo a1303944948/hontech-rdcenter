@@ -327,8 +327,8 @@ function datepicke(){
 					}
 					dates = new Date(new Date - tian*(result-1));
 					nian = dates.getFullYear();
-					yue = dates.getMonth(); //getMonth()是从0开始
-					ri = dates.getDate();
+					yue = 1; //getMonth()是从0开始
+					ri = 1;
 					startDate = String(nian) + '-' + String(yue) + '-' + String(ri);
 					nian = date.getFullYear();
 					yue = date.getMonth() + 1;

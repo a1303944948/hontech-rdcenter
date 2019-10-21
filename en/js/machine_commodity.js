@@ -760,7 +760,7 @@ function hdStart(machCODE){
 						tda.innerHTML = i+1;
 						tdb.innerHTML = '<' + data.dataQC[i].cargoDatan + '>';
 						tdc.innerHTML = data.dataQC[i].waresName;
-						tdd.innerHTML = data.dataQC[i].isPastdue;
+						tdd.innerHTML = data.dataQC[i].isPastdue == '否'?'no':'yes';
 						tde.innerHTML = data.dataQC[i].clearData;
 						tr.appendChild(tda);
 						tr.appendChild(tdb);
@@ -904,7 +904,7 @@ function hdStart(machCODE){
 								tda.innerHTML = i+1;
 								tdb.innerHTML = '<' + data.dataQC[i].cargoDatan + '>';
 								tdc.innerHTML = data.dataQC[i].waresName;
-								tdd.innerHTML = data.dataQC[i].isPastdue;
+								tdd.innerHTML = data.dataQC[i].isPastdue == '否'?'no':'yes';
 								tde.innerHTML = data.dataQC[i].clearData;
 								tr.appendChild(tda);
 								tr.appendChild(tdb);
