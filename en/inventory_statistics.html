@@ -30,11 +30,11 @@
 							<input class="device_head_groupingz wm_select" id="device_head_groupingz_mach" readonly="readonly" type="text" placeholder="Select..."/>
 							<b></b>
 						</td>
-						<td>Date</td>
+						<!-- <td>Date</td>
 						<td>
 							<input class="device_head_groupingz sales_head_date_controller" id="device_head_groupingz_time" readonly="readonly" type="text" placeholder="Select..."/>
 							<b></b>
-						</td>
+						</td> -->
 						<td></td>
 						<td rowspan="3" style="text-align: left; border-left: 5px rgba(0,0,0,0) solid;"><button class="sales_head_tbody_submit"><img src="image/seachs.png">Seach</button></td>
 					</tr>
@@ -45,16 +45,22 @@
 			<button class="sales_body_excel_btn"><img src="image/excelDwon.png"/>Excel</button>
 			<button class="sales_body_print_btn"><img src="image/dy.png"/>Print</button>
 			<table class="sales_body_table" id="sales_body_table">
-				<tr>
-					<th>Machine name</th>
-					<th>Machine Location</th>
-					<th>Commodity</th>
-					<th>Cargo Track</th>
-					<th>Quantity in machine</th>
-					<th>Sale price in $</th>
-					<th>Expiration date</th>
-					<th>Total good product</th>
-				</tr>
+				<thead class="sales_body_thead">
+					<tr>
+						<td class="sales_body_thead_title" colspan="5"></td>
+						<td class="sales_body_thead_date" colspan="3"></td>
+					</tr>
+					<tr>
+						<th>Commodity</th>
+						<th>Required Quantity(MGR)</th>
+						<th>Scanned Quantity</th>
+						<th>Delivered/Sold</th>
+						<th>Expired</th>
+						<th>Expired Products Location</th>
+						<th>Actual Quantity Of Good Products</th>
+						<th>Quantity To Refill</th>
+					</tr>
+				</thead>
 				<tbody class="sales_body_table_tbody">
 				</tbody>
 			</table>

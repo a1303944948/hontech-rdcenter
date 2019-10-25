@@ -1155,6 +1155,10 @@ function chartStart(allDate){
 		objsAlipay = allDate.salesAmount.alipaySalesAmount;
 		objsIcbc = allDate.salesAmount.icbcSalesAmount;
 		objsWechat = allDate.salesAmount.wechatSalesAmount;
+		var listLeft = c('sales_body_chart_left_list_left');
+		for(var i = 0; i < listLeft.length; i++){
+			listLeft[i].innerHTML = objs[i] + '$';
+		}
 	}else if(methods.value == 'By Sales'){
 		var zdz = allDate.salesVolume.totalSalesVolume.slice(0);
 		zdz = zdz.sort(function (a,b){return a - b;});
@@ -1166,10 +1170,10 @@ function chartStart(allDate){
 		objsAlipay = allDate.salesVolume.alipaySalesVolume;
 		objsIcbc = allDate.salesVolume.icbcSalesVolume;
 		objsWechat = allDate.salesVolume.wechatSalesVolume;
-	}
-	var listLeft = c('sales_body_chart_left_list_left');
-	for(var i = 0; i < listLeft.length; i++){
-		listLeft[i].innerHTML = objs[i];
+		var listLeft = c('sales_body_chart_left_list_left');
+		for(var i = 0; i < listLeft.length; i++){
+			listLeft[i].innerHTML = objs[i];
+		}
 	}
 
 	//图表右上方柱子渲染

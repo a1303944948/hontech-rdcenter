@@ -862,13 +862,13 @@ function submit(){
 	}
 
 	d('commodity_cooking').onchange = function(){
-		if(this.value > 300){
+		if(this.value > 450){
 			this.value = 0;
-			alern('0 <= Max Temperature <= 300');
+			alern('0 <= Max Temperature <= 450');
 		}
 		if(this.value < 0){
 			this.value = 0;
-			alern('0 <= Max Temperature <= 300');
+			alern('0 <= Max Temperature <= 450');
 		}
 		if(this.value == ""){
 			this.value = 0;

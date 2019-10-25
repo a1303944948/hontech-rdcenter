@@ -404,10 +404,26 @@ function tableObj(){
 					divs.style.backgroundColor = '#f0f0f0';
 				}
 				div.appendChild(divs);
+			}else if(j == 2){
+				var divs = creat('div');
+				divs.className = 'machine_home_foot_body_table_item';
+				divs.innerHTML = OBJECT[i][j][3];
+				divs.style.width = 100 / OBJECT[i].length + '%';
+				if(OBJECT[i][j][1] == 0){
+					divs.style.backgroundColor = '#B5F09B';
+				}else if(OBJECT[i][j][1] == 1){
+					divs.style.backgroundColor = '#FFA500';
+				}else if(OBJECT[i][j][1] == 2){
+					divs.style.backgroundColor = '#D30009';
+					divs.style.color = '#ffffff';
+				}else if(OBJECT[i][j][1] == 3){
+					divs.style.backgroundColor = '#f0f0f0';
+				}
+				div.appendChild(divs);
 			}else{
 				var divs = creat('div');
 				divs.className = 'machine_home_foot_body_table_item';
-				divs.innerHTML = OBJECT[i][j][0];
+				j == 3||j == 4||j == 9?divs.innerHTML = OBJECT[i][j][2]:divs.innerHTML = OBJECT[i][j][0];
 				divs.style.width = 100 / OBJECT[i].length + '%';
 				if(OBJECT[i][j][1] == 0){
 					divs.style.backgroundColor = '#B5F09B';

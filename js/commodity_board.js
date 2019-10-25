@@ -850,21 +850,22 @@ function submit(){
 
 	//标准价格
 	d('commodity_price').oninput = function(){
-		if(this.value > 10000){
-			alern('不能超过10000并且只能保留两位小数');
+		console.log(this.value);
+		console.log(this.value.length);
+		/*if(this.value > 10000){
+			alern('不能超过10000');
 			this.value = 10000;
 		}
 		this.value<0.01?this.value=0.01:this.value=this.value;
-		if(this.value.toString().split(".")[1] != undefined){
-			if(this.value.toString().split(".")[1].length > 2){
-				alern('只能保留两位小数并且不能超过10000');
+		if(this.value.split(".")[1] != undefined){
+			if(this.value.split(".")[1].length > 2){
 				var that = "";
-				for(var i = 0; i < this.value.toString().length - this.value.toString().split(".")[1].length + 1; i++){
-					that += this.value.toString()[i];
+				for(var i = 0; i < this.value.length - this.value.split(".")[1].length + 1; i++){
+					that += this.value[i];
 				}
 				this.value = that;
 			}
-		}
+		}*/
 	}
 
 	//图片上传

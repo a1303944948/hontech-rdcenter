@@ -273,7 +273,7 @@ var nianSelected = [];  //被选中的日期
 var yueSelected = []; //被选中的日期
 var riSelected = [];  //被选中的日期
 
-controller(nianStart,yueStart,riStart);
+//controller(nianStart,yueStart,riStart);
 tabDate();
 onclicks(yueStart);
 
@@ -771,26 +771,25 @@ function selesForm(){
   var submit = c('sales_head_tbody_submit')[0];
   //var deviceHeadGroupingz = d('device_head_groupingz'); //区域分组
   var deviceHeadGroupingzMach = d('device_head_groupingz_mach'); //所选设备
-  var deviceHeadGroupingzTime = d('device_head_groupingz_time'); //所选时间
+  //var deviceHeadGroupingzTime = d('device_head_groupingz_time'); //所选时间
 
   submit.onclick = function(){
     var salesBody = c('sales_body')[0];                         //底部渲染数据部分
 
-    if(deviceHeadGroupingzMach.dataset.value == ""){
+    if(!deviceHeadGroupingzMach.dataset.value){
       alern('Device cannot be empty!');
       return false;
     }
-    if(deviceHeadGroupingzTime.value == ""){
+    /*if(deviceHeadGroupingzTime.value == ""){
       alern('Time cannot be empty!');
       return false;
-    }
-    console.log(deviceHeadGroupingzMach.dataset.value,deviceHeadGroupingzTime.value);
+    }*/
     $.ajax({
       type: 'post',
       url: URLS + '/jf/com/inventory/statistical.json',
       data: {
         machCode: deviceHeadGroupingzMach.dataset.value,
-        expiratDate: deviceHeadGroupingzTime.value,
+        expiratDate: '',
       },
       dataType: 'json',
       success: function(data){
@@ -799,7 +798,7 @@ function selesForm(){
           salesBody.style.display = 'block';
           tableRendering(data.data);
         }else{
-          alern(data.msg);
+          alern(data.msgEn);
         }
       }
     })
@@ -813,6 +812,9 @@ selesForm();
 function tableRendering(allDate){
   var table = c('sales_body_table_tbody')[0];
   table.innerHTML = '';
+  c('sales_body_thead_title')[0].innerHTML = 'Machine: ' + allDate[0].machName;
+  var salesDate = new Date();
+  c('sales_body_thead_date')[0].innerHTML = salesDate.getFullYear() + '-' + (salesDate.getMonth()+1) + '-' + salesDate.getDate() + ' ' + salesDate.getHours() + ':' + salesDate.getMinutes() + ':' + salesDate.getSeconds();
   for(var i = 0; i < allDate.length; i++){
     var tr = creat('tr');
     var td1 = creat('td');
@@ -823,21 +825,14 @@ function tableRendering(allDate){
     var td6 = creat('td');
     var td7 = creat('td');
     var td8 = creat('td');
-    td1.innerHTML = allDate[i].machName;
-    td2.innerHTML = allDate[i].useAddr;
-    td3.innerHTML = allDate[i].goodsName;
-    td4.innerHTML = allDate[i].cargoData;
-    td5.innerHTML = allDate[i].isExist;
-    td6.innerHTML = allDate[i].goodPrice;
-    td7.innerHTML = allDate[i].expiratDate;
-    td8.innerHTML = allDate[i].totalgoodproduct;
-    if(allDate[i].isExpired == 1){
-      td8.innerHTML = '';
-      td7.style.color = '#F00000';
-    }else if(allDate[i].isExpired == -1){
-      td6.innerHTML = "";
-      tr.style.backgroundColor = '#FAE35E';
-    }
+    td1.innerHTML = allDate[i].commodity;
+    td2.innerHTML = allDate[i].requiredQuantity;
+    td3.innerHTML = allDate[i].scannedQuantity;
+    td4.innerHTML = allDate[i].delivered;
+    td5.innerHTML = allDate[i].expired;
+    td6.innerHTML = allDate[i].expiredProductsLocal + '&nbsp;';
+    td7.innerHTML = allDate[i].actualQuantityOfGoodProducts;
+    td8.innerHTML = allDate[i].quantityToRefill;
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);

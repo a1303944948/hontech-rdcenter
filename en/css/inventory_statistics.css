@@ -15,7 +15,7 @@ html,body{
   background-color: #f0f0f0;
 }
 .sales_head_table{
-  width: 1160px;
+  width: 900px;
   height: auto;
   border-collapse:collapse;
 }
@@ -284,9 +284,11 @@ html,body{
   background-color: #F8F9Fa;
 }
 .sales_body_table tr td{
+  max-width: 220px;
+  min-width: 80px;
   height: 34px;
-  line-height: 34px;
   font-size: 14px;
+  padding: 5px 10px;
   text-align: center;
   border: 1px #a4a4a4 solid;
 }

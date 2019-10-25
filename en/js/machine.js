@@ -2890,7 +2890,7 @@ function renderingAlarm(machCODE,mobleId){
 				machCode: machCODE,
 			},
 			success: function(data){
-				alern(data.msg);
+				alern('Success');
 			},
 			error: function(data){
 				alern('Failure');

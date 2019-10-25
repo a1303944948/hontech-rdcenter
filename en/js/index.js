@@ -460,7 +460,7 @@ function ybp(){
 	for(var i = 0; i < 7; i++){
 		var div = creat('div');
 		div.className = 'index_chart_head_top_left_list';
-		div.innerHTML = topLeftCount[i];
+		div.innerHTML = topLeftCount[i] + '$';
 		topLeft.appendChild(div);
 	}
 
@@ -470,7 +470,7 @@ function ybp(){
 	for(var i = 0; i < 7; i++){
 		var div = creat('div');
 		div.className = 'index_chart_head_top_left_list';
-		div.innerHTML = topLeftCounts[i];
+		div.innerHTML = topLeftCounts[i] + '$';
 		topLefts.appendChild(div);
 	}
 }
