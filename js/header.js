@@ -85,12 +85,14 @@ function noticed(){
 		success: function(data){
 			var headerNoticeListUl = c('header_notice_list_ul')[0];
 			headerNoticeListUl.innerHTML = '';
-			if(data.objs === undefined||data.objs.length === 0){
+			if(!data.objs){
 				var li = creat('li');
 				li.innerHTML = '暂无公告';
 				headerNoticeListUl.appendChild(li);
 				headerNoticeB.style.opacity = '0';
 				return false;
+			}else{
+				data.objs.reverse();
 			}
 			var headerNoticeBCount = 0;	//未查看消息条数统计
 			for(var i = 0; i < data.objs.length; i++){

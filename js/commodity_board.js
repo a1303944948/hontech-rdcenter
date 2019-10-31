@@ -524,7 +524,7 @@ function UploadOss(num){
 						alern(tbodyFileError);
 						return false;
 					}*/
-					set_upload_param(up,'', false,'offical-web/hontech-rdcenter/commodity_board/');
+					set_upload_param(up,'', false,'offical-web/hontech-rdcenter/commodity_test/');//commodity_board
 				};
 			},
 
@@ -540,7 +540,7 @@ function UploadOss(num){
 				});
 			},
 			BeforeUpload: function(up, file) {
-				set_upload_param(up, file.name, true,'offical-web/hontech-rdcenter/commodity_board/');
+				set_upload_param(up, file.name, true,'offical-web/hontech-rdcenter/commodity_test/');
 			},
 			UploadFile: function(){
 				count = 1;
@@ -664,7 +664,7 @@ function UploadOssS(){
 						alern('请添加资源后在保存！');
 						return false;
 					}
-					set_upload_param(up,'', false,'offical-web/hontech-rdcenter/commodity_board/');
+					set_upload_param(up,'', false,'offical-web/hontech-rdcenter/commodity_test/');
 				};
 			},
 
@@ -680,7 +680,7 @@ function UploadOssS(){
 				});
 			},
 			BeforeUpload: function(up, file) {
-				set_upload_param(up, file.name, true,'offical-web/hontech-rdcenter/commodity_board/');
+				set_upload_param(up, file.name, true,'offical-web/hontech-rdcenter/commodity_test/');
 			},
 			UploadFile: function(){
 				count = 1;
@@ -1243,7 +1243,7 @@ function submit(){
 				if(type == 1){
 					$.ajax({
 						type: 'post',
-						url: URLTEST + '/jf/bg/basic/gdsm/add.json',
+						url: URLS + '/jf/bg/basic/gdsm/add.json',
 						data: {
 							obj: JSON.stringify(commodityobj),
 							picture1: OperatorPickimgBase,
@@ -1269,7 +1269,7 @@ function submit(){
 					}
 					$.ajax({
 						type: 'post',
-						url: URLTEST + '/jf/bg/basic/gdsm/update.json',
+						url: URLS + '/jf/bg/basic/gdsm/update.json',
 						data: {
 							obj: JSON.stringify(commodityobj),
 							picture1: OperatorPickimgBases,
@@ -1284,7 +1284,7 @@ function submit(){
 										url: URLS + '/oss/upload/deleteOssUrl.json',
 										data: {
 											ossUrl: detailedOperatorImg[i].dataset.url,
-											setUrl: 'offical-web/hontech-rdcenter/commodity_board/',
+											setUrl: 'offical-web/hontech-rdcenter/commodity_test/',
 										},
 										async: false,
 										success: function(data){
@@ -1306,7 +1306,7 @@ function submit(){
 										url: URLS + '/oss/upload/deleteOssUrl.json',
 										data: {
 											ossUrl: detailedOperatorImgS[i].dataset.url,
-											setUrl: 'offical-web/hontech-rdcenter/commodity_board/',
+											setUrl: 'offical-web/hontech-rdcenter/commodity_test/',
 										},
 										async: false,
 										success: function(data){
@@ -1335,7 +1335,81 @@ function submit(){
 	}
 }
 
+//删除商品事件
+d('detailed_operator_delete').onclick = function(){
+	var CommodityNum = d('commodity_num').value;	//商品编号
+	var DetailedOperatorPickimg = c('detailed_operator_pickimg')[0].innerHTML;				//商品图片
+	var DetailedOperatorOrderimg = c('detailed_operator_orderimg')[0].innerHTML;			//下单图片
+	var DetailedOperatorIngredientimg = c('detailed_operator_ingredientimg')[0].innerHTML;	//商品介绍
+	CommodityNum?commodityGetData(1):commodityGetData(2);
+
+	function commodityGetData(num){
+		if(num == 1){
+			$.ajax({
+				type: 'post',
+				url: URLS + '/jf/bg/basic/gdsm/judge.json',
+				data: {
+					id: CommodityNum,
+				},
+				success: function(data){
+					console.log(data);
+					if(data.code == 10001||data.code == 10002){
+						if(confirm(data.msg)){
+							loading();
+							$.ajax({
+								type: 'post',
+								url: URLS + '/jf/bg/basic/gdsm/remove.json',
+								data: {
+									id: CommodityNum,
+								},
+								success: function(msg){
+									alern(msg.msg);
+									loadingClear();
+									startbody();
+									c('operator_home_head_submit')[0].click();
+									if(msg.code == 10001){
+										var DetailedOperatorImages = [];
+										DetailedOperatorPickimg?DetailedOperatorImages.push(DetailedOperatorPickimg):false;
+										DetailedOperatorOrderimg?DetailedOperatorImages.push(DetailedOperatorOrderimg):false;
+										DetailedOperatorIngredientimg?DetailedOperatorImages.push(DetailedOperatorIngredientimg):false;
+										console.log(DetailedOperatorImages);
+										for(var i = 0; i < DetailedOperatorImages.length; i++){
+											$.ajax({
+												type: 'post',
+												url: URLS + '/oss/upload/deleteOssUrl.json',
+												data: {
+													ossUrl: DetailedOperatorImages[i],
+													setUrl: 'offical-web/hontech-rdcenter/commodity_test/',
+												},
+												async: false,
+												success: function(data){
+													if(data.result === 1){
+														console.log('OSS资源删除成功！');
+													}else if(data.result === 0){
+														console.log('OSS资源删除失败！');
+													}else{
+														console.log('OSS资源删除出现未知错误！');
+													}
+												}
+											})
+										}
+									}
+								}
+							})
+						}
+					}else{
+						alern(data.msg);
+					}
+				}
+			});
+		}else if(num == 2){
+			alern('没有指定要删除的商品！');
+			return false;
+		}
+	}
+}
+
 start();
-startbody()
+startbody();
 
 submit();
