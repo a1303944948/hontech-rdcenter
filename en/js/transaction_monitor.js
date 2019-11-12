@@ -983,6 +983,12 @@ function selesForm(){
     var dateDiffS = new Date(Start + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
     var dateDiffE = new Date(End + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
 
+    if(dateDiffE == 'Invalid Date'){
+      EndArr = End.split('-');
+      End = EndArr[0] + '-' + (Number(EndArr[1]) + 1) + '-' + 1;
+      dateDiffE = new Date(End + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
+    }
+
     if((dateDiffE.getTime() - dateDiffS.getTime())/1000/86400 > 31.5){
       alern('The selected date interval cannot be greater than 31 days');
       return false;

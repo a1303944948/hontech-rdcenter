@@ -222,7 +222,7 @@ function submit(){
 			url: URLS + '/status/getTotalStatus.json',
 			data: {
 				strArray: JSON.stringify(LISTGROUP),
-				machType: model, 
+				machType: model,
 				status: status,
 			},
 			async: false,
@@ -385,11 +385,11 @@ function tableObj(){
 				}
 				divs.appendChild(divss);
 				div.appendChild(divs);
-			}else if(j == 7||j == 8||j == 10||j == 11){
+			}else if(j == 7||j == 8){
 				var divs = creat('div');
 				divs.className = 'machine_home_foot_body_table_item';
 				if(OBJECT[i][j][0] != '-'){
-					OBJECT[i][j][0] = worldDateTime(new Date(OBJECT[i][j][0]).getTime());
+					OBJECT[i][j][0] = worldDateTimeA(new Date(OBJECT[i][j][0]).getTime());
 				};
 				divs.innerHTML = OBJECT[i][j][0];
 				divs.style.width = 100 / OBJECT[i].length + '%';
@@ -404,6 +404,26 @@ function tableObj(){
 					divs.style.backgroundColor = '#f0f0f0';
 				}
 				div.appendChild(divs);
+			}else if(j == 10||j == 11){
+				var divs = creat('div');
+				divs.className = 'machine_home_foot_body_table_item';
+				if(OBJECT[i][j][0] != '-'){
+					OBJECT[i][j][0] = worldDateTime(new Date(OBJECT[i][j][0]).getTime());
+				};
+				divs.innerHTML = OBJECT[i][j][0];
+				divs.style.width = 100 / OBJECT[i].length + '%';
+				divs.style.backgroundColor = '#B5F09B';
+				div.appendChild(divs);
+				/*if(OBJECT[i][j][1] == 0){
+					divs.style.backgroundColor = '#B5F09B';
+				}else if(OBJECT[i][j][1] == 1){
+					divs.style.backgroundColor = '#FFA500';
+				}else if(OBJECT[i][j][1] == 2){
+					divs.style.backgroundColor = '#D30009';
+					divs.style.color = '#ffffff';
+				}else if(OBJECT[i][j][1] == 3){
+					divs.style.backgroundColor = '#f0f0f0';
+				}*/
 			}else if(j == 2){
 				var divs = creat('div');
 				divs.className = 'machine_home_foot_body_table_item';

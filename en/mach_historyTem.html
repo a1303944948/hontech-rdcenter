@@ -318,8 +318,8 @@
 			var currentDate = new Date();
 		    var dateDiffS = new Date(Start + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
 		    var dateDiffE = new Date(End + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds());
-		    Start = worldDate(dateDiffS.getTime());
-		    End = worldDate(dateDiffE.getTime());
+		    Start = worldDateA(dateDiffS.getTime());
+		    End = worldDateA(dateDiffE.getTime());
 			console.log(Start);
 			console.log(End);
 			$.ajax({
