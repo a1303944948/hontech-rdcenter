@@ -488,3 +488,18 @@ html,body{
 	font-weight: 500 !important;
 	font-style: italic;
 }
+#user_empcode_delete{
+	margin-right: 30px;
+	width: 80px;
+	height: 30px;
+	background-color: #ffffff;
+	border: 1px #d4d4d4 solid;
+	font-size: 14px;
+	border-radius: 3px;
+}
+#user_empcode_delete:hover{
+	background-color: #e5e5e5;
+}
+#user_empcode_delete:active{
+	background-color: #f0f0f0;
+}

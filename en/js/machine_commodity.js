@@ -74,7 +74,7 @@ function byStart(machCODE){
 									ul.style.maxHeight = "120px";
 								}
 								var li = creat('li');
-								li.innerHTML = '<input class="commodityaTbodyIntZ" placeholder="请输入..."/>';
+								li.innerHTML = '<input class="commodityaTbodyIntZ" placeholder="Enter..."/>';
 								li.setAttribute('data-value','');
 								li.style.color = '#999999';
 								ul.appendChild(li);

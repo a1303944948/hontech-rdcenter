@@ -12,6 +12,8 @@ var userLegend = d('user_legend');							//说明
 var userStop = d('user_stop');								//是否停用
 var type = null;											//提交表单的类型
 var userBodyRightFootItem = c('user_body_right_foot_item');	//表单的显示隐藏
+var userNameDelete = d('user_name_delete');					//姓名
+var userAccountDelete = d('user_account_delete');			//账号
 function start(){
 	group();
 	Authority(loginUserName.empcode);
@@ -724,6 +726,8 @@ function rendering(empcode,that){
 			}else{
 				userStop.checked = 'checked';
 			}
+			userNameDelete.value = data.obj.name;
+			userAccountDelete.value = data.obj.empcode;
 			console.log(KITSorted);
 			var userCount = 0;
 			for(var i = 0; i < KITSorted.length; i++){
@@ -973,6 +977,8 @@ function submit(){
 		userStop.checked = false;
 		userPurview.value = "";
 		userPurview.name = "";
+		userNameDelete.value = "";
+		userAccountDelete.value = "";
 
 		startfoot();
 
@@ -1195,3 +1201,25 @@ for(var i = 0; i < KIT.length; i++){
 
 startbody();	//渲染主体部分数据
 submit();
+
+d('user_empcode_delete').onclick = function(){
+	if(confirm('确定要删除"'+userNameDelete.value+'"用户吗？')){
+		$.ajax({
+			type: 'post',
+			url: URLS + '/jf/bg/basic/pc/delete.json',
+			data: {
+				empcode: userAccountDelete.value,
+			},
+			success: function(data){
+				if(data.code == 10001){
+					alert(data.msg);
+					start();
+					startbody(1);
+					location.reload();
+				}else{
+					alern(data.msg);
+				}
+			}
+		})
+	}
+}
