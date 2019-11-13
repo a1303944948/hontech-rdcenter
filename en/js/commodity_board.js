@@ -537,7 +537,7 @@ function UploadOss(num){
 						alern(tbodyFileError);
 						return false;
 					}*/
-					set_upload_param(up,'', false,'offical-web/hontech-rdcenter/commodity_test/');
+					set_upload_param(up,'', false,'offical-web/hontech-rdcenter/commodity_board/');
 				};
 			},
 
@@ -554,7 +554,7 @@ function UploadOss(num){
 				});
 			},
 			BeforeUpload: function(up, file) {
-				set_upload_param(up, file.name, true,'offical-web/hontech-rdcenter/commodity_test/');
+				set_upload_param(up, file.name, true,'offical-web/hontech-rdcenter/commodity_board/');
 			},
 			UploadFile: function(){
 				count = 1;
@@ -679,7 +679,7 @@ function UploadOssS(){
 						alern('Save the resource after Upload!');
 						return false;
 					}
-					set_upload_param(up,'', false,'offical-web/hontech-rdcenter/commodity_test/');
+					set_upload_param(up,'', false,'offical-web/hontech-rdcenter/commodity_board/');
 				};
 			},
 
@@ -696,7 +696,7 @@ function UploadOssS(){
 				});
 			},
 			BeforeUpload: function(up, file) {
-				set_upload_param(up, file.name, true,'offical-web/hontech-rdcenter/commodity_test/');
+				set_upload_param(up, file.name, true,'offical-web/hontech-rdcenter/commodity_board/');
 			},
 			UploadFile: function(){
 				count = 1;
@@ -1325,7 +1325,7 @@ function submit(){
 										url: URLS + '/oss/upload/deleteOssUrl.json',
 										data: {
 											ossUrl: detailedOperatorImg[i].dataset.url,
-											setUrl: 'offical-web/hontech-rdcenter/commodity_test/',
+											setUrl: 'offical-web/hontech-rdcenter/commodity_board/',
 										},
 										async: false,
 										success: function(data){
@@ -1347,7 +1347,7 @@ function submit(){
 										url: URLS + '/oss/upload/deleteOssUrl.json',
 										data: {
 											ossUrl: detailedOperatorImgS[i].dataset.url,
-											setUrl: 'offical-web/hontech-rdcenter/commodity_test/',
+											setUrl: 'offical-web/hontech-rdcenter/commodity_board/',
 										},
 										async: false,
 										success: function(data){
@@ -1417,7 +1417,7 @@ d('detailed_operator_delete').onclick = function(){
 												url: URLS + '/oss/upload/deleteOssUrl.json',
 												data: {
 													ossUrl: DetailedOperatorImages[i],
-													setUrl: 'offical-web/hontech-rdcenter/commodity_test/',
+													setUrl: 'offical-web/hontech-rdcenter/commodity_board/',
 												},
 												async: false,
 												success: function(data){
