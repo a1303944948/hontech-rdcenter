@@ -525,7 +525,7 @@ d('wechatTest').onclick = function(){
 	}
 	$.ajax({
 		type: 'post',
-		url: 'http://10.1.8.36:8080/bg-uc/paycenter/test/wechat/qrcode.json',
+		url: URLS + '/paycenter/test/wechat/qrcode.json',
 		data: {
 			obj: JSON.stringify(wechatObject),
 		},
@@ -579,7 +579,7 @@ d('alipayTest').onclick = function(){
 	}
 	$.ajax({
 		type: 'post',
-		url: 'http://10.1.8.36:8080/bg-uc/paycenter/test/alipay/qrcode.json',
+		url: URLS + '/paycenter/test/alipay/qrcode.json',
 		data: {
 			obj: JSON.stringify(alipayObject),
 		},

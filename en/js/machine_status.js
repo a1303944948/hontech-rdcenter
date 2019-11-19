@@ -471,21 +471,21 @@ function tableObj(){
 		(function(q){
 			var show = null;
 			div[q].onclick = function(){
-				//请求机器内容
-				$.ajax({
-					type: 'post',
-					url: URLS + '/status/getAlone.json',
-					data: {
-						machCode: OBJECT[q][1][0],
-						machType: OBJECT[q][2][2],
-					},
-					async: false,
-					success: function(data){
-						OBJECTITEM = data;
-					}
-				})
 				var divxx = c('machine_home_foot_body_table_listx');
 				if(show != q){
+					//请求机器内容
+					$.ajax({
+						type: 'post',
+						url: URLS + '/status/getAlone.json',
+						data: {
+							machCode: OBJECT[q][1][0],
+							machType: OBJECT[q][2][2],
+						},
+						async: false,
+						success: function(data){
+							OBJECTITEM = data;
+						}
+					})
 					show = q;
 					for(var j = 0; j < divxx.length; j++){
 						ftable.removeChild(divxx[j]);
@@ -515,24 +515,24 @@ function tableObj(){
 					if(listxHeadTable[listxHeadTable.length-2] != undefined && listxHeadTable[listxHeadTable.length-1] != undefined){
 						listxHeadTable[listxHeadTable.length-1].style.top = listxHeadTable[listxHeadTable.length-1].clientHeight - listxHeadTable[listxHeadTable.length-2].clientHeight + 'px';
 					}
+
+					var Historical = c('machine_home_foot_body_table_historical')[0];
+					var Status = c('machine_home_foot_body_table_status')[0];
+					//历史温度通道
+					if(Historical != undefined){
+						Historical.onclick = function(){
+							window.open('mach_historyTem.html?machCode=' + OBJECT[q][1][0],'_blank','width=1280,height=768');
+						}
+					}
+					if(Status != undefined){
+						Status.onclick = function(){
+							window.open('mach_recentStatus.html?machCode=' + OBJECT[q][1][0] + '&machType=' + OBJECT[q][2][2],'_blank','width=1280,height=768');
+						}
+					}
 				}else{
 					show = null;
 					for(var j = 0; j < divxx.length; j++){
 						ftable.removeChild(divxx[j]);
-					}
-				}
-
-				var Historical = c('machine_home_foot_body_table_historical')[0];
-				var Status = c('machine_home_foot_body_table_status')[0];
-				//历史温度通道
-				if(Historical != undefined){
-					Historical.onclick = function(){
-						window.open('mach_historyTem.html?machCode=' + OBJECT[q][1][0],'_blank','width=1280,height=768');
-					}
-				}
-				if(Status != undefined){
-					Status.onclick = function(){
-						window.open('mach_recentStatus.html?machCode=' + OBJECT[q][1][0] + '&machType=' + OBJECT[q][2][2],'_blank','width=1280,height=768');
 					}
 				}
 			}
