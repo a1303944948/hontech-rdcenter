@@ -364,8 +364,14 @@
 						for(var j = 0; j < data[i].length;j++){
 							var td = creat('td');
 							if(!isNaN(Date.parse(timestampToTime(data[i][j].name/1000)))){
-								td.innerHTML = timestampToTime(data[i][j].name/1000);
-								tr.appendChild(td);
+								var timeStr = data[i][j].name + '';
+								if(timeStr.length == 13){
+									td.innerHTML = timestampToTime(data[i][j].name/1000);
+									tr.appendChild(td);
+								}else{
+									td.innerHTML = data[i][j].name;
+									tr.appendChild(td);
+								}
 							}else{
 								td.innerHTML = data[i][j].name;
 								tr.appendChild(td);
