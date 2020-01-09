@@ -679,6 +679,7 @@ function controllers(nian,yue,ri,num){
   if(box < 10){
     box = '0' + box;
   }
+  left[num].children[0].value = nian;
   right[num].innerHTML = box;
 
   /*日期选择器核心数组*/
@@ -845,7 +846,8 @@ function tabDate(){
       prev[q].onmousedown = function(e){
         yueNode[q]--;
         if(yueNode[q] < 1){
-          yueNode[q] = 1;
+          yueNode[q] = 12;
+          nianNode[q] = nianNode[q] - 1;
         }
         controllers(nianNode[q],yueNode[q],riNode[q],q);
          if ( e && e.preventDefault ) 
@@ -858,7 +860,8 @@ function tabDate(){
       next[q].onmousedown = function(e){
         yueNode[q]++;
         if(yueNode[q] > 12){
-          yueNode[q] = 12;
+          yueNode[q] = 1;
+          nianNode[q] = nianNode[q] + 1;
         }
         controllers(nianNode[q],yueNode[q],riNode[q],q);
          if ( e && e.preventDefault ) 
