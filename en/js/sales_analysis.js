@@ -360,10 +360,10 @@ function datepicke(){
 					yue = dates.getMonth(); //getMonth()是从0开始
 					ri = dates.getDate();
 					var result = 0;
-					for ( var i = 0; i < yue - 1; i++) {
+					for ( var i = 0; i < yue; i++) {
 						result += dateArr[i];
 					}
-					result += ri;
+					result += ri - 1;
 					//判断是否闰年
 					if (yue > 1 && (nian % 4 == 0 && nian % 100 != 0) || nian % 400 == 0) {
 						result += 1;
