@@ -187,7 +187,7 @@
 			</table>
 			<table>
 				<tr>
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="tem_head_submit"><img src="image/seachs.png"/>查看温度</button></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="tem_head_submit"><img src="image/seachs.png"/>查看温度<span style="color: #ffffff;"></span></button></td>
 					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前设备：<span class="tem_head_hostname"></span></td>
 				</tr>
 			</table>
@@ -303,9 +303,25 @@
 	        return Y+M+D+h+m+s;
 	    }
 
+	    var timeOut = 0;
 	    var submit = c('tem_head_submit')[0];
 	    submit.onclick = function(){
 			//请求历史温度
+			if(timeOut > 0){
+				return false;
+			}
+			timeOut = 5;
+			var timor;
+			timor = setInterval(function(){
+				if(timeOut > 0){
+					submit.children[1].innerHTML = timeOut;
+				}else{
+					clearInterval(timor);
+					submit.children[1].innerHTML = "";
+				}
+				timeOut--;
+			},1000);
+
 			if(startTime == 0){
 				alern('请选择时间后再查询!','温馨提醒','ok');
 				return false;

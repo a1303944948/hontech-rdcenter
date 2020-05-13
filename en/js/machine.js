@@ -321,6 +321,10 @@ function rendering(msgObject,that){
 	var machineExplain = d('machine_explain');		//设备说明    
 	var machineFreeze = d('machine_freeze');        //是否冻结
 
+	var machinePosNum = d('machine_pos_num');		//POS机编号
+	var machinePosUser = d('machine_pos_user');		//POS机账号
+	var machinePosPass = d('machine_pos_pass');		//POS机密码
+	var machineAppkey = d('machine_appkey');		//appkey
 	//渲染详细信息
 	$.ajax({
 		type: 'post',
@@ -329,7 +333,7 @@ function rendering(msgObject,that){
 			devicecode: msgObject.devicecode,
 		},
 		success: function(data){
-			console.log(data.obj);
+			console.log(data);
 
 			//渲染保存远程取物门开启时间
 			c('remote_selectc')[0].value = data.obj.pickupdoor;
@@ -344,21 +348,13 @@ function rendering(msgObject,that){
 			machineName.value = data.obj.machName;
 			machineNumber.value = data.obj.machCode;
 			machineMac.value = data.obj.macAddr;
-			if(data.obj.useAddr != undefined){
-				machineAddr.value = data.obj.useAddr;
-			}else{
-				machineAddr.value = "";
-			}
-			if(data.obj.flowcard != undefined){
-				machineTraffic.value = data.obj.flowcard;
-			}else{
-				machineTraffic.value = "";
-			}
-			if(data.obj.description != undefined){
-				machineExplain.value = data.obj.description;
-			}else{
-				machineExplain.value = "";
-			}
+			data.obj.useAddr?machineAddr.value = data.obj.useAddr:machineAddr.value = "";
+			data.obj.flowcard?machineTraffic.value = data.obj.flowcard:machineTraffic.value = "";
+			data.obj.description?machineExplain.value = data.obj.description:machineExplain.value = "";
+			data.obj1.pushTo?machinePosNum.value = data.obj1.pushTo:machinePosNum.value = "";
+			data.obj1.username?machinePosUser.value = data.obj1.username:machinePosUser.value = "";
+			data.obj1.password?machinePosPass.value = data.obj1.password:machinePosPass.value = "";
+			data.obj1.appKey?machineAppkey.value = data.obj1.appKey:machineAppkey.value = "";
 			if(msgObject.isFree == 1){
                 c('machine_freeze_tr')[0].style.display = 'none';
             }else{
@@ -409,6 +405,25 @@ function rendering(msgObject,that){
 					},
 					error: function(){
 						alern('Failure');
+					}
+				})
+
+				var posObj = {}	//pos机新增接口数据
+				posObj.machCode = data.obj.machCode;
+				posObj.macAddr = data.obj.macAddr;
+				posObj.pushTo = machinePosNum.value;
+				posObj.username = machinePosUser.value;
+				posObj.password = machinePosPass.value;
+				posObj.appKey = machineAppkey.value;
+				//售货机POS机数据存储
+				$.ajax({
+					type: 'post',
+					url: URLS + '/pos/addPos.json',
+					data: {
+						obj: JSON.stringify(posObj),
+					},
+					success: function(data){
+						console.log(data);
 					}
 				})
 			}

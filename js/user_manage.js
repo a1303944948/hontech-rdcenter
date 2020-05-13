@@ -74,8 +74,6 @@ userHeadSubmit.onclick = function(){
 	if(userHeadGroup == ""){
 		userHeadGroup = loginUserName.scopeofauthority;
 	}
-	console.log(userHeadGroup);
-	console.log(userHeadStatus);
 	$.ajax({
 		type: 'post',
 		url: URLZ + '/jf/bg/basic/cfc/searchClassifi.json',
@@ -85,7 +83,6 @@ userHeadSubmit.onclick = function(){
 			stop: userHeadStatus,
 		},
 		success: function(data){
-			console.log(data);
 			KIT = data.obj;
 			if(userHeadStatus == 1){
 				startbody();
@@ -275,7 +272,6 @@ function startbody(addper){
 				li += (temp[j]);
 			}
 			ul.innerHTML = li;
-			console.log(Operator[i].clientWidth);
 			ul.style.minWidth = '179px';
 			Head.appendChild(ul);
 
@@ -299,8 +295,6 @@ function startbody(addper){
 			}
 			for(var j = 0; j < headUlOperator[i].children.length; j++){
 				headUlOperator[i].children[j].onmousedown = function(){
-					console.log(this.innerText);
-					console.log(this.children[1].dataset.id);
 					Operator[this.parentNode.dataset.list].value = this.children[1].innerHTML;
 					Operator[this.parentNode.dataset.list].name = this.children[1].dataset.id;
 				}
@@ -317,7 +311,6 @@ function startbody(addper){
 				operatorID: loginUserName.operatorID,
 			},
 			success: function(data){
-				console.log(data);
 
 				var Head = c('user_head')[0];
 				var Operator = c('user_head_operator');
@@ -329,7 +322,6 @@ function startbody(addper){
 					li.innerHTML = data.operator;
 					li.setAttribute('data-value',data.operatorID);
 					ul.appendChild(li);
-					console.log(Operator[i].clientWidth);
 					ul.style.minWidth = '179px';
 					Head.appendChild(ul);
 
@@ -531,7 +523,6 @@ function startbody(addper){
 		}
 	}
 
-	console.log(userweobject);
 	for(var o = 0; o < userweobject.length; o++){
 		function sonsTree(arr,id){
 		    var temp = [],lev=0;
@@ -552,7 +543,6 @@ function startbody(addper){
 		}
 		var tree = sonsTree(USERWE,userweobject[o].menuid);
 	}
-	console.log(userweobjects);
 	for(var i = 0; i < userweobjects.length; i++){
 		for(var j = 0; j < userweobjects[i].length; j++){
 			var li = creat('li');
@@ -652,14 +642,11 @@ function startfoot(){
 		var Head = c('user_head')[0];
 		var Operator = c('user_head_operator');
 		var headUlOperator = c('user_head_ulOperator');
-		console.dir(headUlOperator[0].children[0]);
 		for(var i = 0; i < Operator.length; i++){
 			Operator[i].value = headUlOperator[i].children[0].children[0].innerHTML;
 			Operator[i].name = headUlOperator[i].children[0].children[0].dataset.id;
 			for(var j = 0; j < headUlOperator[i].children.length; j++){
 				headUlOperator[i].children[j].children[0].onmousedown = function(){
-					console.log(this.innerHTML);
-					console.log(this.dataset.id);
 					Operator[this.parentNode.parentNode.dataset.list].value = this.innerHTML;
 					Operator[this.parentNode.parentNode.dataset.list].name = this.dataset.id;
 				}
@@ -669,14 +656,11 @@ function startfoot(){
 		var Head = c('user_head')[0];
 		var Operator = c('user_head_operator');
 		var headUlOperator = c('user_head_ulOperator');
-		console.dir(headUlOperator[0].children[0]);
 		for(var i = 0; i < Operator.length; i++){
 			Operator[i].value = headUlOperator[i].children[0].innerHTML;
 			Operator[i].name = headUlOperator[i].children[0].dataset.value;
 			for(var j = 0; j < headUlOperator[i].children.length; j++){
 				headUlOperator[i].children[j].onmousedown = function(){
-					console.log(this.innerHTML);
-					console.log(this.dataset.value);
 					Operator[this.parentNode.dataset.list].value = this.innerHTML;
 					Operator[this.parentNode.dataset.list].name = this.dataset.value;
 				}
@@ -687,7 +671,6 @@ function startfoot(){
 
 //点击人物渲染右部表单
 function rendering(empcode,that){
-	console.log(123);
 	startfoot();
 	USEREMPCODE = empcode;
 	var userHeadUlShow = c('user_head_ul_show')[0];
@@ -706,7 +689,6 @@ function rendering(empcode,that){
 			empcode: empcode,
 		},
 		success: function(data){
-			console.log(data);
 			type = 1;
 			for(var i = 0; i < userBodyRightFootItem.length; i++){
 				userBodyRightFootItem[i].style.visibility = 'visible';
@@ -728,7 +710,6 @@ function rendering(empcode,that){
 			}
 			userNameDelete.value = data.obj.name;
 			userAccountDelete.value = data.obj.empcode;
-			console.log(KITSorted);
 			var userCount = 0;
 			for(var i = 0; i < KITSorted.length; i++){
 				if(KITSorted[i].id == data.obj.scopeofauthority){
@@ -737,8 +718,6 @@ function rendering(empcode,that){
 					userCount = 1;
 				}
 				if(KITSorted[i].operatorID == data.obj.operatorID||KITSorted[i].id == data.obj.operatorID){
-					console.log(KITSorted[i].text);
-					console.log(KITSorted[i].operatorID);
 					userOperator.value = KITSorted[i].text;
 					userOperator.name = KITSorted[i].operatorID;
 				}
@@ -758,7 +737,6 @@ function rendering(empcode,that){
 			emplCode: empcode,
 		},
 		success: function(data){
-			console.log(data);
 			USEROTHER = [];
 			for(var i = 0; i < data.obj.length; i++){
 				USEROTHER.push(data.obj[i]);
@@ -1040,7 +1018,6 @@ function submit(){
 		userObject.mark = userLegend.value;
 		userObject.stop = userStops;
 
-		console.log(userObject);
 		if(type == 0){
 			//创建事件
 			$.ajax({
@@ -1143,13 +1120,10 @@ function submit(){
 				subAthorObjArarry: JSON.stringify(itemPanelUlArray),
 			},
 			success: function(data){
-				console.log(data);
 			},
 			error: function(data){
-				console.log(data);
 			}
 		})
-		console.log(JSON.stringify(itemPanelUlArray));
 	}
 }
 
