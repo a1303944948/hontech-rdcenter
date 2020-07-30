@@ -351,10 +351,12 @@ function rendering(msgObject,that){
 			data.obj.useAddr?machineAddr.value = data.obj.useAddr:machineAddr.value = "";
 			data.obj.flowcard?machineTraffic.value = data.obj.flowcard:machineTraffic.value = "";
 			data.obj.description?machineExplain.value = data.obj.description:machineExplain.value = "";
-			data.obj1.pushTo?machinePosNum.value = data.obj1.pushTo:machinePosNum.value = "";
-			data.obj1.username?machinePosUser.value = data.obj1.username:machinePosUser.value = "";
-			data.obj1.password?machinePosPass.value = data.obj1.password:machinePosPass.value = "";
-			data.obj1.appKey?machineAppkey.value = data.obj1.appKey:machineAppkey.value = "";
+			if(data.obj1){
+				data.obj1.pushTo?machinePosNum.value = data.obj1.pushTo:machinePosNum.value = "";
+				data.obj1.username?machinePosUser.value = data.obj1.username:machinePosUser.value = "";
+				data.obj1.password?machinePosPass.value = data.obj1.password:machinePosPass.value = "";
+				data.obj1.appKey?machineAppkey.value = data.obj1.appKey:machineAppkey.value = "";
+			}
 			if(msgObject.isFree == 1){
                 c('machine_freeze_tr')[0].style.display = 'none';
             }else{

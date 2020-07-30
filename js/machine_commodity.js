@@ -1231,6 +1231,18 @@ function ycStart(machCODE,mobleId){
 		for(var i = 0; i < itemRemoteTbodyb.length; i++){
 			itemRemoteTbodyb[i].style.display = 'table-row';
 		}
+	}else if(mobleId == 'YQC001'){
+		initRestart.style.display = 'table-row';
+		init.style.display = 'none';
+		restart.colSpan = 2;
+		restart.style.display = 'table-cell';
+		restart.style.height = '36px';
+		locks.style.display = 'none';
+		magnet.style.display = 'none';
+		door.style.display = 'none';
+		for(var i = 0; i < itemRemoteTbodyb.length; i++){
+			itemRemoteTbodyb[i].style.display = 'none';
+		}
 	}else if(mobleId == 'FC02'){
 		initRestart.style.display = 'table-row';
 		init.style.display = 'none';
